@@ -20,7 +20,8 @@ agent_orchestration_baseline/
 │   │   ├── agent-orchestration-best-practices.md
 │   │   └── you_ai_agent_orchestration.md
 │   ├── strategies/                              # Application building strategies
-│   │   └── agentic-application-build-strategies.md
+│   │   ├── agentic-application-build-strategies.md
+│   │   └── agentic-nblm-integration-prd.md
 │   └── open_source/                             # Open source library research
 │       └── open-source-prompt-libraries.md
 │
@@ -66,6 +67,7 @@ agent_orchestration_baseline/
 - **Agent Orchestration Best Practices:** `RESEARCH/frameworks/agent-orchestration-best-practices.md`
 - **Comprehensive Framework Analysis:** `RESEARCH/frameworks/you_ai_agent_orchestration.md`
 - **Application Building Strategy:** `RESEARCH/strategies/agentic-application-build-strategies.md`
+- **NBLM Integration PRD:** `RESEARCH/strategies/agentic-nblm-integration-prd.md`
 
 ---
 

@@ -30,22 +30,22 @@
 Fill in the sections below with your actual credentials:
 
 ### GitHub
-- Repo URL: 
-- Token Name: 
-- Token: 
-- Expires: 
+- Repo URL:
+- Token Name:
+- Token:
+- Expires:
 
 ### OpenAI / GPT
-- API Key: 
+- API Key:
 
 ### Anthropic / Claude
-- API Key: 
+- API Key:
 
 ### Google / Gemini
-- API Key: 
+- API Key:
 
 ### Mistral
-- API Key: 
+- API Key:
 
 ### Other Platforms
 - [Add as needed]
