@@ -1,0 +1,1622 @@
+Skip to content
+You said:
+Developer: # Role and Objective
+Create a categorized set of evergreen prompts designed for AI agents to facilitate application building, drawing on a referenced document and leveraging user-driven agent orchestration processes.
+
+Begin with a concise checklist (3-7 bullets) of what you will do; keep items conceptual, not implementation-level.
+
+# Instructions
+- Infer and generate evergreen prompts supporting application building, grouping them by attributes such as role (intended user/agent), category (prompt type/purpose), and sequence (recommended order), using high-level reasoning and supplied context.
+- Make informed inferences from the provided document, supplementing with reputable online research as needed.
+- Prioritize prompts that directly enable application development workflows.
+- Clearly annotate with a 'note' if the reference material is ambiguous or incomplete.
+- Multiple documents may be generated as needed.
+
+# Context
+- Source is a mixed-quality list of historical prompts; their effectiveness is not fully established due to varying workflows and inconsistent usage, including possible user errors in past repositories.
+- Supplementary internet research from authoritative sources is permitted to resolve ambiguities or enrich findings.
+- Prompts must remain specific to application-building tasks.
+
+# Reasoning Steps
+- Analyze the reference material to infer prompt roles, categories, and usage order.
+- Segment prompt list by 'role' and then by 'category', drawing on high-level reasoning if attributes are not explicit.
+- Ensure clarity of user expectations and context of use for each prompt, adding notes on ambiguities as needed.
+
+# Planning and Verification
+- Map extracted prompts to attributes: role, category, sequence/order.
+- Verify prompts align with application-building objectives, not general-purpose tasks.
+- Test and optimize organizational criteria and prompts for clarity.
+
+After generating or editing prompts, validate that each prompt is relevant, well-categorized, and that all required JSON schema fields are present. If any issues are found, self-correct before finalizing output.
+
+# Output Format
+Respond in JSON using the following schema:
+
+{
+  "prompts": [
+    {
+      "role": "<Describe the intended user or agent role>",
+      "category": "<Prompt category/type, as inferred>",
+      "sequence": "<Order of use or recommended sequence, if applicable>",
+      "prompt": "<The Evergreen prompt itself>",
+      "user_expectation": "<Succinct guidance or expected outcome when using this prompt>",
+      // Optional; include only if applicable
+      "note": "<Explain any ambiguities, missing details, or contradictions from the source material>"
+    },
+    ...
+  ]
+}
+
+- Group or segment the prompt list primarily by 'role', then by 'category'.
+- Where sequence is relevant, provide an ordering indication.
+- Each prompt must have a 'user_expectation' field clearly articulating the expected outcome or benefit.
+- If ambiguities exist in the reference document, annotate with a 'note' field.
+
+# Verbosity
+- Write prompts and user expectations concisely, ensuring clarity and immediate usability for coding agents or developers.
+
+# Stop Conditions
+- Task is complete when all feasible evergreen prompts for application building are given, grouped and annotated as required, in the specified JSON format.
+ChatGPT said:
+Request for GPT-5 Pro
+Reasoned for 7m 0s
+Identify roles, categories, and lifecycle sequence from mixed prompts.
+
+Rewrite into evergreen, vendor-neutral prompts with clear outputs.
+
+Add user expectations and notes where the source is ambiguous.
+
+Order prompts across SDLC and agent orchestration.
+
+Validate relevance to application building and JSON schema compliance.
+
+{
+  "prompts": [
+    {
+      "role": "Agent Orchestrator",
+      "category": "Decomposition",
+      "sequence": "00-Orchestration",
+      "prompt": "Decompose {{goal}} into an agent plan. Output JSON with fields: agents[{name, role, goal, inputs, outputs}], dependencies[{from, to, rationale}], artifacts[{id, type, owner}], stop_conditions, review_gates.",
+      "user_expectation": "Receives a machine-runnable multi-agent plan with dependencies and gates.",
+      "note": "Reference prompts not provided; plan uses standard SDLC phases."
+    },
+    {
+      "role": "Agent Orchestrator",
+      "category": "IO-Contracts",
+      "sequence": "00-Orchestration",
+      "prompt": "Define strict I/O contracts for each agent. Output JSON Schema per agent: input_schema, output_schema, error_schema, sample_payloads.",
+      "user_expectation": "Receives schemas to wire agents without ambiguity."
+    },
+    {
+      "role": "Agent Orchestrator",
+      "category": "Sequencing",
+      "sequence": "00-Orchestration",
+      "prompt": "Map the agent plan to a DAG. Output YAML with nodes, edges, triggers (event|time|gate), retries, timeouts.",
+      "user_expectation": "Receives a clear execution graph with triggers."
+    },
+    {
+      "role": "Agent Orchestrator",
+      "category": "Governance",
+      "sequence": "00-Orchestration",
+      "prompt": "Define guardrails. Specify allowed tools, data scopes, PII rules, rate limits, and approval gates. Output a policy file in YAML.",
+      "user_expectation": "Receives enforceable policies for safe execution."
+    },
+    {
+      "role": "Agent Orchestrator",
+      "category": "Handoffs",
+      "sequence": "00-Orchestration",
+      "prompt": "Design handoff protocol. Specify artifact addressing, versioning, and context windows. Output a contract with examples.",
+      "user_expectation": "Receives deterministic cross-agent handoffs."
+    },
+    {
+      "role": "Agent Orchestrator",
+      "category": "Evaluation",
+      "sequence": "00-Orchestration",
+      "prompt": "Create acceptance checks per agent. Output test cases as JSON: {id, agent, input, expected_output, tolerance, fail_action}.",
+      "user_expectation": "Receives verifiable checks to gate progress."
+    },
+    {
+      "role": "Agent Orchestrator",
+      "category": "Retrospective",
+      "sequence": "00-Orchestration",
+      "prompt": "Produce a short retro on orchestration after a run. Output bullets: wins, risks, defects, actions, owner, due_date.",
+      "user_expectation": "Receives improvements tied to owners."
+    },
+    {
+      "role": "Product Owner / Strategist",
+      "category": "Problem Framing",
+      "sequence": "01-Discovery",
+      "prompt": "Summarize the problem for {{project_name}}. Output: business_goal, target_users, jobs_to_be_done, constraints, out_of_scope.",
+      "user_expectation": "Receives crisp problem and scope."
+    },
+    {
+      "role": "Product Owner / Strategist",
+      "category": "User Stories",
+      "sequence": "01-Discovery",
+      "prompt": "Draft user stories with acceptance criteria for {{target_users}}. Output a table: story_id, as_a, I_want, so_that, acceptance_criteria.",
+      "user_expectation": "Receives prioritized stories with AC."
+    },
+    {
+      "role": "Product Owner / Strategist",
+      "category": "Success Metrics",
+      "sequence": "01-Discovery",
+      "prompt": "Define KPIs for {{project_name}}. Output: metric, definition, baseline, target, measurement_method, cadence.",
+      "user_expectation": "Receives measurable outcomes."
+    },
+    {
+      "role": "Product Owner / Strategist",
+      "category": "Risks and Assumptions",
+      "sequence": "01-Discovery",
+      "prompt": "List top risks and assumptions. Output a risk register: id, description, impact, likelihood, mitigation, owner.",
+      "user_expectation": "Receives a risk register."
+    },
+    {
+      "role": "Product Owner / Strategist",
+      "category": "Scope Boundaries",
+      "sequence": "01-Discovery",
+      "prompt": "Create an in-scope vs out-of-scope matrix for {{release_window}}. Output two lists with rationale.",
+      "user_expectation": "Receives scope clarity for delivery."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "System Context",
+      "sequence": "02-Architecture",
+      "prompt": "Produce a C4 Level-1 text spec for {{project_name}}. Output: system_purpose, external_users, external_systems, relationships, key_quality_attributes.",
+      "user_expectation": "Receives high-level system context."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "ADRs",
+      "sequence": "02-Architecture",
+      "prompt": "Draft initial ADRs for {{stack_preferences}}. Output ADR stubs: title, status, context, decision, consequences.",
+      "user_expectation": "Receives ADR skeletons for key choices."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "Service Boundaries",
+      "sequence": "02-Architecture",
+      "prompt": "Propose service decomposition. Output services: name, responsibility, APIs, data_owned, dependencies, scale_driver.",
+      "user_expectation": "Receives a service map."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "NFR Tactics",
+      "sequence": "02-Architecture",
+      "prompt": "Map {{nonfunctional_requirements}} to tactics. Output: nfr, tactic, design_implication, verification_method.",
+      "user_expectation": "Receives NFR-to-tactic mapping."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "Data Flows",
+      "sequence": "02-Architecture",
+      "prompt": "Describe key data flows. Output: source, sink, format, frequency, volume, latency_target, error_handling.",
+      "user_expectation": "Receives documented data flows."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "Security Model",
+      "sequence": "02-Architecture",
+      "prompt": "Select high-level authn/authz patterns for {{target_users}}. Output: identity_source, session_model, permission_model, secrets_scopes.",
+      "user_expectation": "Receives security model options."
+    },
+    {
+      "role": "Full-Stack Scaffolder",
+      "category": "Repo Structure",
+      "sequence": "03-Scaffolding",
+      "prompt": "Propose repo layout for {{mono_or_poly}}. Output: directories, purpose, tooling, code_owners.",
+      "user_expectation": "Receives repo scaffold plan."
+    },
+    {
+      "role": "Full-Stack Scaffolder",
+      "category": "Standards",
+      "sequence": "03-Scaffolding",
+      "prompt": "Define language and style standards for {{language}}. Output: linters, formatters, commit_conventions, branch_policy.",
+      "user_expectation": "Receives enforceable standards."
+    },
+    {
+      "role": "Full-Stack Scaffolder",
+      "category": "Tasks",
+      "sequence": "03-Scaffolding",
+      "prompt": "Design a Makefile or task runner plan. Output tasks: setup, test, lint, build, run, release.",
+      "user_expectation": "Receives common dev tasks."
+    },
+    {
+      "role": "Full-Stack Scaffolder",
+      "category": "Local Dev",
+      "sequence": "03-Scaffolding",
+      "prompt": "Specify local dev environment. Output: runtime_versions, services, env_vars, seeds, startup_steps.",
+      "user_expectation": "Receives reproducible local setup."
+    },
+    {
+      "role": "API Contract Agent",
+      "category": "Resource Design",
+      "sequence": "04-API-Contracts",
+      "prompt": "Draft OpenAPI for core resources {{core_resources}} using REST or RPC as appropriate. Include paths, schemas, errors, examples.",
+      "user_expectation": "Receives a first-pass API spec.",
+      "note": "Return vendor-agnostic OpenAPI 3.1 unless specified."
+    },
+    {
+      "role": "API Contract Agent",
+      "category": "Conventions",
+      "sequence": "04-API-Contracts",
+      "prompt": "Define pagination, filtering, sorting, and search conventions. Output: patterns, query_params, examples, tradeoffs.",
+      "user_expectation": "Receives consistent query conventions."
+    },
+    {
+      "role": "API Contract Agent",
+      "category": "Errors",
+      "sequence": "04-API-Contracts",
+      "prompt": "Define an error model. Output JSON: code, http_status, message, details, remediation, correlation_id.",
+      "user_expectation": "Receives a uniform error contract."
+    },
+    {
+      "role": "API Contract Agent",
+      "category": "Versioning",
+      "sequence": "04-API-Contracts",
+      "prompt": "Choose API versioning strategy. Output: scheme, compatibility_rules, deprecation_policy, examples.",
+      "user_expectation": "Receives versioning rules."
+    },
+    {
+      "role": "API Contract Agent",
+      "category": "Mocks",
+      "sequence": "04-API-Contracts",
+      "prompt": "Plan mock server generation from OpenAPI. Output: tooling options, routes to mock, data strategies.",
+      "user_expectation": "Receives a mock server plan."
+    },
+    {
+      "role": "Data Modeler",
+      "category": "Conceptual Model",
+      "sequence": "05-Data-Model",
+      "prompt": "Propose a conceptual ERD. Output: entities, relationships, cardinalities, invariants.",
+      "user_expectation": "Receives a clear domain model."
+    },
+    {
+      "role": "Data Modeler",
+      "category": "Naming and Migrations",
+      "sequence": "05-Data-Model",
+      "prompt": "Define naming conventions and migration policy for {{database}}. Output: rules, migration_steps, rollback_guidelines.",
+      "user_expectation": "Receives consistent DB rules."
+    },
+    {
+      "role": "Data Modeler",
+      "category": "Seed Data",
+      "sequence": "05-Data-Model",
+      "prompt": "Plan seed data and fixtures. Output: datasets, generation_rules, privacy_notes.",
+      "user_expectation": "Receives safe repeatable seeds."
+    },
+    {
+      "role": "Data Modeler",
+      "category": "Indexing",
+      "sequence": "05-Data-Model",
+      "prompt": "Propose indexing strategy for key queries. Output: query_patterns, suggested_indexes, maintenance_costs.",
+      "user_expectation": "Receives index recommendations.",
+      "note": "Database engine unspecified; provide generic B-Tree and covering index options."
+    },
+    {
+      "role": "Backend Engineer",
+      "category": "Service Skeleton",
+      "sequence": "06-Backend",
+      "prompt": "Generate a service skeleton for {{framework}} with health, readiness, and metrics endpoints. Output file tree and stubs.",
+      "user_expectation": "Receives runnable service scaffold."
+    },
+    {
+      "role": "Backend Engineer",
+      "category": "Core Endpoints",
+      "sequence": "06-Backend",
+      "prompt": "Implement CRUD endpoints for {{resource}} per API spec. Include validation, serialization, and errors.",
+      "user_expectation": "Receives endpoint stubs aligned to the contract."
+    },
+    {
+      "role": "Backend Engineer",
+      "category": "Persistence",
+      "sequence": "06-Backend",
+      "prompt": "Add repository layer for {{database}}. Output interfaces, transaction strategy, and sample queries.",
+      "user_expectation": "Receives persistence layer design."
+    },
+    {
+      "role": "Backend Engineer",
+      "category": "Background Jobs",
+      "sequence": "06-Backend",
+      "prompt": "Define job processing for {{use_case}}. Output: queue, retry_policy, idempotency_key, scheduling.",
+      "user_expectation": "Receives reliable job patterns."
+    },
+    {
+      "role": "Backend Engineer",
+      "category": "Resilience",
+      "sequence": "06-Backend",
+      "prompt": "Add resilience patterns. Output: timeouts, retries, backoff, circuit_breakers with defaults.",
+      "user_expectation": "Receives fault-tolerant configs."
+    },
+    {
+      "role": "Backend Engineer",
+      "category": "Configuration",
+      "sequence": "06-Backend",
+      "prompt": "Specify configuration strategy. Output: env_vars, config_files, precedence, secrets_boundary.",
+      "user_expectation": "Receives clear config boundaries."
+    },
+    {
+      "role": "Frontend Engineer",
+      "category": "Component Inventory",
+      "sequence": "07-Frontend",
+      "prompt": "List screens and components for {{user_flows}}. Output: route, component, state, data_sources.",
+      "user_expectation": "Receives component map by route."
+    },
+    {
+      "role": "Frontend Engineer",
+      "category": "State Management",
+      "sequence": "07-Frontend",
+      "prompt": "Propose state strategy. Output: server_state vs client_state, caching rules, invalidation triggers.",
+      "user_expectation": "Receives predictable state plan."
+    },
+    {
+      "role": "Frontend Engineer",
+      "category": "API Client",
+      "sequence": "07-Frontend",
+      "prompt": "Generate API client layer from OpenAPI. Include typing, auth, error normalization.",
+      "user_expectation": "Receives a typed client layer."
+    },
+    {
+      "role": "Frontend Engineer",
+      "category": "Accessibility",
+      "sequence": "07-Frontend",
+      "prompt": "Set A11y acceptance rules. Output: keyboard_support, labels, color_contrast, focus_management, test_cases.",
+      "user_expectation": "Receives enforceable A11y checks."
+    },
+    {
+      "role": "Frontend Engineer",
+      "category": "Layouts",
+      "sequence": "07-Frontend",
+      "prompt": "Define responsive layout grid and spacing scale. Output tokens and examples.",
+      "user_expectation": "Receives a layout system."
+    },
+    {
+      "role": "Frontend Engineer",
+      "category": "UX States",
+      "sequence": "07-Frontend",
+      "prompt": "Specify loading, empty, error, and success states for key views. Output patterns and samples.",
+      "user_expectation": "Receives consistent UX state patterns."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "CI Pipeline",
+      "sequence": "08-DevOps",
+      "prompt": "Design CI pipeline for {{language}}. Stages: lint, test, build, scan, package, cache. Output YAML-like spec.",
+      "user_expectation": "Receives a portable CI plan.",
+      "note": "CI vendor unspecified; keep steps generic."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "Containerization",
+      "sequence": "08-DevOps",
+      "prompt": "Propose container build for {{service}}. Output: base_image, build_args, multi-stage steps, healthcheck.",
+      "user_expectation": "Receives a reproducible image plan."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "IaC",
+      "sequence": "08-DevOps",
+      "prompt": "Outline Infrastructure as Code for {{cloud}}. Output: environments, state_management, modules, drift_detection.",
+      "user_expectation": "Receives IaC structure."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "Environments",
+      "sequence": "08-DevOps",
+      "prompt": "Define environment matrix. Output: dev, test, staging, prod with config_diffs, promotion_rules.",
+      "user_expectation": "Receives environment definitions."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "Secrets",
+      "sequence": "08-DevOps",
+      "prompt": "Specify secrets management. Output: storage, rotation, access_policies, local_dev_substitutes.",
+      "user_expectation": "Receives secrets handling rules."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "Artifacts",
+      "sequence": "08-DevOps",
+      "prompt": "Plan artifact storage and caching. Output: artifact_types, retention, immutability, cache_keys.",
+      "user_expectation": "Receives artifact retention plan."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "Threat Model",
+      "sequence": "09-Security",
+      "prompt": "Threat model {{system_boundary}} using STRIDE. Output: assets, trust_zones, threats, mitigations, residual_risk.",
+      "user_expectation": "Receives a prioritized threat model.",
+      "note": "Method can be LINDDUN for privacy; defaulting to STRIDE."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "AuthN/AuthZ",
+      "sequence": "09-Security",
+      "prompt": "Design authn/authz for {{audiences}}. Output: flows, token_lifetimes, role_matrix, permission_checks.",
+      "user_expectation": "Receives actionable auth design."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "Dependency Hygiene",
+      "sequence": "09-Security",
+      "prompt": "Set dependency and container scanning policy. Output: tools, severity_thresholds, SLA, exceptions_process.",
+      "user_expectation": "Receives enforceable scanning policy."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "Data Protection",
+      "sequence": "09-Security",
+      "prompt": "Define data protection. Output: classification, encryption_at_rest, in_transit, key_rotation, data_minimization.",
+      "user_expectation": "Receives data security controls."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "IR Playbook",
+      "sequence": "09-Security",
+      "prompt": "Draft incident response playbook. Output: detection, triage, containment, eradication, recovery, postmortem.",
+      "user_expectation": "Receives an IR workflow."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "Test Strategy",
+      "sequence": "10-Testing",
+      "prompt": "Create test strategy. Output: levels(unit|integration|e2e), coverage_targets, environments, gating_rules.",
+      "user_expectation": "Receives a testing plan."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "Unit Tests",
+      "sequence": "10-Testing",
+      "prompt": "Generate unit test blueprint for {{module}}. Output: cases, inputs, oracles, mocks, edge_conditions.",
+      "user_expectation": "Receives unit test cases."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "Integration Tests",
+      "sequence": "10-Testing",
+      "prompt": "Plan integration tests for {{service_interactions}}. Output: contracts, fixtures, mock_strategies, assertions.",
+      "user_expectation": "Receives integration test plan."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "E2E",
+      "sequence": "10-Testing",
+      "prompt": "Design end-to-end flows for {{critical_paths}}. Output: sequence, preconditions, steps, expected, cleanup.",
+      "user_expectation": "Receives e2e scenarios."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "Test Data",
+      "sequence": "10-Testing",
+      "prompt": "Define test data management. Output: generation_rules, masking, refresh_cadence, ownership.",
+      "user_expectation": "Receives safe test data plan."
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "README",
+      "sequence": "11-Docs",
+      "prompt": "Draft README for {{project_name}}. Sections: purpose, architecture_overview, setup, run, test, deploy, troubleshooting.",
+      "user_expectation": "Receives a complete README."
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "Contributing",
+      "sequence": "11-Docs",
+      "prompt": "Create CONTRIBUTING guide. Output: branching, commits, code_review_checklist, issue_template, PR_template.",
+      "user_expectation": "Receives team-ready contributing docs."
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "API Reference",
+      "sequence": "11-Docs",
+      "prompt": "Generate API reference from OpenAPI. Include examples and curl snippets.",
+      "user_expectation": "Receives consumable API docs."
+    },
+    {
+      "role": "Integration Agent",
+      "category": "3rd-Party APIs",
+      "sequence": "12-Integration",
+      "prompt": "Plan integration with {{external_api}}. Output: auth, rate_limits, retries, backoff, circuit_breaker, fallbacks.",
+      "user_expectation": "Receives robust integration plan."
+    },
+    {
+      "role": "Integration Agent",
+      "category": "Webhooks",
+      "sequence": "12-Integration",
+      "prompt": "Design webhook endpoints for {{events}}. Output: signatures, idempotency, replay_handling, security.",
+      "user_expectation": "Receives secure webhook design."
+    },
+    {
+      "role": "Integration Agent",
+      "category": "Idempotency",
+      "sequence": "12-Integration",
+      "prompt": "Specify idempotency strategy for writes. Output: keys, storage, TTL, conflict_resolution.",
+      "user_expectation": "Receives safe write plan."
+    },
+    {
+      "role": "Performance Engineer",
+      "category": "SLO/SLA",
+      "sequence": "13-Performance",
+      "prompt": "Define SLOs for {{critical_paths}}. Output: SLI, target, window, error_budget, alert_thresholds.",
+      "user_expectation": "Receives actionable SLOs."
+    },
+    {
+      "role": "Performance Engineer",
+      "category": "Load Tests",
+      "sequence": "13-Performance",
+      "prompt": "Create load test scenarios. Output: workload_model, arrival_rate, datasets, ramp, pass_fail_criteria.",
+      "user_expectation": "Receives a load plan."
+    },
+    {
+      "role": "Performance Engineer",
+      "category": "Caching",
+      "sequence": "13-Performance",
+      "prompt": "Propose caching layers for {{hot_paths}}. Output: cache_keys, ttl, invalidation, coherency.",
+      "user_expectation": "Receives caching strategy."
+    },
+    {
+      "role": "Observability Agent",
+      "category": "Logging",
+      "sequence": "14-Observability",
+      "prompt": "Define logging schema. Output: levels, fields, correlation_id, PII_policy, sampling.",
+      "user_expectation": "Receives structured logging rules."
+    },
+    {
+      "role": "Observability Agent",
+      "category": "Metrics",
+      "sequence": "14-Observability",
+      "prompt": "List service metrics and dashboards. Output: metric, type, labels, alert, dashboard_widget.",
+      "user_expectation": "Receives metrics to instrument."
+    },
+    {
+      "role": "Observability Agent",
+      "category": "Tracing",
+      "sequence": "14-Observability",
+      "prompt": "Plan distributed tracing. Output: spans, propagation, sampling, baggage, privacy_notes.",
+      "user_expectation": "Receives tracing plan."
+    },
+    {
+      "role": "Compliance & Accessibility Agent",
+      "category": "Data Privacy",
+      "sequence": "15-Compliance",
+      "prompt": "Map data categories to {{compliance_regimes}}. Output: data_type, lawful_basis, retention, DSR_process.",
+      "user_expectation": "Receives privacy mapping."
+    },
+    {
+      "role": "Compliance & Accessibility Agent",
+      "category": "Accessibility",
+      "sequence": "15-Compliance",
+      "prompt": "Create A11y compliance checklist for {{ui_stack}}. Output: criteria, test, owner, release_gate.",
+      "user_expectation": "Receives executable A11y checks."
+    },
+    {
+      "role": "Compliance & Accessibility Agent",
+      "category": "Audit Logs",
+      "sequence": "15-Compliance",
+      "prompt": "Define audit logging requirements. Output: events, fields, retention, tamper_evidence.",
+      "user_expectation": "Receives audit requirements."
+    },
+    {
+      "role": "Release Manager",
+      "category": "Versioning",
+      "sequence": "16-Release",
+      "prompt": "Choose versioning scheme for {{services}}. Output: scheme, release_branches, tagging, backports.",
+      "user_expectation": "Receives versioning rules."
+    },
+    {
+      "role": "Release Manager",
+      "category": "Release Notes",
+      "sequence": "16-Release",
+      "prompt": "Template release notes. Sections: highlights, breaking_changes, migrations, fixes, upgrade_steps.",
+      "user_expectation": "Receives a reusable template."
+    },
+    {
+      "role": "Operations / Support Agent",
+      "category": "Runbooks",
+      "sequence": "17-Operations",
+      "prompt": "Write runbooks for {{top_incidents}}. Output: symptoms, diagnosis, remediation, rollback, verification.",
+      "user_expectation": "Receives actionable runbooks."
+    },
+    {
+      "role": "Operations / Support Agent",
+      "category": "On-call",
+      "sequence": "17-Operations",
+      "prompt": "Define on-call and escalation. Output: schedule, response_SLA, paging_rules, comms_templates.",
+      "user_expectation": "Receives an on-call policy."
+    },
+    {
+      "role": "Analytics / Experimentation Agent",
+      "category": "Event Taxonomy",
+      "sequence": "18-Analytics",
+      "prompt": "Create analytics event taxonomy. Output: event_name, properties, owner, PII_flag, QA_checks.",
+      "user_expectation": "Receives a clean event spec."
+    },
+    {
+      "role": "Analytics / Experimentation Agent",
+      "category": "Experiment Design",
+      "sequence": "18-Analytics",
+      "prompt": "Design A/B test for {{feature}}. Output: hypothesis, primary_metric, guardrails, sample_size_inputs, exposure, stop_rules.",
+      "user_expectation": "Receives an experiment plan."
+    },
+    {
+      "role": "Analytics / Experimentation Agent",
+      "category": "Feature Flags",
+      "sequence": "18-Analytics",
+      "prompt": "Plan feature flag rollout. Output: flag_name, audience, kill_switch, telemetry, cleanup_date.",
+      "user_expectation": "Receives safe rollout plan."
+    },
+    {
+      "role": "Internationalization Agent",
+      "category": "i18n Plan",
+      "sequence": "19-Internationalization",
+      "prompt": "Define i18n for {{locales}}. Output: message_format, extraction, pluralization, RTL, date_number_rules.",
+      "user_expectation": "Receives i18n implementation plan."
+    },
+    {
+      "role": "Internationalization Agent",
+      "category": "Localization Pipeline",
+      "sequence": "19-Internationalization",
+      "prompt": "Design l10n pipeline. Output: source_of_truth, translation_memory, QA, fallback_rules, release_sync.",
+      "user_expectation": "Receives l10n process and rules."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Capability Spec",
+      "sequence": "20-LLM",
+      "prompt": "Define LLM capability for {{use_case}}. Output: inputs, outputs, tools, constraints, acceptance_checks.",
+      "user_expectation": "Receives a bounded capability spec."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Retrieval",
+      "sequence": "20-LLM",
+      "prompt": "Plan retrieval for {{corpus}}. Output: chunking, embeddings_fields, index_layout, freshness, filters.",
+      "user_expectation": "Receives a retrieval plan."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Prompt Templates",
+      "sequence": "20-LLM",
+      "prompt": "Create prompt templates with slot variables. Output: system, user, tool, examples, negative_prompts.",
+      "user_expectation": "Receives reusable prompt pack."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Evaluation",
+      "sequence": "20-LLM",
+      "prompt": "Define eval harness. Output: test_set_sources, metrics(exact_match|F1|preference), thresholds, failure_buckets.",
+      "user_expectation": "Receives an eval plan.",
+      "note": "Metrics vary by task; select minimally sufficient set."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Safety",
+      "sequence": "20-LLM",
+      "prompt": "List safety tests. Output: jailbreak_attempts, PII_leakage, hallucination_traps, prompt_injection, escalation_rules.",
+      "user_expectation": "Receives safety test cases."
+    },
+    {
+      "role": "Migration / Modernization Agent",
+      "category": "Strangler Plan",
+      "sequence": "21-Migration",
+      "prompt": "Plan strangler migration for {{legacy_system}}. Output: facets, anti_corruption_layers, routing, stepwise_cuts.",
+      "user_expectation": "Receives incremental migration steps."
+    },
+    {
+      "role": "Migration / Modernization Agent",
+      "category": "Data Migration",
+      "sequence": "21-Migration",
+      "prompt": "Map data migration. Output: sources, targets, transforms, verification, backfill, rollback.",
+      "user_expectation": "Receives safe data migration plan."
+    }
+  ]
+}
+You said:
+user_prompts_app_bldg_draft2.txt
+Document
+user_technical_execution_doc.txt
+Document
+Developer: # Role and Objective
+Given the totality of updates from various models, recreate a categorized set of evergreen prompts designed for AI agents to facilitate application building, drawing on a referenced document and leveraging user-driven agent orchestration processes. 
+
+Begin with a concise checklist (3-7 bullets) of what you will do; keep items conceptual, not implementation-level.
+
+# Instructions
+- Infer and generate evergreen prompts supporting application building, grouping them by attributes such as role (intended user/agent), category (prompt type/purpose), and sequence (recommended order), using high-level reasoning and supplied context.
+- Make informed inferences from the provided document, supplementing with reputable online research as needed.
+- Prioritize prompts that directly enable application development workflows.
+- Clearly annotate with a 'note' if the reference material is ambiguous or incomplete.
+- Multiple documents may be generated as needed.
+
+# Context
+- Source is a mixed-quality list of historical prompts; their effectiveness is not fully established due to varying workflows and inconsistent usage, including possible user errors in past repositories.
+- Supplementary internet research from authoritative sources is permitted to resolve ambiguities or enrich findings.
+- Prompts must remain specific to application-building tasks.
+
+# Reasoning Steps
+- Analyze the reference material to infer prompt roles, categories, and usage order.
+- Segment prompt list by 'role' and then by 'category', drawing on high-level reasoning if attributes are not explicit.
+- Ensure clarity of user expectations and context of use for each prompt, adding notes on ambiguities as needed.
+
+# Planning and Verification
+- Map extracted prompts to attributes: role, category, sequence/order.
+- Verify prompts align with application-building objectives, not general-purpose tasks.
+- Test and optimize organizational criteria and prompts for clarity.
+
+After generating or editing prompts, validate that each prompt is relevant, well-categorized, and that all required JSON schema fields are present. If any issues are found, self-correct before finalizing output.
+
+# Output Format
+Respond in JSON using the following schema:
+
+{
+  "prompts": [
+    {
+      "role": "<Describe the intended user or agent role>",
+      "category": "<Prompt category/type, as inferred>",
+      "sequence": "<Order of use or recommended sequence, if applicable>",
+      "prompt": "<The Evergreen prompt itself>",
+      "user_expectation": "<Succinct guidance or expected outcome when using this prompt>",
+      // Optional; include only if applicable
+      "note": "<Explain any ambiguities, missing details, or contradictions from the source material>"
+    },
+    ...
+  ]
+}
+
+- Group or segment the prompt list primarily by 'role', then by 'category'.
+- Where sequence is relevant, provide an ordering indication.
+- Each prompt must have a 'user_expectation' field clearly articulating the expected outcome or benefit.
+- If ambiguities exist in the reference document, annotate with a 'note' field.
+
+# Verbosity
+- Write prompts and user expectations concisely, ensuring clarity and immediate usability for coding agents or developers.
+
+# Stop Conditions
+- Task is complete when all feasible evergreen prompts for application building are given, grouped and annotated as required, in the specified JSON format.
+ChatGPT said:
+Request for GPT-5 Pro
+Reasoned for 8m 14s
+Identify roles, categories, and lifecycle sequence from the reference.
+
+Normalize into evergreen, vendor‑neutral prompts.
+
+Embed orchestration guardrails, gates, and handoffs.
+
+Add user expectations and ambiguity notes tied to sources.
+
+Validate JSON fields and relevance to application building.
+
+{
+  "prompts": [
+    {
+      "role": "Agent Orchestrator",
+      "category": "Decomposition",
+      "sequence": "00-Orchestration",
+      "prompt": "Decompose {{goal}} into a multi-agent plan. Output JSON: agents[{name, role, goal, inputs, outputs}], dependencies[{from, to, rationale}], artifacts[{id, type, owner}], stop_conditions, review_gates.",
+      "user_expectation": "Receives a machine-runnable plan with dependencies and gates.",
+      "note": "Plans reflect orchestration workflow and guardrails. :contentReference[oaicite:0]{index=0}"
+    },
+    {
+      "role": "Agent Orchestrator",
+      "category": "IO-Contracts",
+      "sequence": "00-Orchestration",
+      "prompt": "Define strict I/O contracts per agent. Output JSON Schema: input_schema, output_schema, error_schema, sample_payloads.",
+      "user_expectation": "Receives unambiguous schemas to wire agents."
+    },
+    {
+      "role": "Agent Orchestrator",
+      "category": "Sequencing",
+      "sequence": "00-Orchestration",
+      "prompt": "Map the agent plan to a DAG. Output YAML with nodes, edges, triggers(event|time|gate), retries, timeouts.",
+      "user_expectation": "Receives a clear execution graph."
+    },
+    {
+      "role": "Agent Orchestrator",
+      "category": "Governance",
+      "sequence": "00-Orchestration",
+      "prompt": "Define guardrails. Specify allowed tools, data scopes, PII handling, rate limits, human approval gates. Output policy YAML.",
+      "user_expectation": "Receives enforceable execution policies.",
+      "note": "Mirrors safety-first maxims. :contentReference[oaicite:1]{index=1}"
+    },
+    {
+      "role": "Agent Orchestrator",
+      "category": "Handoffs",
+      "sequence": "00-Orchestration",
+      "prompt": "Design a handoff protocol. Specify artifact addressing, versioning, session_id, timestamp, and context slices. Output a contract with examples.",
+      "user_expectation": "Receives deterministic cross-agent handoffs.",
+      "note": "Machine-focused continuity required; format unspecified in source. Prefer JSON. :contentReference[oaicite:2]{index=2}"
+    },
+    {
+      "role": "Agent Orchestrator",
+      "category": "Confidence Gate",
+      "sequence": "00-Orchestration",
+      "prompt": "Before execution, run a gate check. Output: info_sufficiency, context_window_ok, guardrails_ok, crash_recovery_ok, success_confidence_percent, blocking_gaps[]. Halt if below threshold.",
+      "user_expectation": "Receives a go/no-go decision with gaps.",
+      "note": "Historical prompts use 95% confidence; user rules mention >90% for execution. Adopt higher of the two for safety. "
+    },
+    {
+      "role": "Agent Orchestrator",
+      "category": "Acceptance Checks",
+      "sequence": "00-Orchestration",
+      "prompt": "Create acceptance checks per agent. Output JSON testcases[{id, agent, input, expected_output, tolerance, fail_action}].",
+      "user_expectation": "Receives verifiable gates to control progress."
+    },
+    {
+      "role": "Agent Orchestrator",
+      "category": "Crash Recovery",
+      "sequence": "00-Orchestration",
+      "prompt": "Produce a crash recovery brief. Output JSON: status, completed, in_progress, next_steps, pointers[{file, line_range|json_pointer}], resume_instructions.",
+      "user_expectation": "Receives restart instructions for fresh agents.",
+      "note": "Continuity and versioned comms are mandatory. :contentReference[oaicite:4]{index=4}"
+    },
+
+    {
+      "role": "Product Strategist",
+      "category": "Problem Framing",
+      "sequence": "01-Discovery",
+      "prompt": "Summarize {{project_name}}. Output: business_goal, target_users, jobs_to_be_done, constraints, out_of_scope.",
+      "user_expectation": "Receives crisp scope for build."
+    },
+    {
+      "role": "Product Strategist",
+      "category": "Make-or-Buy",
+      "sequence": "01-Discovery",
+      "prompt": "Run a make-or-buy decision for {{capability}}. Output: candidates[{tool, fit, cost, learn_time, ROI_horizon}], build_option[{stack, effort, risk}], decision, rationale.",
+      "user_expectation": "Receives a justified build vs buy choice.",
+      "note": "Follows user decision factors. :contentReference[oaicite:5]{index=5}"
+    },
+    {
+      "role": "Product Strategist",
+      "category": "Success Metrics",
+      "sequence": "01-Discovery",
+      "prompt": "Define KPIs for {{project_name}}. Output: metric, definition, baseline, target, measure_method, cadence.",
+      "user_expectation": "Receives measurable outcomes."
+    },
+    {
+      "role": "Product Strategist",
+      "category": "User Stories",
+      "sequence": "01-Discovery",
+      "prompt": "Draft user stories with acceptance criteria for {{target_users}}. Output table: story_id, as_a, I_want, so_that, acceptance_criteria.",
+      "user_expectation": "Receives prioritized stories."
+    },
+    {
+      "role": "Product Strategist",
+      "category": "Risk Register",
+      "sequence": "01-Discovery",
+      "prompt": "List top risks and assumptions. Output: id, description, impact, likelihood, mitigation, owner.",
+      "user_expectation": "Receives a risk register."
+    },
+
+    {
+      "role": "Query Agent",
+      "category": "Standards Sweep",
+      "sequence": "01-Discovery",
+      "prompt": "Collect official standards impacting {{stack_or_domain}}. Output: source, requirement, impact_on_design, link_or_ref.",
+      "user_expectation": "Receives standards mapped to design."
+    },
+    {
+      "role": "Query Agent",
+      "category": "Library Comparison",
+      "sequence": "01-Discovery",
+      "prompt": "Compare top libraries for {{capability}}. Output: lib, maturity, license, perf_notes, security_notes, ecosystem, sample_usage_stub.",
+      "user_expectation": "Receives a shortlist with tradeoffs."
+    },
+    {
+      "role": "Fact Checking Agent",
+      "category": "Spec Verification",
+      "sequence": "01-Discovery",
+      "prompt": "Verify claims in {{design_doc}} against official docs. Output: claim, evidence, status(true|false|uncertain), fix_or_followup.",
+      "user_expectation": "Receives verified specs before build."
+    },
+
+    {
+      "role": "Solution Architect",
+      "category": "System Context",
+      "sequence": "02-Architecture",
+      "prompt": "Produce a C4 Level-1 text spec for {{project_name}}. Output: system_purpose, external_users, external_systems, relationships, key_quality_attributes.",
+      "user_expectation": "Receives high-level context."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "ADRs",
+      "sequence": "02-Architecture",
+      "prompt": "Draft ADRs for {{key_decisions}}. Output: title, status, context, decision, consequences.",
+      "user_expectation": "Receives ADR skeletons."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "Service Boundaries",
+      "sequence": "02-Architecture",
+      "prompt": "Propose service decomposition. Output: service, responsibility, APIs, data_owned, dependencies, scale_driver.",
+      "user_expectation": "Receives a service map."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "NFR Tactics",
+      "sequence": "02-Architecture",
+      "prompt": "Map {{NFRs}} to tactics. Output: nfr, tactic, design_implication, verification_method.",
+      "user_expectation": "Receives NFR-to-tactic mapping."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "Security Model",
+      "sequence": "02-Architecture",
+      "prompt": "Select authn/authz patterns for {{audience}}. Output: identity_source, session_model, permission_model, secrets_scopes.",
+      "user_expectation": "Receives actionable security model."
+    },
+
+    {
+      "role": "Full-Stack Scaffolder",
+      "category": "Repo Structure",
+      "sequence": "03-Scaffolding",
+      "prompt": "Propose repo layout for {{mono_or_poly}}. Output: directories, purpose, tooling, code_owners.",
+      "user_expectation": "Receives repo scaffold plan."
+    },
+    {
+      "role": "Full-Stack Scaffolder",
+      "category": "Standards",
+      "sequence": "03-Scaffolding",
+      "prompt": "Define language and style standards for {{language}}. Output: linters, formatters, commit_conventions, branch_policy.",
+      "user_expectation": "Receives enforceable standards."
+    },
+    {
+      "role": "Full-Stack Scaffolder",
+      "category": "Task Runner",
+      "sequence": "03-Scaffolding",
+      "prompt": "Design a task runner or Makefile. Output tasks: setup, test, lint, build, run, release.",
+      "user_expectation": "Receives common dev tasks."
+    },
+    {
+      "role": "Full-Stack Scaffolder",
+      "category": "Local Dev",
+      "sequence": "03-Scaffolding",
+      "prompt": "Specify local dev environment. Output: runtime_versions, services, env_vars, seeds, startup_steps.",
+      "user_expectation": "Receives reproducible setup."
+    },
+
+    {
+      "role": "API Contract Agent",
+      "category": "Resource Design",
+      "sequence": "04-API-Contracts",
+      "prompt": "Draft OpenAPI 3.1 for {{core_resources}}. Include paths, schemas, errors, examples.",
+      "user_expectation": "Receives a first-pass API spec.",
+      "note": "Keep vendor-neutral. Prefer 3.1. :contentReference[oaicite:6]{index=6}"
+    },
+    {
+      "role": "API Contract Agent",
+      "category": "Conventions",
+      "sequence": "04-API-Contracts",
+      "prompt": "Define pagination, filtering, sorting, and search. Output: patterns, query_params, examples, tradeoffs.",
+      "user_expectation": "Receives consistent query rules."
+    },
+    {
+      "role": "API Contract Agent",
+      "category": "Errors",
+      "sequence": "04-API-Contracts",
+      "prompt": "Define an error model. Output JSON: code, http_status, message, details, remediation, correlation_id.",
+      "user_expectation": "Receives uniform error contract."
+    },
+    {
+      "role": "API Contract Agent",
+      "category": "Versioning",
+      "sequence": "04-API-Contracts",
+      "prompt": "Choose API versioning. Output: scheme, compatibility_rules, deprecation_policy, examples.",
+      "user_expectation": "Receives versioning rules."
+    },
+    {
+      "role": "API Contract Agent",
+      "category": "Mocks",
+      "sequence": "04-API-Contracts",
+      "prompt": "Plan mock server from OpenAPI. Output: tooling_options, routes_to_mock, data_strategies.",
+      "user_expectation": "Receives a mock plan."
+    },
+
+    {
+      "role": "Data Modeler",
+      "category": "Conceptual Model",
+      "sequence": "05-Data-Model",
+      "prompt": "Propose a conceptual ERD. Output: entities, relationships, cardinalities, invariants.",
+      "user_expectation": "Receives a domain model."
+    },
+    {
+      "role": "Data Modeler",
+      "category": "Migrations",
+      "sequence": "05-Data-Model",
+      "prompt": "Define naming and migration policy for {{database}}. Output: rules, migration_steps, rollback_guidelines.",
+      "user_expectation": "Receives consistent DB rules."
+    },
+    {
+      "role": "Data Modeler",
+      "category": "Seed Data",
+      "sequence": "05-Data-Model",
+      "prompt": "Plan seed data and fixtures. Output: datasets, generation_rules, privacy_notes.",
+      "user_expectation": "Receives safe repeatable seeds."
+    },
+    {
+      "role": "Data Modeler",
+      "category": "Indexing",
+      "sequence": "05-Data-Model",
+      "prompt": "Propose indexing for key queries. Output: query_patterns, suggested_indexes, maintenance_costs.",
+      "user_expectation": "Receives index recommendations.",
+      "note": "Engine-neutral. Prefer B-Tree and covering index patterns."
+    },
+
+    {
+      "role": "Backend Engineer",
+      "category": "Service Skeleton",
+      "sequence": "06-Backend",
+      "prompt": "Generate a service skeleton for {{framework}} with health, readiness, and metrics endpoints. Output file tree and stubs.",
+      "user_expectation": "Receives runnable scaffold."
+    },
+    {
+      "role": "Backend Engineer",
+      "category": "Core Endpoints",
+      "sequence": "06-Backend",
+      "prompt": "Implement CRUD for {{resource}} per API spec. Include validation, serialization, and errors.",
+      "user_expectation": "Receives aligned endpoint stubs."
+    },
+    {
+      "role": "Backend Engineer",
+      "category": "Persistence",
+      "sequence": "06-Backend",
+      "prompt": "Add repository layer for {{database}}. Output interfaces, transaction strategy, sample queries.",
+      "user_expectation": "Receives persistence design."
+    },
+    {
+      "role": "Backend Engineer",
+      "category": "Background Jobs",
+      "sequence": "06-Backend",
+      "prompt": "Define job processing for {{use_case}}. Output: queue, retry_policy, idempotency_key, scheduling.",
+      "user_expectation": "Receives reliable job patterns."
+    },
+    {
+      "role": "Backend Engineer",
+      "category": "Resilience",
+      "sequence": "06-Backend",
+      "prompt": "Add resilience patterns. Output: timeouts, retries, backoff, circuit_breakers with defaults.",
+      "user_expectation": "Receives fault-tolerant configs."
+    },
+    {
+      "role": "Backend Engineer",
+      "category": "Configuration",
+      "sequence": "06-Backend",
+      "prompt": "Specify configuration strategy. Output: env_vars, config_files, precedence, secrets_boundary.",
+      "user_expectation": "Receives clear config rules."
+    },
+
+    {
+      "role": "Frontend Engineer",
+      "category": "Component Inventory",
+      "sequence": "07-Frontend",
+      "prompt": "List screens and components for {{user_flows}}. Output: route, component, state, data_sources.",
+      "user_expectation": "Receives a component map."
+    },
+    {
+      "role": "Frontend Engineer",
+      "category": "State Management",
+      "sequence": "07-Frontend",
+      "prompt": "Propose state strategy. Output: server_state vs client_state, caching rules, invalidation triggers.",
+      "user_expectation": "Receives predictable state plan."
+    },
+    {
+      "role": "Frontend Engineer",
+      "category": "API Client",
+      "sequence": "07-Frontend",
+      "prompt": "Generate API client from OpenAPI. Include typing, auth, and error normalization.",
+      "user_expectation": "Receives a typed client layer."
+    },
+    {
+      "role": "Frontend Engineer",
+      "category": "Accessibility",
+      "sequence": "07-Frontend",
+      "prompt": "Set A11y acceptance rules. Output: keyboard_support, labels, color_contrast, focus_management, test_cases.",
+      "user_expectation": "Receives A11y checks."
+    },
+    {
+      "role": "Frontend Engineer",
+      "category": "UX States",
+      "sequence": "07-Frontend",
+      "prompt": "Define loading, empty, error, and success states for key views. Output patterns and samples.",
+      "user_expectation": "Receives consistent UX states."
+    },
+
+    {
+      "role": "DevOps / Platform",
+      "category": "CI Pipeline",
+      "sequence": "08-DevOps",
+      "prompt": "Design CI for {{language}}. Stages: lint, test, build, scan, package, cache. Output YAML-like spec.",
+      "user_expectation": "Receives a portable CI plan.",
+      "note": "Vendor-neutral steps."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "Containerization",
+      "sequence": "08-DevOps",
+      "prompt": "Propose container build for {{service}}. Output: base_image, build_args, multi-stage steps, healthcheck.",
+      "user_expectation": "Receives reproducible image steps."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "IaC",
+      "sequence": "08-DevOps",
+      "prompt": "Outline IaC for {{cloud}}. Output: environments, state_management, modules, drift_detection.",
+      "user_expectation": "Receives IaC structure."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "Environments",
+      "sequence": "08-DevOps",
+      "prompt": "Define environment matrix. Output: dev, test, staging, prod with config_diffs, promotion_rules.",
+      "user_expectation": "Receives environment definitions."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "Secrets",
+      "sequence": "08-DevOps",
+      "prompt": "Specify secrets management. Output: storage, rotation, access_policies, local_dev_substitutes.",
+      "user_expectation": "Receives secrets rules."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "Artifacts",
+      "sequence": "08-DevOps",
+      "prompt": "Plan artifact storage and caching. Output: artifact_types, retention, immutability, cache_keys.",
+      "user_expectation": "Receives artifact plan."
+    },
+
+    {
+      "role": "Security Engineer",
+      "category": "Threat Model",
+      "sequence": "09-Security",
+      "prompt": "Threat model {{system_boundary}} with STRIDE. Output: assets, trust_zones, threats, mitigations, residual_risk.",
+      "user_expectation": "Receives a prioritized threat model."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "AuthN/AuthZ",
+      "sequence": "09-Security",
+      "prompt": "Design authn/authz for {{audiences}}. Output: flows, token_lifetimes, role_matrix, permission_checks.",
+      "user_expectation": "Receives auth design."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "Dependency Hygiene",
+      "sequence": "09-Security",
+      "prompt": "Set dependency and container scanning policy. Output: tools, severity_thresholds, SLA, exceptions_process.",
+      "user_expectation": "Receives scanning policy."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "Data Protection",
+      "sequence": "09-Security",
+      "prompt": "Define data protection. Output: classification, encryption_at_rest, in_transit, key_rotation, data_minimization.",
+      "user_expectation": "Receives data security controls."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "IR Playbook",
+      "sequence": "09-Security",
+      "prompt": "Draft incident response playbook. Output: detection, triage, containment, eradication, recovery, postmortem.",
+      "user_expectation": "Receives an IR workflow."
+    },
+
+    {
+      "role": "QA / Test Engineer",
+      "category": "Test Strategy",
+      "sequence": "10-Testing",
+      "prompt": "Create test strategy. Output: levels(unit|integration|e2e), coverage_targets, environments, gating_rules.",
+      "user_expectation": "Receives a testing plan."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "Unit Tests",
+      "sequence": "10-Testing",
+      "prompt": "Generate unit test blueprint for {{module}}. Output: cases, inputs, oracles, mocks, edge_conditions.",
+      "user_expectation": "Receives unit test cases."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "Integration Tests",
+      "sequence": "10-Testing",
+      "prompt": "Plan integration tests for {{service_interactions}}. Output: contracts, fixtures, mock_strategies, assertions.",
+      "user_expectation": "Receives integration plan."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "E2E",
+      "sequence": "10-Testing",
+      "prompt": "Design end-to-end flows for {{critical_paths}}. Output: sequence, preconditions, steps, expected, cleanup.",
+      "user_expectation": "Receives e2e scenarios."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "Test Data",
+      "sequence": "10-Testing",
+      "prompt": "Define test data management. Output: generation_rules, masking, refresh_cadence, ownership.",
+      "user_expectation": "Receives safe test data plan."
+    },
+
+    {
+      "role": "Documentation Agent",
+      "category": "Continuity",
+      "sequence": "11-Docs",
+      "prompt": "Update continuity docs with machine-focused format. Output: doc_paths, session_id, status, completed, next_steps, exact_pointers.",
+      "user_expectation": "Receives a precise handoff slice.",
+      "note": "Format unspecified in source; prefer JSON; optimize for agents. "
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "README",
+      "sequence": "11-Docs",
+      "prompt": "Draft README for {{project_name}}. Sections: purpose, architecture_overview, setup, run, test, deploy, troubleshooting.",
+      "user_expectation": "Receives a complete README."
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "Contributing",
+      "sequence": "11-Docs",
+      "prompt": "Create CONTRIBUTING guide. Output: branching, commits, code_review_checklist, issue_template, PR_template.",
+      "user_expectation": "Receives team-ready contributing docs."
+    },
+
+    {
+      "role": "Integration Agent",
+      "category": "3rd-Party APIs",
+      "sequence": "12-Integration",
+      "prompt": "Plan integration with {{external_api}}. Output: auth, rate_limits, retries, backoff, circuit_breaker, fallbacks.",
+      "user_expectation": "Receives a robust integration plan."
+    },
+    {
+      "role": "Integration Agent",
+      "category": "Webhooks",
+      "sequence": "12-Integration",
+      "prompt": "Design webhook endpoints for {{events}}. Output: signatures, idempotency, replay_handling, security.",
+      "user_expectation": "Receives secure webhook design."
+    },
+    {
+      "role": "Integration Agent",
+      "category": "Idempotency",
+      "sequence": "12-Integration",
+      "prompt": "Specify idempotency for writes. Output: keys, storage, TTL, conflict_resolution.",
+      "user_expectation": "Receives a safe write plan."
+    },
+
+    {
+      "role": "Performance Engineer",
+      "category": "SLO/SLA",
+      "sequence": "13-Performance",
+      "prompt": "Define SLOs for {{critical_paths}}. Output: SLI, target, window, error_budget, alert_thresholds.",
+      "user_expectation": "Receives actionable SLOs."
+    },
+    {
+      "role": "Performance Engineer",
+      "category": "Load Tests",
+      "sequence": "13-Performance",
+      "prompt": "Create load test scenarios. Output: workload_model, arrival_rate, datasets, ramp, pass_fail_criteria.",
+      "user_expectation": "Receives a load plan."
+    },
+    {
+      "role": "Performance Engineer",
+      "category": "Caching",
+      "sequence": "13-Performance",
+      "prompt": "Propose caching for {{hot_paths}}. Output: cache_keys, ttl, invalidation, coherency.",
+      "user_expectation": "Receives caching strategy."
+    },
+
+    {
+      "role": "Observability Agent",
+      "category": "Logging",
+      "sequence": "14-Observability",
+      "prompt": "Define logging schema. Output: levels, fields, correlation_id, PII_policy, sampling.",
+      "user_expectation": "Receives structured logging rules."
+    },
+    {
+      "role": "Observability Agent",
+      "category": "Metrics",
+      "sequence": "14-Observability",
+      "prompt": "List service metrics and dashboards. Output: metric, type, labels, alert, dashboard_widget.",
+      "user_expectation": "Receives metrics to instrument."
+    },
+    {
+      "role": "Observability Agent",
+      "category": "Tracing",
+      "sequence": "14-Observability",
+      "prompt": "Plan distributed tracing. Output: spans, propagation, sampling, baggage, privacy_notes.",
+      "user_expectation": "Receives tracing plan."
+    },
+
+    {
+      "role": "Compliance & Accessibility Agent",
+      "category": "Data Privacy",
+      "sequence": "15-Compliance",
+      "prompt": "Map data categories to {{regimes}}. Output: data_type, lawful_basis, retention, DSR_process.",
+      "user_expectation": "Receives privacy mapping."
+    },
+    {
+      "role": "Compliance & Accessibility Agent",
+      "category": "Accessibility",
+      "sequence": "15-Compliance",
+      "prompt": "Create A11y checklist for {{ui_stack}}. Output: criteria, test, owner, release_gate.",
+      "user_expectation": "Receives executable A11y checks."
+    },
+    {
+      "role": "Compliance & Accessibility Agent",
+      "category": "Audit Logs",
+      "sequence": "15-Compliance",
+      "prompt": "Define audit logging. Output: events, fields, retention, tamper_evidence.",
+      "user_expectation": "Receives audit requirements."
+    },
+
+    {
+      "role": "Release Manager",
+      "category": "Versioning Scheme",
+      "sequence": "16-Release",
+      "prompt": "Choose versioning for {{services}}. Output: scheme, release_branches, tagging, backports.",
+      "user_expectation": "Receives versioning rules."
+    },
+    {
+      "role": "Release Manager",
+      "category": "Release Notes",
+      "sequence": "16-Release",
+      "prompt": "Template release notes. Sections: highlights, breaking_changes, migrations, fixes, upgrade_steps.",
+      "user_expectation": "Receives a reusable template."
+    },
+    {
+      "role": "Release Manager",
+      "category": "Rollback Plan",
+      "sequence": "16-Release",
+      "prompt": "Define rollback plan for {{deployment_strategy}}. Output: triggers, steps, data_recovery, validation, comms.",
+      "user_expectation": "Receives a safe rollback path."
+    },
+
+    {
+      "role": "Operations / Support Agent",
+      "category": "Runbooks",
+      "sequence": "17-Operations",
+      "prompt": "Write runbooks for {{top_incidents}}. Output: symptoms, diagnosis, remediation, rollback, verification.",
+      "user_expectation": "Receives actionable runbooks."
+    },
+    {
+      "role": "Operations / Support Agent",
+      "category": "On-call",
+      "sequence": "17-Operations",
+      "prompt": "Define on-call and escalation. Output: schedule, response_SLA, paging_rules, comms_templates.",
+      "user_expectation": "Receives an on-call policy."
+    },
+    {
+      "role": "Operations / Support Agent",
+      "category": "Postmortems",
+      "sequence": "17-Operations",
+      "prompt": "Create a lightweight postmortem template. Output: timeline, root_cause, fixes, actions, owner, due_date.",
+      "user_expectation": "Receives continuous improvement inputs."
+    },
+
+    {
+      "role": "Analytics / Experimentation Agent",
+      "category": "Event Taxonomy",
+      "sequence": "18-Analytics",
+      "prompt": "Create analytics taxonomy. Output: event_name, properties, owner, PII_flag, QA_checks.",
+      "user_expectation": "Receives clean event spec."
+    },
+    {
+      "role": "Analytics / Experimentation Agent",
+      "category": "Experiment Design",
+      "sequence": "18-Analytics",
+      "prompt": "Design A/B test for {{feature}}. Output: hypothesis, primary_metric, guardrails, sample_size_inputs, exposure, stop_rules.",
+      "user_expectation": "Receives an experiment plan."
+    },
+    {
+      "role": "Analytics / Experimentation Agent",
+      "category": "Feature Flags",
+      "sequence": "18-Analytics",
+      "prompt": "Plan feature flag rollout. Output: flag_name, audience, kill_switch, telemetry, cleanup_date.",
+      "user_expectation": "Receives a safe rollout plan."
+    },
+
+    {
+      "role": "Internationalization Agent",
+      "category": "i18n Plan",
+      "sequence": "19-Internationalization",
+      "prompt": "Define i18n for {{locales}}. Output: message_format, extraction, pluralization, RTL, date_number_rules.",
+      "user_expectation": "Receives an i18n plan."
+    },
+    {
+      "role": "Internationalization Agent",
+      "category": "Localization Pipeline",
+      "sequence": "19-Internationalization",
+      "prompt": "Design l10n pipeline. Output: source_of_truth, translation_memory, QA, fallback_rules, release_sync.",
+      "user_expectation": "Receives l10n process rules."
+    },
+
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Capability Spec",
+      "sequence": "20-LLM",
+      "prompt": "Define LLM capability for {{use_case}}. Output: inputs, outputs, tools, constraints, acceptance_checks.",
+      "user_expectation": "Receives a bounded capability spec."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Retrieval",
+      "sequence": "20-LLM",
+      "prompt": "Plan retrieval for {{corpus}}. Output: chunking, embedding_fields, index_layout, freshness, filters.",
+      "user_expectation": "Receives a retrieval plan."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Prompt Templates",
+      "sequence": "20-LLM",
+      "prompt": "Create prompt templates with slot variables. Output: system, user, tool, examples, negative_prompts.",
+      "user_expectation": "Receives reusable prompt pack."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Evaluation",
+      "sequence": "20-LLM",
+      "prompt": "Define eval harness. Output: test_set_sources, metrics(exact_match|F1|preference), thresholds, failure_buckets.",
+      "user_expectation": "Receives an eval plan.",
+      "note": "Metrics vary by task. Keep minimal sufficient set."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Safety",
+      "sequence": "20-LLM",
+      "prompt": "List safety tests. Output: jailbreak_attempts, PII_leakage, hallucination_traps, prompt_injection, escalation_rules.",
+      "user_expectation": "Receives safety test cases.",
+      "note": "Aligns with safe, correct execution. :contentReference[oaicite:8]{index=8}"
+    },
+
+    {
+      "role": "Migration / Modernization Agent",
+      "category": "Strangler Plan",
+      "sequence": "21-Migration",
+      "prompt": "Plan strangler migration for {{legacy_system}}. Output: facets, anti_corruption_layers, routing, stepwise_cuts.",
+      "user_expectation": "Receives incremental migration steps."
+    },
+    {
+      "role": "Migration / Modernization Agent",
+      "category": "Data Migration",
+      "sequence": "21-Migration",
+      "prompt": "Map data migration. Output: sources, targets, transforms, verification, backfill, rollback.",
+      "user_expectation": "Receives a safe data migration plan."
+    },
+
+    {
+      "role": "Vision Agent",
+      "category": "UI Extraction",
+      "sequence": "As-needed",
+      "prompt": "From provided screenshots or pages, extract a UI spec. Output: routes, components, states, API_calls, a11y_flags.",
+      "user_expectation": "Receives UI spec for build tasks.",
+      "note": "Supports agent types listed by user. :contentReference[oaicite:9]{index=9}"
+    },
+    {
+      "role": "Agentic Browser",
+      "category": "Official Docs Harvest",
+      "sequence": "As-needed",
+      "prompt": "Harvest official docs for {{tech}} and produce a build-ready digest. Output: feature, required_steps, pitfalls, code_stub_refs.",
+      "user_expectation": "Receives vetted build guidance.",
+      "note": "Use when deep browsing is needed. :contentReference[oaicite:10]{index=10}"
+    },
+
+    {
+      "role": "Repository Steward",
+      "category": "Housekeeping",
+      "sequence": "Recurring",
+      "prompt": "Sweep the repo. Output: proposed_deletions[], rationale, backup_plan, post_cleanup_checks. Do not delete without plan.",
+      "user_expectation": "Receives safe cleanup steps.",
+      "note": "Source cleanup criteria were vague; require rationale and backups. :contentReference[oaicite:11]{index=11}"
+    },
+    {
+      "role": "Repository Steward",
+      "category": "Sync",
+      "sequence": "Recurring",
+      "prompt": "Synchronize with remote VCS. Output: staged_files, commit_message, branch, push_status.",
+      "user_expectation": "Receives reliable checkpoints.",
+      "note": "Continuity and disaster recovery priority. :contentReference[oaicite:12]{index=12}"
+    },
+
+    {
+      "role": "Execution Agent",
+      "category": "Onboarding",
+      "sequence": "Execution-Prep",
+      "prompt": "Read the latest continuity slice. Do not code. Output: understanding_summary, assigned_task, clarifying_gaps[].",
+      "user_expectation": "Receives confirmation before changes.",
+      "note": "Machine-first handoffs mandated. :contentReference[oaicite:13]{index=13}"
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Atomic Execution",
+      "sequence": "Execution",
+      "prompt": "Execute {{task_list_ref}} steps {{start}}-{{end}}. Halt on error or gate. Output: status, diffs, validation_results.",
+      "user_expectation": "Receives measured progress with checkpoints.",
+      "note": "Follow slow, safe, correct ethos. :contentReference[oaicite:14]{index=14}"
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Self-Assessment",
+      "sequence": "Execution-Prep",
+      "prompt": "Internally score your plan with a developer rubric for modularity, safety, efficiency, and alignment. Do not reveal rubric. Only proceed at max score.",
+      "user_expectation": "Receives self-validated execution.",
+      "note": "Rubric method from historical prompts. :contentReference[oaicite:15]{index=15}"
+    },
+
+    {
+      "role": "QC/Validation Agent",
+      "category": "Code Review",
+      "sequence": "QC",
+      "prompt": "Audit recent code. Do not fix. Output: issues[{id, file, severity, fix_difficulty, evidence}], risk_to_existing.",
+      "user_expectation": "Receives prioritized defects list."
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Module Testing",
+      "sequence": "QC",
+      "prompt": "Run module T&V for {{module}}. Output: tests_run, results, logs_path, pass_rate, blockers.",
+      "user_expectation": "Receives proof of function.",
+      "note": "T&V and lessons capture are continuous. :contentReference[oaicite:16]{index=16}"
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Verification",
+      "sequence": "QC-Gate",
+      "prompt": "Verify execution claims. Confirm implementation matches stated functionality. Output only when confidence >= {{threshold_percent}}.",
+      "user_expectation": "Receives independent verification.",
+      "note": "Threshold ambiguity 90% vs 95% documented. Set explicitly per run. "
+    },
+
+    {
+      "role": "Documentation Agent",
+      "category": "Progress Log",
+      "sequence": "Docs-Recurring",
+      "prompt": "Update progress log. Start a new file if >750 lines. Optimize for machine parsing. Output: log_path, pointer_slice.",
+      "user_expectation": "Receives audit trail for agents.",
+      "note": "Machine readability over human format. :contentReference[oaicite:18]{index=18}"
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "Lessons Learned",
+      "sequence": "Docs-Recurring",
+      "prompt": "Record lessons for this session. Output: discoveries, wins, fails, suggested_improvements, tags, metadata.",
+      "user_expectation": "Receives objective insights.",
+      "note": "Capture successful prompts for reuse. :contentReference[oaicite:19]{index=19}"
+    },
+
+    {
+      "role": "Any Agent",
+      "category": "Recommendation Request",
+      "sequence": "As-needed",
+      "prompt": "Provide focused recommendations tailored to {{constraints}}. Only the most impactful. Avoid scope creep. Respect existing guardrails.",
+      "user_expectation": "Receives concise next moves.",
+      "note": "Use when route is unclear; keep atomic. :contentReference[oaicite:20]{index=20}"
+    },
+    {
+      "role": "Any Agent",
+      "category": "Alternative Approach",
+      "sequence": "As-needed",
+      "prompt": "Propose a higher-ROI conceptual approach than current plan. No code. Output: new_approach, ROI, risks, migration_path.",
+      "user_expectation": "Receives a safer or faster method.",
+      "note": "Strategist leads alternate paths. :contentReference[oaicite:21]{index=21}"
+    },
+    {
+      "role": "Any Agent",
+      "category": "Quick Approval",
+      "sequence": "As-needed",
+      "prompt": "Approved. Execute.",
+      "user_expectation": "Agent proceeds with the planned action.",
+      "note": "Approval commands are valid standalone tokens. :contentReference[oaicite:22]{index=22}"
+    },
+    {
+      "role": "All Agents",
+      "category": "Cut & Paste Contract",
+      "sequence": "Always",
+      "prompt": "When manual user action is required, output atomic steps in a clean code box. Provide final and best solution first. Keep commentary outside the box.",
+      "user_expectation": "Receives copy-ready steps without clutter.",
+      "note": "Contract governs all agent outputs. :contentReference[oaicite:23]{index=23}"
+    }
+  ]
+}
+
+Sources
+
+
+No file chosenNo file chosen
+ChatGPT can make mistakes. Check important info.

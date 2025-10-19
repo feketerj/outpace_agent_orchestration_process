@@ -1,0 +1,264 @@
+{
+  "prompts": [
+    {
+      "role": "Agent Orchestrator",
+      "category": "Multi-Agent Planning",
+      "sequence": "00-Orchestration",
+      "prompt": "Analyze {{project_requirements}} and create agent orchestration plan. Output JSON: {agents: [{name, role, responsibilities, inputs, outputs, tools}], dependencies: [{from_agent, to_agent, artifact_type, trigger}], handoff_contracts: [{schema, validation_rules}], execution_sequence: [phase_order], quality_gates: [review_points]}. Ensure atomic task boundaries and context window compliance.",
+      "user_expectation": "Receives complete multi-agent workflow with explicit handoffs and dependencies mapped",
+      "note": "Synthesized from user's agent orchestration philosophy and multi-agent best practices research"
+    },
+    {
+      "role": "Agent Orchestrator", 
+      "category": "Agent Communication",
+      "sequence": "00-Orchestration",
+      "prompt": "Define communication protocol for {{agent_team}}. Output: {message_schemas: [JSON_structure], handoff_artifacts: [file_types], status_reporting: [format], context_preservation: [strategy], crash_recovery: [protocol], versioning: [scheme]}. Optimize for machine reading. Include session tracking and atomic task chunking rules.",
+      "user_expectation": "Receives deterministic agent-to-agent communication standards preventing context loss"
+    },
+    {
+      "role": "Agent Orchestrator",
+      "category": "Workflow Validation",
+      "sequence": "00-Orchestration", 
+      "prompt": "Validate orchestration plan for {{project_name}}. Check: task_atomicity (single context window), dependency_loops (none), handoff_completeness (all inputs/outputs defined), failure_recovery (crash scenarios), resource_allocation (context budgets), quality_gates (>95% confidence thresholds). Report issues with remediation steps.",
+      "user_expectation": "Receives go/no-go assessment with specific fixes needed for reliable execution"
+    },
+    {
+      "role": "Product Owner / Strategist",
+      "category": "Requirements Analysis",
+      "sequence": "01-Discovery",
+      "prompt": "Extract application requirements from {{user_input}}. Output structured: {business_objective, target_users, core_features: [{feature, priority, acceptance_criteria}], constraints: [technical, business, timeline], success_metrics, out_of_scope}. Focus on MVP-first approach with clear boundaries.",
+      "user_expectation": "Receives crisp requirements with prioritized features and clear scope boundaries"
+    },
+    {
+      "role": "Product Owner / Strategist",
+      "category": "User Story Definition", 
+      "sequence": "01-Discovery",
+      "prompt": "Convert {{requirements}} into user stories. Output table: story_id, epic, as_a, I_want, so_that, acceptance_criteria, priority, effort_estimate, dependencies. Include edge cases and error scenarios. Ensure stories are testable and atomic.",
+      "user_expectation": "Receives development-ready user stories with clear acceptance criteria"
+    },
+    {
+      "role": "Solution Architect",
+      "category": "System Architecture",
+      "sequence": "02-Architecture", 
+      "prompt": "Design system architecture for {{application_type}}. Output: {system_context: [external_systems, users, boundaries], service_decomposition: [{service, responsibility, data_owned, APIs}], technology_stack: [justified_choices], deployment_model, scalability_strategy, security_model}. Include C4 Level-1 diagram specification.",
+      "user_expectation": "Receives comprehensive architecture blueprint with technology justifications"
+    },
+    {
+      "role": "Solution Architect",
+      "category": "ADR Creation",
+      "sequence": "02-Architecture",
+      "prompt": "Create Architecture Decision Record for {{architectural_choice}}. Format: {title, status: [proposed|accepted|deprecated], context: [problem_statement], decision: [chosen_solution], alternatives: [considered_options], consequences: [positive, negative, risks], implementation_notes}. Be specific and measurable.",
+      "user_expectation": "Receives documented architectural decisions with rationale for future reference"
+    },
+    {
+      "role": "Solution Architect", 
+      "category": "API Design",
+      "sequence": "02-Architecture",
+      "prompt": "Design API contracts for {{service_boundaries}}. Output OpenAPI 3.1 spec including: resource_models, CRUD_operations, error_schemas, authentication, rate_limiting, versioning_strategy. Include request/response examples and error codes. Follow REST principles unless GraphQL specified.",
+      "user_expectation": "Receives complete API specification ready for implementation and testing"
+    },
+    {
+      "role": "Full-Stack Scaffolder",
+      "category": "Project Setup",
+      "sequence": "03-Scaffolding",
+      "prompt": "Create project scaffold for {{technology_stack}}. Output: {directory_structure, package_configs, linting_rules, git_setup, environment_configs: [dev, staging, prod], build_scripts, dependency_management}. Include README template and contributing guidelines. Follow {{framework}} conventions.",
+      "user_expectation": "Receives production-ready project structure with all tooling configured"
+    },
+    {
+      "role": "Full-Stack Scaffolder",
+      "category": "Development Environment",
+      "sequence": "03-Scaffolding",
+      "prompt": "Configure local development environment for {{project_name}}. Specify: runtime_versions, required_services, environment_variables, database_seeds, startup_commands, debugging_setup, hot_reload_config. Include containerization if specified. Document setup in executable format.",
+      "user_expectation": "Receives reproducible local environment setup with minimal friction"
+    },
+    {
+      "role": "Backend Engineer",
+      "category": "Service Implementation", 
+      "sequence": "04-Backend",
+      "prompt": "Implement service skeleton for {{service_name}} using {{framework}}. Include: health_endpoints, logging_setup, configuration_management, database_connection, authentication_middleware, error_handling, request_validation. Follow {{architecture_patterns}}. Generate executable code.",
+      "user_expectation": "Receives working service foundation ready for business logic implementation"
+    },
+    {
+      "role": "Backend Engineer",
+      "category": "CRUD Operations",
+      "sequence": "04-Backend", 
+      "prompt": "Implement CRUD endpoints for {{resource_name}} per {{api_spec}}. Include: input_validation, business_logic, database_operations, error_responses, logging, tests. Apply repository pattern. Handle edge cases: duplicate_creation, not_found, validation_errors, concurrent_modifications.",
+      "user_expectation": "Receives complete CRUD implementation with proper error handling and validation"
+    },
+    {
+      "role": "Backend Engineer",
+      "category": "Data Persistence",
+      "sequence": "04-Backend",
+      "prompt": "Design data layer for {{entities}} using {{database_type}}. Output: schema_definitions, migrations, indexes, repository_interfaces, transaction_strategies, query_optimization. Include seed data and backup/restore procedures. Consider performance and consistency requirements.",
+      "user_expectation": "Receives complete data persistence solution with performance considerations"
+    },
+    {
+      "role": "Frontend Engineer", 
+      "category": "Component Architecture",
+      "sequence": "05-Frontend",
+      "prompt": "Design component hierarchy for {{user_flows}} using {{frontend_framework}}. Output: component_tree, state_management_strategy, routing_configuration, API_integration_layer, styling_system. Include reusable components, error boundaries, loading states. Follow accessibility guidelines.",
+      "user_expectation": "Receives scalable frontend architecture with reusable component design"
+    },
+    {
+      "role": "Frontend Engineer",
+      "category": "State Management", 
+      "sequence": "05-Frontend",
+      "prompt": "Implement state management for {{application_features}} using {{state_library}}. Define: global_state_schema, local_component_state, API_caching_strategy, optimistic_updates, error_state_handling. Include state persistence and synchronization patterns.",
+      "user_expectation": "Receives predictable state management with proper data flow and error handling"
+    },
+    {
+      "role": "Frontend Engineer",
+      "category": "UI Implementation",
+      "sequence": "05-Frontend",
+      "prompt": "Build UI components for {{screen_specifications}}. Include: responsive_design, accessibility_compliance, loading_states, error_states, empty_states, interaction_feedback. Implement using {{component_library}} patterns. Generate executable code with prop interfaces.",
+      "user_expectation": "Receives polished UI components ready for integration with proper state handling"
+    },
+    {
+      "role": "QA Engineer",
+      "category": "Test Strategy",
+      "sequence": "06-Testing",
+      "prompt": "Design comprehensive test strategy for {{application_type}}. Output: {test_pyramid: [unit, integration, e2e], coverage_targets, test_environments, automation_framework, performance_testing, security_testing, accessibility_testing}. Include CI/CD integration and reporting.",
+      "user_expectation": "Receives complete testing approach with clear coverage expectations and automation"
+    },
+    {
+      "role": "QA Engineer", 
+      "category": "Test Implementation",
+      "sequence": "06-Testing",
+      "prompt": "Generate test suites for {{feature_specification}}. Include: unit_tests (edge_cases, mocks, fixtures), integration_tests (API_contracts, database_interactions), e2e_tests (user_journeys, error_scenarios). Use {{testing_framework}}. Provide executable test code.",
+      "user_expectation": "Receives comprehensive test coverage with executable test code and clear assertions"
+    },
+    {
+      "role": "QA Engineer",
+      "category": "Quality Validation", 
+      "sequence": "06-Testing",
+      "prompt": "Execute quality validation for {{module_name}}. Check: functionality_correctness, error_handling, performance_benchmarks, security_vulnerabilities, accessibility_compliance. Generate detailed report with: passed_tests, failed_tests, performance_metrics, recommendations.",
+      "user_expectation": "Receives thorough quality assessment with specific issues and improvement recommendations"
+    },
+    {
+      "role": "DevOps Engineer",
+      "category": "CI/CD Pipeline",
+      "sequence": "07-DevOps", 
+      "prompt": "Design CI/CD pipeline for {{project_technology}}. Include stages: code_quality (lint, security_scan), testing (unit, integration, e2e), build (artifact_creation), deployment (staging, production), monitoring. Output {{ci_platform}} configuration with rollback strategies.",
+      "user_expectation": "Receives production-ready CI/CD pipeline with proper gates and deployment strategies"
+    },
+    {
+      "role": "DevOps Engineer",
+      "category": "Infrastructure as Code",
+      "sequence": "07-DevOps",
+      "prompt": "Create infrastructure specification for {{deployment_target}}. Define: compute_resources, networking, storage, security_groups, load_balancing, auto_scaling, monitoring, logging. Use {{iac_tool}}. Include environment-specific configurations and disaster recovery.",
+      "user_expectation": "Receives complete infrastructure definition with scalability and reliability built-in"
+    },
+    {
+      "role": "DevOps Engineer", 
+      "category": "Containerization",
+      "sequence": "07-DevOps",
+      "prompt": "Create container strategy for {{application_services}}. Output: Dockerfiles (multi-stage builds), docker-compose configs, kubernetes manifests, image optimization, security scanning, registry management. Include health checks and resource limits.",
+      "user_expectation": "Receives production-ready containerization with security and performance optimization"
+    },
+    {
+      "role": "Security Engineer",
+      "category": "Threat Modeling",
+      "sequence": "08-Security",
+      "prompt": "Conduct threat analysis for {{system_design}} using STRIDE methodology. Identify: assets, trust_boundaries, data_flows, threat_vectors, impact_assessment, mitigation_strategies. Output prioritized security requirements and implementation recommendations.",
+      "user_expectation": "Receives comprehensive security assessment with actionable mitigation strategies"
+    },
+    {
+      "role": "Security Engineer",
+      "category": "Authentication & Authorization", 
+      "sequence": "08-Security",
+      "prompt": "Design auth system for {{user_types}} and {{permission_requirements}}. Include: authentication_flows, token_management, role_based_access, API_security, session_handling, password_policies. Specify implementation using {{auth_framework}}. Include security audit trails.",
+      "user_expectation": "Receives complete auth solution with proper security controls and audit capabilities"
+    },
+    {
+      "role": "Performance Engineer",
+      "category": "Performance Optimization",
+      "sequence": "09-Performance",
+      "prompt": "Optimize application performance for {{performance_requirements}}. Analyze: database_queries, API_response_times, frontend_loading, caching_strategies, CDN_usage. Provide: bottleneck_identification, optimization_recommendations, performance_budgets, monitoring_setup.",
+      "user_expectation": "Receives specific performance improvements with measurable targets and monitoring"
+    },
+    {
+      "role": "Performance Engineer",
+      "category": "Load Testing",
+      "sequence": "09-Performance", 
+      "prompt": "Design load testing strategy for {{critical_user_paths}}. Define: user_scenarios, load_patterns, performance_thresholds, test_data_requirements, monitoring_metrics. Generate {{load_testing_tool}} scripts. Include capacity planning recommendations.",
+      "user_expectation": "Receives executable load tests with clear performance criteria and scaling insights"
+    },
+    {
+      "role": "Documentation Agent", 
+      "category": "Technical Documentation",
+      "sequence": "10-Documentation",
+      "prompt": "Generate comprehensive documentation for {{project_component}}. Include: overview, architecture_diagrams, API_references, setup_instructions, troubleshooting_guide, examples, FAQs. Format for {{documentation_platform}}. Ensure accuracy and maintainability.",
+      "user_expectation": "Receives complete technical documentation ready for team use and maintenance"
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "Runbooks",
+      "sequence": "10-Documentation", 
+      "prompt": "Create operational runbooks for {{system_components}}. Cover: deployment_procedures, monitoring_alerts, incident_response, backup_recovery, scaling_operations, maintenance_tasks. Include step-by-step instructions, commands, and decision trees.",
+      "user_expectation": "Receives actionable operational procedures for reliable system management"
+    },
+    {
+      "role": "Observability Agent",
+      "category": "Monitoring Setup", 
+      "sequence": "11-Observability",
+      "prompt": "Design observability stack for {{application_architecture}}. Include: logging_strategy (structured, levels, correlation), metrics_collection (business, technical), distributed_tracing, alerting_rules, dashboards. Specify {{monitoring_tools}} configuration.",
+      "user_expectation": "Receives complete monitoring solution with actionable alerts and comprehensive visibility"
+    },
+    {
+      "role": "Compliance Agent",
+      "category": "Regulatory Compliance", 
+      "sequence": "12-Compliance",
+      "prompt": "Assess compliance requirements for {{regulatory_framework}} in {{application_context}}. Map: data_classification, privacy_requirements, audit_trails, retention_policies, user_rights, breach_procedures. Generate compliance checklist and implementation guide.",
+      "user_expectation": "Receives compliance roadmap with specific requirements and implementation guidance"
+    },
+    {
+      "role": "Code Review Agent",
+      "category": "Quality Assurance", 
+      "sequence": "AS_NEEDED",
+      "prompt": "Review {{code_submission}} for quality and standards. Check: code_structure, performance, security_vulnerabilities, best_practices, documentation, test_coverage. Provide: specific_feedback, improvement_suggestions, approval_status. Use project coding standards.",
+      "user_expectation": "Receives detailed code review with actionable feedback and quality assessment"
+    },
+    {
+      "role": "Debugging Agent",
+      "category": "Issue Resolution",
+      "sequence": "AS_NEEDED", 
+      "prompt": "Debug {{error_description}} in {{system_context}}. Analyze: error_logs, stack_traces, system_state, recent_changes. Provide: root_cause_analysis, fix_recommendations, prevention_strategies, testing_approach. Include step-by-step resolution.",
+      "user_expectation": "Receives systematic debugging approach with root cause and prevention strategies"
+    },
+    {
+      "role": "Integration Agent",
+      "category": "Third-Party Integration",
+      "sequence": "AS_NEEDED",
+      "prompt": "Design integration with {{external_service}} for {{use_case}}. Include: API_authentication, rate_limiting, error_handling, data_transformation, monitoring, fallback_strategies. Handle: network_failures, service_downtime, data_inconsistencies.",
+      "user_expectation": "Receives robust integration design with comprehensive error handling and resilience"
+    },
+    {
+      "role": "Migration Agent", 
+      "category": "System Migration",
+      "sequence": "AS_NEEDED",
+      "prompt": "Plan migration from {{source_system}} to {{target_system}}. Define: migration_strategy, data_mapping, testing_approach, rollback_plan, timeline, risk_mitigation. Include: zero-downtime_deployment, data_validation, performance_comparison.",
+      "user_expectation": "Receives comprehensive migration plan with risk mitigation and validation strategies"
+    },
+    {
+      "role": "Continuity Agent",
+      "category": "Session Management",
+      "sequence": "CONTINUOUS", 
+      "prompt": "Update project continuity documentation with current status. Include: completed_tasks, current_progress, blocking_issues, next_priorities, agent_handoffs, session_metadata. Format for machine reading. Ensure context preservation for agent recovery.",
+      "user_expectation": "Maintains seamless project continuity enabling crash recovery and agent handoffs"
+    },
+    {
+      "role": "Validation Agent",
+      "category": "Requirements Verification", 
+      "sequence": "GATE_CHECK",
+      "prompt": "Validate {{deliverable}} against {{requirements}}. Check: functional_completeness, non_functional_requirements, acceptance_criteria, quality_standards. Provide: compliance_matrix, gap_analysis, approval_recommendation. Report confidence level >95% for approval.",
+      "user_expectation": "Receives objective validation with clear compliance status and improvement needs"
+    },
+    {
+      "role": "Orchestrator Meta-Agent",
+      "category": "Workflow Control",
+      "sequence": "CONTINUOUS",
+      "prompt": "Monitor and optimize multi-agent workflow execution. Track: agent_performance, bottlenecks, resource_utilization, quality_metrics, timeline_adherence. Provide: optimization_recommendations, agent_rebalancing, workflow_adjustments, success_predictions.",
+      "user_expectation": "Receives workflow optimization insights with proactive adjustments for improved delivery"
+    }
+  ]
+}

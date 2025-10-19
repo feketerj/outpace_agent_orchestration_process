@@ -1,0 +1,77 @@
+***
+
+### Prompt: Agent‑Driven Application Building Research Framework
+
+**Objective:**  
+Conduct a comprehensive analysis of the best methodologies, frameworks, and practices for coding and application development using autonomous or semi‑autonomous AI agents. The research should focus on designing efficient **agent orchestration systems**, including role definition, multi‑agent communication protocols, context management, validation gates, and reliability strategies for large‑scale builds.
+
+**User Context:**  
+The user is a **senior GovCon executive and AI power‑user**, not a developer but highly experienced in orchestrating agent teams for automation, code generation, and workflow design. Communication style is **directive, analytical, and outcome‑oriented**. The methodology must favor **safe, modular, and deterministic agent behavior** within measurable success thresholds.
+
+**Research Requirements:**
+
+1. **Scope and Depth**
+   - Map the full lifecycle of AI‑assisted application development using agents.
+   - Compare leading orchestration frameworks (e.g., multi‑agent DAGs, RAG‑based systems, autonomous code refinement).
+   - Identify optimal division of labor among agent roles (Strategist, Execution, QC, Validation, Documentation, etc.).
+   - Establish measurable guardrails for accuracy (>95% confidence), scope control, and continuity recovery.
+
+2. **Agent Roles and Patterns**
+   - Define canonical roles and their interactions:
+     - Strategist/Architect: Defines plan, atomic task lists, validation checkpoints.
+     - Execution Agent: Writes and optimizes code with internal rubric before task execution.
+     - QC/Validation Agent: Audits code logic, tests functionality, prevents regression.
+     - Documentation Agent: Maintains continuity protocols, lessons learned, and machine‑readable logs.
+     - Orchestrator Meta‑Agent: Monitors performance, handoffs, and systemic risk across agents.
+   - Include reference architectures for modular collaborations between these roles.
+
+3. **Orchestration Methodology**
+   - Detail communication protocols, JSON schema standards, and file‑versioning practices for agent exchanges.
+   - Examine existing multi‑agent orchestration tools (e.g., CrewAI, AutoGen, LangGraph, Hugging Face Swarms).
+   - Prioritize safe incremental build cycles with task atomicity and deterministic execution.
+
+4. **Best Practice Domains**
+   - **Planning and Governance:** Role assignment, Make‑or‑Buy decisions, and risk management.
+   - **Coding and Validation:** Atomic task chunking, gate checks, test pyramid integration.
+   - **Change Management:** Self‑documenting repos, recoverable builds, semantic versioning.
+   - **Continuity and Observability:** Crash recovery, telemetry, lessons learned checkpoints.
+
+5. **Research Deliverables**
+   - Summarized methodology report detailing orchestration models, frameworks, and emergent practices (2024–2025).
+   - Taxonomy of agent roles with responsibilities, dependencies, and success metrics.
+   - JSON schema templates for agent orchestration (plans, handoffs, IO‑contracts).
+   - Recommended standards for agent communication and safe execution (context management, checkpoints, redundancy).
+
+6. **Evaluation Standards**
+   - Must distinguish between **human‑assisted** vs **autonomous orchestration systems**.
+   - Weight findings by scalability, reliability, and safety.
+   - Integrate findings with the user’s “Cut & Paste Contract” principle and design for **machine readability**.
+
+7. **Style & Output Expectations**
+   - Analytical tone, concise technical reasoning, executive ready summary per section.
+   - Include references to sources (papers, engineering blogs, open frameworks).
+   - End with a meta‑framework for ongoing evaluation and continuous learning by agents.
+
+***
+
+**Prompt Template Example:**
+
+```
+Task: Conduct deep research on methodologies and frameworks for coding and application building using autonomous AI agents.
+
+Context:
+User profile — advanced AI strategist seeking repeatable, safe, modular orchestration processes described in user_technical_execution_doc.txt and user_prompts_app_bldg_draft2.txt.
+
+Requirements:
+1. Identify best practices for agent orchestration.
+2. Define agent roles, communication standards, and context window strategies.
+3. Evaluate orchestration frameworks (CrewAI, AutoGen, LangGraph, etc.).
+4. Provide actionable recommendations aligned with the user's maxims (“slow, safe, correct”, modular builds, 95% confidence rule).
+5. Output: Structured report with sections — Summary, Framework Comparison, Role Matrix, Workflow Patterns, Sample JSON Schemas.
+
+Deliverable Format:
+- Executive summary
+- Structured JSON of orchestration patterns
+- Implementation examples
+- References and citations
+```

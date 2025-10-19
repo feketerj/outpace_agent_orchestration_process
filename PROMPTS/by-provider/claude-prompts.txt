@@ -1,0 +1,387 @@
+## Checklist
+- Extract and synthesize prompts from both draft files and technical execution doc
+- Categorize by agent roles aligned with user's defined agent types
+- Organize into logical workflow sequences for application building
+- Transform into evergreen, reusable prompts with clear expectations
+- Note ambiguities and inferences where source material lacks specificity
+- Ensure prompts follow user's "slow and right" philosophy
+
+```json
+{
+  "prompts": [
+    {
+      "role": "Strategist/Architect Agent",
+      "category": "Initial Planning",
+      "sequence": "1",
+      "prompt": "Develop modular application architecture plan with incremental phases, testing/validation checkpoints, and agent handoff protocols. Include baseline infrastructure, feature phases, make-or-buy analysis. Return conceptual overview only, no implementation.",
+      "user_expectation": "Conceptual roadmap with clear phases, risk mitigation, and continuity points"
+    },
+    {
+      "role": "Strategist/Architect Agent",
+      "category": "Planning Validation",
+      "sequence": "2",
+      "prompt": "Review plan for: communication checkpoints, debugging phases, continuity documentation, crash recovery capability. Verify fresh agents could resume within 15 minutes. Return only when >95% confident.",
+      "user_expectation": "Validated plan enabling seamless agent handoffs and disaster recovery"
+    },
+    {
+      "role": "Strategist/Architect Agent",
+      "category": "Task List Generation",
+      "sequence": "3",
+      "prompt": "Create ultra-atomic task list optimized for agent parsing. Each task must fit single context window. Tailor chunking to specific model types (Claude Code vs Browser). Include explicit stop points. Write in agent's language (JSON/YAML/etc).",
+      "user_expectation": "Machine-optimized task list preventing drift and rework",
+      "note": "User emphasizes agent-readable format over human readability"
+    },
+    {
+      "role": "Strategist/Architect Agent",
+      "category": "Task List Audit",
+      "sequence": "4",
+      "prompt": "Audit task list for: gaps, complexity, failure points, agent drift potential. Create developer rubric, achieve max score before approval. Verify 95% confidence execution will succeed without rework.",
+      "user_expectation": "Risk-mitigated task list with quantified confidence level"
+    },
+    {
+      "role": "Strategist/Architect Agent",
+      "category": "Pre-Execution Gate",
+      "sequence": "5",
+      "prompt": "Evaluate: sufficient information? Task chunking appropriate? Context window adequate? Restrictiveness balanced? Crash recovery viable? >95% confidence in objectives? Return assessment only.",
+      "user_expectation": "Go/no-go decision with specific adjustments"
+    },
+    {
+      "role": "Strategist/Architect Agent",
+      "category": "Meta-Prompt Generation",
+      "sequence": "6",
+      "prompt": "Generate meta-prompts for all participating agents defining: roles, communication protocols, handoff procedures, version control. Include session numbering and timestamp requirements.",
+      "user_expectation": "Orchestration instructions enabling multi-agent coordination"
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Code Implementation",
+      "sequence": "7",
+      "prompt": "Generate code balancing single-pass limitations, safety, efficiency. Create internal rubric, achieve maximum score before execution. Execute only highest-scoring approach. No rubric disclosure.",
+      "user_expectation": "Self-validated code meeting quality threshold"
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Incremental Progress",
+      "sequence": "8",
+      "prompt": "Execute tasks applying highest success probability. Stop at logical points. Crosscheck with other agents if needed. Return status. Remember: slow is smooth, smooth is fast.",
+      "user_expectation": "Measured progress with verification points"
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Repository Hygiene",
+      "sequence": "9",
+      "prompt": "Clean repository: identify zero-value files with low future use probability. Preserve progress and dependencies. Maintain structure for agent token efficiency. Document deletions.",
+      "user_expectation": "Optimized repository without token bloat"
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Code Review",
+      "sequence": "10",
+      "prompt": "Scan code for bugs, weak logic, performance issues. Rank by fix difficulty. Protect working components. Authorize multiple sweeps. Report only, no fixes.",
+      "user_expectation": "Prioritized issue list preserving functionality"
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Module Testing",
+      "sequence": "11",
+      "prompt": "Test module-by-module. Create test folder with event logs. Verify actual vs claimed functionality (deduplication, semantic overlap, etc). Multiple passes authorized.",
+      "user_expectation": "Documented test evidence with truth verification"
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Claim Verification",
+      "sequence": "12",
+      "prompt": "Verify execution agent's claims are 100% factual. Confirm implementation matches specifications. Return only at >95% confidence code performs as intended.",
+      "user_expectation": "Independent verification of execution claims"
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "Continuity Updates",
+      "sequence": "13",
+      "prompt": "Update continuity documents: current status, completed work, session number, timestamp, next steps. Optimize for machine parsing. Return document paths and line numbers for next agent.",
+      "user_expectation": "Seamless handoff package for fresh agents"
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "Lessons Learned",
+      "sequence": "14",
+      "prompt": "Document: iteration process, discoveries, successes, failures, improvement suggestions. Include tags, metadata. Be ruthlessly objective. Goal: data mine for workflow optimization.",
+      "user_expectation": "Actionable insights for process improvement"
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "Progress Reports",
+      "sequence": "15",
+      "prompt": "Update reports (new if >750 lines). Include: session, metadata, progress, bugs, fixes, test results. Write for agent consumption.",
+      "user_expectation": "Machine-parseable audit trail"
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "Version Control",
+      "sequence": "16",
+      "prompt": "Push to GitHub/repository. Ensure synchronization for catastrophic recovery. Execute per established protocol.",
+      "user_expectation": "Disaster recovery checkpoint"
+    },
+    {
+      "role": "Data Agent",
+      "category": "Schema Design",
+      "sequence": "17",
+      "prompt": "Define data models with types, constraints, relationships. Include migration strategy, validation rules, indexing plan. Output: entity definitions, normalization level, access patterns.",
+      "user_expectation": "Complete data architecture specification"
+    },
+    {
+      "role": "Security Agent",
+      "category": "Threat Modeling",
+      "sequence": "18",
+      "prompt": "Identify attack surface, vulnerabilities, mitigations. Output: threats, STRIDE classification, controls, residual risk, monitoring requirements.",
+      "user_expectation": "Actionable security assessment with controls"
+    },
+    {
+      "role": "API Agent",
+      "category": "Contract Definition",
+      "sequence": "19",
+      "prompt": "Define API contracts: endpoints, methods, request/response schemas, errors, versioning. Include OpenAPI/GraphQL spec. Output: complete specification ready for code generation.",
+      "user_expectation": "Implementation-ready API specification"
+    },
+    {
+      "role": "Testing Agent",
+      "category": "Test Strategy",
+      "sequence": "20",
+      "prompt": "Create test pyramid: unit (70%), integration (20%), e2e (10%). Define fixtures, mocks, coverage targets. Output: test types, tools, data requirements, CI gates.",
+      "user_expectation": "Comprehensive test strategy with coverage goals"
+    },
+    {
+      "role": "Performance Agent",
+      "category": "Optimization Planning",
+      "sequence": "21",
+      "prompt": "Define performance requirements: latency (p50/p95/p99), throughput, resource limits. Include profiling strategy, optimization priorities.",
+      "user_expectation": "Measurable performance targets with monitoring"
+    },
+    {
+      "role": "Infrastructure Agent",
+      "category": "Deployment Architecture",
+      "sequence": "22",
+      "prompt": "Design deployment: environments, pipelines, rollback strategy, monitoring, scaling rules. Output: infrastructure-as-code templates, deployment manifests.",
+      "user_expectation": "Production-ready deployment configuration"
+    },
+    {
+      "role": "Any Agent",
+      "category": "Recommendation Request",
+      "sequence": "As needed",
+      "prompt": "Provide focused recommendations tailored to user (non-developer, USAF background, AI power user). Generate only most impactful items. Avoid scope creep.",
+      "user_expectation": "Concise, contextual recommendations"
+    },
+    {
+      "role": "Any Agent",
+      "category": "Alternative Analysis",
+      "sequence": "As needed",
+      "prompt": "Evaluate more effective methods than current approach. Consider ROI, risk to build, long-term value. Return conceptual analysis only.",
+      "user_expectation": "Better approach identification without implementation"
+    },
+    {
+      "role": "Any Agent",
+      "category": "Cut-Paste Contract",
+      "sequence": "As needed",
+      "prompt": "If user action required, provide atomic steps in clean code boxes. No commentary inside boxes. Present best automation solution first.",
+      "user_expectation": "Copy-paste ready instructions",
+      "note": "User requires clean code boxes free of any commentary"
+    },
+    {
+      "role": "Any Agent",
+      "category": "Quick Approval",
+      "sequence": "As needed",
+      "prompt": "Continue. / Execute. / Go. / Approved.",
+      "user_expectation": "Immediate execution of planned action"
+    },
+    {
+      "role": "Any Agent",
+      "category": "Context Refresh",
+      "sequence": "As needed",
+      "prompt": "Reread user_technical_execution_doc.txt. Refresh understanding of preferences, available tools, workflow expectations.",
+      "user_expectation": "Agent realignment with user requirements"
+    },
+    {
+      "role": "Strategist/Architect Agent",
+      "category": "Make or Buy Analysis",
+      "sequence": "As needed",
+      "prompt": "Evaluate: existing solution available? User has access? Affordable alternatives? Agent-operable? Quick deployment? Long-term ROI? Recommend purchase vs build.",
+      "user_expectation": "Data-driven tool selection decision",
+      "note": "User emphasizes combining multiple tools for 'killer results'"
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Debug Planning",
+      "sequence": "As needed",
+      "prompt": "Develop debugging plan for discovered issues. Avoid changes risking working parts. Multiple sweeps authorized. Strike balance between thoroughness and context limits.",
+      "user_expectation": "Safe debugging approach preserving functionality"
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Diagnostic Testing",
+      "sequence": "As needed",
+      "prompt": "Run diagnostic tests with minimal disruption. Create event log folder. Verify logic (deduplication, semantic overlap removal). Develop rubric, test thoroughly.",
+      "user_expectation": "Non-destructive testing with evidence"
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "Handoff Preparation",
+      "sequence": "End of session",
+      "prompt": "Prepare seamless handoff: update all continuity docs, ensure crash recovery within 15 minutes, provide exact document lines for next agent. Optimize for machine reading.",
+      "user_expectation": "Complete handoff package for session transition"
+    },
+    {
+      "role": "Strategist/Architect Agent",
+      "category": "Confidence Check",
+      "sequence": "Decision points",
+      "prompt": "Assess confidence level for next action. If <90%, ask questions until threshold met. User can override with 'execute' command accepting risk.",
+      "user_expectation": "Quantified confidence with override option",
+      "note": "User's 'Yeah, but' contract: after two overrides, proceed"
+    }
+  ]
+}
+```
+
+I'll analyze the uploaded documents and create categorized evergreen prompts for application building. Let me first examine the source material.## Checklist
+- Extract and categorize historical prompts from source document
+- Transform into evergreen, reusable application building prompts  
+- Organize by agent role (strategist, executor, QC agent)
+- Define functional categories (planning, execution, testing, documentation)
+- Establish logical workflow sequences
+- Annotate source ambiguities and inferences made
+
+```json
+{
+  "prompts": [
+    {
+      "role": "Strategist/Architect Agent",
+      "category": "Initial Planning",
+      "sequence": "1",
+      "prompt": "Develop a comprehensive application architecture plan with safe incremental phases, including testing/validation checkpoints and agent communication protocols. Focus on modular build approach. Return only high-level concepts without implementation details.",
+      "user_expectation": "Agent provides conceptual roadmap with clear phases, risk mitigation, and handoff points"
+    },
+    {
+      "role": "Strategist/Architect Agent",
+      "category": "Planning Validation",
+      "sequence": "2",
+      "prompt": "Review the session plan and evaluate: communication checkpoints, debugging/testing phases, continuity documentation, and crash recovery capability. Update if needed. Return only when >95% confident in plan viability.",
+      "user_expectation": "Agent validates plan completeness and adjusts for maximum success probability"
+    },
+    {
+      "role": "Strategist/Architect Agent",
+      "category": "Task List Generation",
+      "sequence": "3",
+      "prompt": "Create ultra-atomic task list for next build phase. Write for agent consumption, not human readability. Apply safe chunking strategy. Each task must fit within single context window. Include explicit stop points to prevent agent drift.",
+      "user_expectation": "Machine-optimized task list preventing scope creep and ensuring deterministic execution"
+    },
+    {
+      "role": "Strategist/Architect Agent",
+      "category": "Task List Validation",
+      "sequence": "4",
+      "prompt": "Audit task list for: gaps, unnecessary complexity, failure points, agent drift potential. Verify 95% confidence that execution agent will succeed without rework. Update and return revised list.",
+      "user_expectation": "Refined task list with identified risks mitigated",
+      "note": "Source repeatedly emphasizes 95% confidence threshold but doesn't define measurement criteria"
+    },
+    {
+      "role": "Strategist/Architect Agent",
+      "category": "Pre-Execution Assessment",
+      "sequence": "5",
+      "prompt": "Evaluate before execution: sufficient information available? Appropriate task chunking? Adequate context window remaining? Task list restrictiveness balance? Crash recovery feasibility? >95% confidence in meeting objectives? Return assessment only, no code.",
+      "user_expectation": "Go/no-go decision with specific adjustments if needed"
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Code Generation",
+      "sequence": "6",
+      "prompt": "Generate code balancing single-pass limitations, safety, and efficiency. Create internal developer rubric, achieve maximum score before execution. Do not reveal rubric. Execute only best-scoring approach.",
+      "user_expectation": "Self-validated, optimized code implementation"
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Incremental Execution",
+      "sequence": "7",
+      "prompt": "Execute next task series applying highest success probability concepts. Minimize disruption risk. Stop at logical points. Crosscheck with other agents if appropriate. Return status after completion. Remember: slow is smooth, smooth is fast.",
+      "user_expectation": "Measured progress with natural breakpoints and status updates"
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Repository Management",
+      "sequence": "8",
+      "prompt": "Clean repository: identify zero-value files, assess future use likelihood, delete if both are very low. Preserve progress, avoid breaking dependencies. Maintain organized structure for agent operations.",
+      "user_expectation": "Streamlined repository optimized for agent token efficiency",
+      "note": "Source doesn't specify file categorization criteria or backup requirements"
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Code Review",
+      "sequence": "9",
+      "prompt": "Scan and debug recent code. Balance context limitations with thoroughness. Protect working components. Authorize multiple debugging sweeps. Report issues ranked by fix difficulty. Do not implement corrections.",
+      "user_expectation": "Prioritized bug list without breaking existing functionality"
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Module Testing",
+      "sequence": "10",
+      "prompt": "Execute module-by-module test and validation. Proceed slowly, correctly, without breaking components. Multiple passes authorized. Create test folder with event logs. Verify actual vs claimed functionality.",
+      "user_expectation": "Comprehensive test results with documented evidence"
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Verification",
+      "sequence": "11",
+      "prompt": "Verify coding agent's claims are 100% factual. Check implementation matches stated functionality. Confirm all fixes successfully implemented. Return only when >95% confident code performs as intended.",
+      "user_expectation": "Independent verification of execution agent's work"
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "Continuity Documentation",
+      "sequence": "12",
+      "prompt": "Update agent communication/continuity documents with: current status, completed work, lessons learned, session number, next steps. Optimize for machine reading. Return document names and specific lines for next agent.",
+      "user_expectation": "Machine-readable handoff enabling seamless continuation",
+      "note": "Source emphasizes machine optimization but doesn't specify format (JSON, YAML, etc.)"
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "Lessons Learned",
+      "sequence": "13",
+      "prompt": "Create lessons learned document: iteration process, discoveries, successes, failures, improvement suggestions, unnecessary/salient steps. Include tags and metadata. Be ruthlessly objective. Goal: data mine for future workflow optimization.",
+      "user_expectation": "Actionable insights for process improvement"
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "Progress Reports",
+      "sequence": "14",
+      "prompt": "Update progress reports (start new if >750 lines). Include session number, metadata, agent-optimized formatting. Document progress, bugs, fixes, test results for auditing. Write for agent consumption.",
+      "user_expectation": "Comprehensive audit trail in machine-parseable format"
+    },
+    {
+      "role": "Documentation Agent",
+      "category": "Version Control",
+      "sequence": "15",
+      "prompt": "Push changes to GitHub/repository. Ensure progress synchronized for catastrophic loss recovery. Execute periodically per established protocol.",
+      "user_expectation": "Consistent backup points for disaster recovery"
+    },
+    {
+      "role": "Any Agent",
+      "category": "Recommendation Request",
+      "sequence": "As needed",
+      "prompt": "Provide focused recommendations tailored to user preferences and experience level. Generate only most impactful items. Avoid scope creep. Adhere to existing build documents/checklists.",
+      "user_expectation": "Concise, actionable recommendations within project scope"
+    },
+    {
+      "role": "Any Agent",
+      "category": "Alternative Approach",
+      "sequence": "As needed",
+      "prompt": "Evaluate if more effective methods exist than previously proposed concepts. Focus on conceptual approach only, no code. Consider ROI and risk to existing build.",
+      "user_expectation": "Better approach identification without implementation"
+    },
+    {
+      "role": "Any Agent",
+      "category": "Quick Approval",
+      "sequence": "As needed",
+      "prompt": "Continue. / Execute. / Go. / Approved.",
+      "user_expectation": "Agent proceeds with planned action immediately",
+      "note": "Source shows these as standalone approval commands"
+    }
+  ]
+}
+```

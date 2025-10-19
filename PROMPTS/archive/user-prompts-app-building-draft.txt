@@ -1,0 +1,253 @@
+# PROMPTS FOR APPLICATION BUILDING
+
+**Document Purpose:**
+
+
+
+I need a fully functional app, my goal for the complete underlying architecture is within the next four days. Take a careful and safe incremental approach, limiting progress to what can be securely and effectively achieved in a single step, and develop a plan to steer the development correctly. Make sure the plan includes phases for testing and validation, along with moments to update the agent communication and continuity documents. After careful consideration, share only the main ideas of the plan without going into detailed specifics.
+
+---
+
+Update the relevant agent communication, handoff, or continuity documents so that the next agent clearly understands our current status and the tasks ahead. Make sure it grasps my priorities and philosophy. Provide a prompt listing the items the agent needs to review, avoiding unnecessary materials to keep the development moving efficiently.
+
+---
+
+Avoid writing code, making changes, or implementing fixes. Our focus is solely on discussion and planning. First, review the session plan again and provide feedback on any issues and a general evaluation. Every plan should include communication, debugging, testing, and validation checkpoints, and must enable a new agent to clearly understand the current status in case of a crash and/or agent reset. Update the plan if needed and return only once fully confident we are ready to begin.
+
+---
+
+I believe you understand my approach, which is to create a working application for myself and to do it correctly from the start. I am obviously not a developer. That’s why we proceed carefully, debugging and testing along the way. However, you have some discretion. If the return on investment is good and it doesn’t jeopardize the build, feel free to add extra features. If you notice something that we've built and I think it was the right thing, but in reality it's gonna suck donkey balls, fix it, as long as it doesn’t undo any progress. But be wary of scope creep. At some point, I need a working app.
+
+---
+
+Generate the most impactful and focused items only. Tailor to my preferences and experience level. Be wary of scope creep.
+
+---
+
+Carry out the next series of tasks by applying the most effective concepts. Think deeply first and only choose actions that offer the highest likelihood of success while minimizing the risk of disrupting the rest of the build/project. Slow and right is better than fast and wrong. 
+* Permitted: Modular execution  
+* Stop at logical points to avoid hallucination 
+* Crosscheck w/other agents if appropriate 
+* Provide current status afterward 
+**Always think: Slow is smooth and smooth is fast!**
+
+---
+
+Provide your recommendation(s). Generate the most impactful and focused items only. Tailor to my preferences and experience level. Be wary of scope creep. Stick to any build documents or checklists if applicable.
+
+---
+
+I accept your recommendation. Generate an appropriate amount of code that strikes the right balance between single pass limitations, safety, and efficiency. 
+
+---
+
+Before starting on Task Lists 3B and 3D, do not code or make any changes. Simply, answer the following:
+
+- Do you have enough information to execute both task lists?
+- How should the actions be divided, if at all? E.g., Task 3B Steps 1-n or both complete tasks list, any combination thereof, etc.
+- Your current session has 272K tokens remaining. Do you have enough remaining context window to complete all tasks including reasonably anticipated issues? 
+- Is the task list sufficient enough to keep you on target and prevent you from writing/deleting code that will create rework?
+- Is the task list(s) too restrictive, loose, or just right?
+- Theoretically speaking, if the system crashed, could an agent accurately assess the completion level of the task list(s) and successfully continue the build within 15 min?
+- Do you have >95% confidence that after the task list is complete, all fixes would have been successfully implemented, and the code, modules, features, logic, etc. will preform as intended and meet the user's objectives?  
+
+---
+
+Debug upon completion. Expect further debugging before proceeding. 
+
+---
+
+Scan and debug the code we last wrote. Strike the right balance between single pass context limitations, safety, and efficiency for the process. Avoid making changes that put any working parts of the application at risk. Multiple debugging sweeps are authorized. 
+
+---
+
+Consider the app development process and consult the relevant documentation as necessary. Refresh the context if required. Determine the next sensible step in the project to work on. 
+
+---
+
+For the current folder, codex MCP failed to start, please get it running so I can use codex properly. I believe you wrote a script yesterday for it in the folder. I am unsure of where it is. 
+
+---
+
+Continue with test and validation process; module by module. Go slow, do it right, don't break anything. Multiple passes are authorized. Slow and right is always preferred.
+
+---
+
+Build a developer's rubric and think through a plan. We will only start the next process after you've achieved a maximum score. Don't show the user the rubric, only return a concise and honest assessment of the rubric quality and plan for next action. It's ok if we need to create a new rubric and plan. The idea is to maximize organization, safety, and effectiveness.
+
+--- 
+
+Update any relevant agent communication, handoff, or continuity documents. We will do this periodically, in the event of crash or need for an additional agent. Return after completed for the next portion of the build.
+
+---
+
+Update repositories/GitHub, etc. to ensure that progress is synchronized and we can recovery from a catastrophic loss. This action(s) will also be done periodically.
+
+---
+
+Sweep the repo. Identify any files that are no longer value added. Consider their likelihood for future use. If the current value is zero/very low and the likelihood they won't be needed again is also zero/very low, delete them. Reminder: always think through your actions first. Be careful, ensure progress is not lost, ensure you're not breaking other apps, or any OS features/functionality. The goal is only to maintain an organized repo and reduce token bloat for agent operations.
+
+---
+
+We will start the handoff process now. Update any relevant agent communication, logs, todo, handoff, or continuity documents. Ensure they optimized for machine reading and provide a clear current status and next steps. Return the most relevant document(s) names and lines to be read by the next agent to continue the build.
+
+---   
+
+Is there a more effective method to complete the upcoming tasks than the ideas and concepts you previously mentioned?
+
+---
+
+For the upcoming stage of the project, share your ideas on how to achieve it. Please avoid providing any code and focus solely on explaining your conceptual approach.
+
+---
+
+Develop a debugging plan for the issue(s) discovered.
+
+---
+
+Create a developer rubric outlining how you would complete the task. Next, formulate your plan of action and evaluate it using the rubric. Do not reveal the rubric to the user unless you have achieved the highest possible score. If you haven't reached the maximum score, repeat the process. Once you obtain a perfect score, present your reasoning and plan of action to the user in a conceptual manner, without using code.
+
+---
+
+Update the agent communication and continuity document(s) and ensure you're following the protocol established for this project. Return with the document names and lines other agents need to read to continue the project. 
+
+---
+
+Do not write code, make changes, or enact fixes. We are discussing and planning only. 
+
+---
+
+Perform quality control on the recently completed work. Detect any bugs, weak spots, faulty logic, and so on. Do not implement any corrections; simply report the issues found, ranking them from the easiest to fix to the most challenging. Add notes to relevant documents if necessary. 
+
+---
+
+Ensure a seamless handoff. Prepare/update the continuity document(s) that includes the current status, what has been developed, any lessons learned, the appropriate session number, and the next steps to be taken. Provide **only** the lines that need to be read and the path or name to the document for the next agent(s).
+
+---
+
+The latest agent has updated the project's status. Examine the message(s) referenced in the previous agent's output below. Do not begin coding, making corrections, or starting any work. Instead, provide a response that explains your comprehension of the current status and outlines the next task to be carried out.
+
+---
+
+Based on our discussion, create a project plan that is modular and divided logically, allowing for suitable checkpoints, testing, and quality assurance. It should be structured in a way that makes the most sense and maximizes the chances of success.
+
+---
+
+Proceed with the diagnostic tests. Create a folder and an event log with the results (if not already created), ensuring the tests cause minimal disruption to the application's functionality. The user has spent weeks learning how to build applications and wants the best chance of success on the first attempt. Consider everything carefully and develop a developer's rubric. Be thoughtful about it. You should also verify the logic and functionality, meaning check if it truly deduplicates, if it actually removes items when searching for semantic overlap, and similar aspects.   
+
+---
+
+I want you to carefully consider the plan, test, debug, and verify at each step. Follow best practices, starting with the simplest and moving to the more complex. Minimizing risk is crucial, and the underlying architecture is essential! Record progress, bugs, fixes, test results, etc. in appropriate logs for auditing. Stop after each phase and only report back once it has been fully successful. 
+
+---
+
+Reminder: Follow the project/system instructions exactly as given with the sources. Do not deviate unless explicitly authorized. All violations are unacceptable. Repeat back your understanding and suck less.
+
+--
+
+For the code you last wrote, check it, develop a debugging plan for the issue(s) discovered, then debug the code. Incremental steps are authorized to ensure accuracy via smaller tasks vs one-shot large tasks.
+
+---
+
+Check the coding agent's work again, ensure what he is telling the user is complete and 100% factual.
+
+---
+
+I accept your recommendation. Generate an appropriate amount of code that strikes the right balance between single pass limitations, safety, and efficiency.  Create a developer rubric outlining how you would complete the task. Next, formulate your plan of action and evaluate it using the rubric. Do not reveal the rubric to the user. Do not execute the plan until you have achieved the highest possible score. If you haven't reached the maximum score, repeat the process. Once you obtain a perfect score execute the best plan of action.
+
+---
+
+I'm not convinced, this has been an on-going problem. Check the code again and when you are 95% confident I will do a manual test/review.
+
+---
+
+Continue. 
+
+Execute. 
+
+Go. 
+
+Approved.
+
+---
+
+Review the current task list only, **do not code or make changes!** Only familiarize yourself.
+
+Execute Task X, Steps XXXX of the assigned task list.
+
+
+---
+
+Create a task list for the next part of the project. Remember, you are writing for agents, not the user. Communicate in manner that coding agents best understand. Apply a safe chunking, tool, and control strategy. Write ultra-atomic steps to keep agents on task.
+
+---
+
+Go through the task list again, identify gaps, unnecessary code complexity (not atomic step complexity), potential for app failure, and most of all: potential for agents to go rogue. Return after updating the task list.
+
+---
+
+Go through the task list one last time, identify gaps, unnecessary code complexity (not atomic step complexity), potential for app failure, and most of all - potential for agents to go rogue. 
+
+---
+
+Create a developer's rubric, assess your plan against it. Don't enact changes until you achieve the maximum score. Keep rubric conceptual. Don't show the user.
+
+Return after updating the task list . Anything less than 95% confidence that the agent will get it right must be redone.
+
+---
+
+Clean the repo of any old prompts, unused plans, or test scripts no longer needed. Save all reports, handoffs, status/user/context docs, lessons learned, etc. The goal is to maintain a clean understandable, easily readable file structure for the project.
+
+---
+
+Push changes to GitHub.
+
+---
+
+Reread and familiarize yourself with the: user_technical_execution_doc.md
+
+---
+
+Update the appropriate reports, start a new one if the current reports exceeds ~750 lines. Ensure it includes session number, metadata, is easy to read and track. Remember, you are writing for agents, not the user. Communicate in manner that coding agents best understand. 
+
+---
+
+Before starting, I want you to create a separate lessons learned document for this process. Make sure it explains the iteration process we went through, what we discovered, what went right, what went wrong, suggestions for improvement, unnecessary/salient steps, and amplifying notes you fee should be added (if any). The objective is to data mine these lessons to help define future workflows. Call the file a version of Pre_Phase_3B_3D_Claude. Ensure it has tags and metadata. It must be ruthlessly objective. Place it in the lesson learned folder.
+
+---
+
+Before starting on Task Lists 3B and 3D, do not code or make any changes. Simply, answer the following:
+
+- Do you have enough information to execute both task lists?
+- How should the actions be divided, if at all? E.g., Task 3B Steps 1-n or both complete tasks list, any combination thereof, etc.
+- Your current session has 272K tokens remaining. Do you have enough remaining context window to complete all tasks including reasonably anticipated issues? 
+- Is the task list sufficient enough to keep you on target and prevent you from writing/deleting code that will create rework?
+- Is the task list(s) too restrictive, loose, or just right?
+- Theoretically speaking, if the system crashed, could an agent accurately assess the completion level of the task list(s) and successfully continue the build within 15 min?
+- Do you have >95% confidence that after the task list is complete, all fixes would have been successfully implemented, and the code, modules, features, logic, etc. will preform as intended and meet the user's objectives?
+
+---
+
+Do you feel confident that you can add a working Git Bash and effective grep/awk checks to get to the required 95% confidence level?
+
+---
+
+Should we create those task lists before executing 3B and 3D?
+
+---
+
+Do you have 95% confidence that you can create those additional tasks and it would be complete and total resulting in an external QC agent giving a 95% confidence level that once all tasks are implemented, the code will preform as intended?
+
+---
+
+Adjust your perspective, focus on only the two task lists, assume the rest of the repo is functional (we will come back to it after this session and create a new plan).
+
+---
+
+Update the task lists, when you return, we will recreate the entire application building, debugging, and validation plan accounting for the repo decencies you mentioned earlier.
+
+---
+
+Ok, now get a feel for the repo, return with a plan to create all task lists. The objective is one set of task lists, structured to keep agents on task via appropriate chunking, documentation, debugging, QC, and Ver/Val strategies. Task lists will be written for agents, by agents - meaning; it's more important for agents to understand the tasks because they can explain them to the user.
+
+---

@@ -1,0 +1,1605 @@
+Gemini
+
+S
+
+T
+Conversation with Gemini
+Objective:
+
+Based on the attached document, create a list of Evergreen prompts for application building via a user-driven agent orchestration process.
+
+
+
+Context:
+
+The current list is from prompts attempted with mixed results. Effectiveness cannot be fully assessed due to different or lack of a defined workflow. Additionally, some prompts were used in the middle of a messy project/repo with significant user mistakes.
+
+
+
+Allowed:
+
+- Inference from overall "vibe" and objectives contained within the documents.
+
+- Internet research from authoritative, respected, and official documents.
+
+- Creation of multiple documents.
+
+- Best judgement with **high reasoning.**
+
+
+
+Constrainsts:
+
+- Prompts that are **not** specific to **or** enable application building.
+
+
+
+Task:
+
+- Create a set of Evergreen prompts optimized for AI agents, based of role, category, sequence, and other sailent categories.
+
+
+
+Output:
+
+- Catagorized or segmented prompts and user expectations that are Evergreen, written specifically for AI coding agents yet the sequence or when to use them can be clearly understood by the user.
+
+This document presents a curated set of Evergreen Prompts for application development, optimized for a user-driven agent orchestration workflow. These prompts are synthesized from the provided documentation, aligning with the philosophy, expectations, and technical requirements specified in user_technical_execution_doc.txt and the examples in user_prompts_app_bldg_draft.txt.
+
+The prompts adhere to the "Cut & Paste Contract," meaning they are provided in clean code boxes for easy transfer to agents. They are designed to enforce safety, modularity, atomic execution, and seamless continuity, guided by the maxim: "Slow is smooth and smooth is fast."
+
+I. Project Initialization & Strategic Planning
+Role: Strategist / Advisor / Orchestration Agent When to use: At the beginning of a project, a new phase, or when a significant strategic decision is required.
+
+Category	User Expectation (When to use)	Evergreen Prompt for Agent (Optimized for "Cut & Paste Contract")
+Planning Mode Activation	Ensure the agent ceases all execution activities and focuses solely on discussion and planning.	```md
+STOP. Execution lock engaged. Do not write code, modify files, or execute changes. We are strictly in planning and discussion mode. Acknowledge readiness to proceed with planning.		
+Code snippet
+| **Initial Plan Development** | Receive a high-level, safe, modular, and incremental plan based on the project objectives. | ```md
+Objective: Develop a high-level project plan for a new application based on [Reference Requirements/Context].
+Constraints: Adhere strictly to the user philosophy in `user_technical_execution_doc.txt`. The approach must be incremental, modular, and prioritize safety/correctness over speed.
+Task: Create a strategic plan that includes:
+1. Baseline infrastructure setup.
+2. Modular feature development phases.
+3. "Make or Buy" analysis for tools/libraries.
+4. Checkpoints for Testing and Validation (T&V).
+5. Checkpoints for Agent Continuity Documentation updates.
+Output: A concise overview of the main phases. Do not provide implementation details or code.
+``` |
+| **Plan Assessment and Refinement** | Critically review the proposed plan for robustness, risks, and alignment with user philosophy before proceeding. | ```md
+Task: Critically evaluate the current project plan [Reference Plan Document].
+Focus Areas: Identify risks, gaps, excessive complexity, and adherence to the modular/incremental philosophy. Confirm that T&V and Continuity checkpoints are adequately integrated.
+Action: Propose specific updates if deficiencies are found.
+Gate Check: Return only when you are >95% confident the plan is robust and ready for the next stage.
+``` |
+| **Conceptual Approach Generation** | Evaluate the methodology for a specific phase without getting bogged down in code details. | ```md
+Objective: Define the approach for the upcoming project phase: [Phase Description].
+Constraint: Do not provide code. Focus solely on conceptual approach.
+Task: Describe the methodology, required resources, architectural impact, and risk mitigation strategy.
+Output: A conceptual strategy analysis.
+``` |
+| **Determining Next Steps (Dynamic)** | Identify the most logical, impactful, and safest next action when the path forward requires analysis. | ```md
+Task: Analyze the current project state by consulting the continuity documentation and repository structure.
+Objective: Determine the next sensible step in the project.
+Constraints: Minimize risk, strictly avoid scope creep, focus on high ROI actions. Tailor recommendations to the user's non-developer experience level.
+Output: A focused recommendation for the immediate next phase of work.
+``` |
+
+---
+
+### II. Task List Generation & Refinement
+
+**Role:** Strategist / Advisor / Orchestration Agent
+**When to use:** Translating the strategic plan into executable instructions (guardrails) for the Execution Agents.
+
+| Category | User Expectation (When to use) | Evergreen Prompt for Agent (Optimized for "Cut & Paste Contract") |
+| :--- | :--- | :--- |
+| **Atomic Task List Creation** | Receive an ultra-detailed task list optimized for machine reading, ensuring deterministic execution within context limits. | ```md
+Objective: Create a task list for [Project Phase/Module].
+Target Audience: AI Coding Execution Agents.
+Requirements:
+1. Ultra-Atomic Steps: Break down tasks into the smallest executable units. These are strict guardrails.
+2. Machine Readability: Optimize the format for agent parsing (e.g., JSON preferred). Write for agents, not the user.
+3. Chunking Strategy: Ensure each task block can be completed within the executing agent's context window. More overall tasks are better than backtracking.
+4. Control Strategy: Include specific validation checks after critical steps.
+Output: The generated task list.
+``` |
+| **Task List Red Teaming (Rogue Prevention)** | Rigorously review the task list to identify and close gaps that could lead to errors, rework, or agent deviation. | ```md
+Task: Act as a Red Team agent and review the generated task list [Reference Task List ID/File].
+Objective: Identify weaknesses that could lead to failure or unintended behavior (rogue agents).
+Focus Areas:
+1. Gaps and Omissions.
+2. Unnecessary Code Complexity (distinguish from atomic complexity).
+3. Potential Failure Points/Risks to existing functionality.
+4. Ambiguity allowing improvisation.
+Action: Update the task list to mitigate these risks.
+Gate Check: Return when confidence in the task list's robustness exceeds 95%.
+``` |
+| **The Rubric Method (Internal Self-Assessment)** | Force the agent to internally validate the quality and safety of its plan against best practices before finalization. | ```md
+Internal Process Requirement: Before finalizing the plan/task list for [Objective], perform this internal self-assessment. Do not output the rubric or scores to the user.
+1. Create a Developer Rubric: Define criteria for success (modularity, safety, efficiency, user philosophy adherence).
+2. Evaluate: Score the current draft plan against the rubric.
+3. Iterate: Refine the plan until the score is maximized.
+Action: Once the maximum score is achieved internally, confirm readiness and output the finalized task list/plan.
+``` |
+
+---
+
+### III. Execution Phase
+
+**Role:** Coding Execution Agent
+**When to use:** Implementing the code according to the defined atomic task lists.
+
+| Category | User Expectation (When to use) | Evergreen Prompt for Agent (Optimized for "Cut & Paste Contract") |
+| :--- | :--- | :--- |
+| **Agent Onboarding (Session Start)** | Ensure a new agent understands the exact project status and context before starting work. | ```md
+Welcome, new agent. Handoff protocol initiated.
+Task: Examine the continuity documentation referenced below:
+[Path/Name of Document]
+[Lines/JSON Block provided by previous agent]
+Action: DO NOT begin coding or making changes.
+Output: Provide a concise response confirming your understanding of the current project status and the immediate next task you are assigned to execute.
+``` |
+| **The Gauntlet (Pre-Execution Gate Check)** | A rigorous assessment of the agent’s readiness, understanding, resources, and capability before authorizing execution. | ```md
+STOP. Before executing the task list [Reference Task List ID], perform this assessment. Do not code or make changes.
+Answer the following precisely:
+1. Information Sufficiency: Do you have all necessary context to execute the task list completely?
+2. Context Window Analysis: Do you have sufficient remaining context window to complete all tasks, including reasonably anticipated issues/debugging?
+3. Guardrails Assessment: Is the task list sufficient to keep you on target and prevent rework/rogue actions? Is it too restrictive, loose, or just right?
+4. Continuity Check: If the system crashes mid-execution, could a new agent accurately assess the completion level and successfully continue the build within 15 minutes?
+5. Success Confidence: Do you have >95% confidence that upon completion, the features/fixes will perform exactly as intended and meet the user's objectives without breaking existing functionality?
+Output: Your assessment. If the assessment fails any point, halt and report the deficiency.
+``` |
+| **Execute Task List (Standard Directive)** | The agent executes the defined atomic steps precisely, prioritizing stability and safety. | ```md
+Task: Execute the assigned task list: [Reference Task List ID/File], Steps [Start] to [End].
+Execution Philosophy:
+1. Precision: Follow the steps exactly. Do not deviate or add features unless authorized.
+2. Safety First: Slow is smooth and smooth is fast. Slow and right is better than fast and wrong. Minimize risk to the existing build.
+3. Logical Stops: Halt execution immediately if an error occurs, a validation fails, or the assigned steps are complete.
+4. Status Update: After stopping, report the current status and any errors encountered.
+``` |
+| **Execute Recommendation (Flexible)** | Implement a previously approved recommendation when a detailed task list is not present, using caution and limited discretion. | ```md
+User accepts the recommendation regarding [Specific Feature/Fix].
+Task: Implement the recommendation.
+Constraints: Generate an appropriate amount of code that balances single-pass limitations, safety, and efficiency. Ensure the implementation is modular and does not jeopardize the build.
+Discretion: If a critical flaw in previous work is identified, fix it, provided it doesn’t undo overall progress. Be wary of scope creep.
+Post-Execution: Perform immediate validation of the implemented code.
+``` |
+| **General Approval / Continuation** | Simple commands to move the process forward. | ```md
+Approved. Execute.
+OR
+
+Markdown
+Continue.
+``` |
+
+---
+
+### IV. Debugging, Testing, and Quality Control (QC)
+
+**Role:** QC/Ver-Val Agent or Execution Agent
+**When to use:** Throughout the build process to ensure code quality, functionality, and stability.
+
+| Category | User Expectation (When to use) | Evergreen Prompt for Agent (Optimized for "Cut & Paste Contract") |
+| :--- | :--- | :--- |
+| **Post-Execution Debugging Sweep** | Immediate check and fix of the code that was just implemented. | ```md
+Task: Scan and debug the code implemented during the last execution phase ([Reference Files/Module]).
+Objective: Identify and fix any immediate bugs or errors.
+Constraints:
+1. Safety: Avoid making changes that risk breaking working parts of the application. Focus only on the recently modified code.
+2. Iteration: Multiple debugging passes are authorized to achieve stability.
+Output: A report of issues found, fixes applied, and confirmation of stability.
+``` |
+| **Quality Control Audit (Reporting Only)** | Identify issues without implementing fixes, allowing for strategic planning of the debugging phase. | ```md
+Task: Perform a Quality Control audit on the recent work [Reference Module/Phase].
+Objective: Detect bugs, weak spots, faulty logic, and deviations from requirements.
+Action: DO NOT implement any corrections or changes.
+Output: Report the issues found, ranked from the easiest to fix to the most challenging. Update the issue tracker/log.
+``` |
+| **Debugging Plan Generation** | Create a structured approach to resolve identified issues from the QC Audit. | ```md
+Objective: Develop a structured debugging plan for the issues identified in the QC Audit [Reference Audit Report/Log].
+Requirements:
+1. Prioritization: Sequence the debugging tasks logically.
+2. Methodology: Define the approach for isolating and resolving each issue.
+3. Safety: Ensure the plan minimizes disruption to working functionality.
+Output: The debugging plan, formulated as an atomic task list.
+``` |
+| **Modular Test and Validation (T&V)** | Thorough, systematic testing of a specific module to ensure full functionality. | ```md
+Task: Initiate the Test and Validation (T&V) process for Module: [Module Name].
+Objective: Verify the module functions exactly as intended and integrates correctly.
+Methodology: Proceed slowly and systematically. Test unit functionality, integration, and edge cases. Minimize disruption.
+Authorization: Multiple passes are authorized. Log all results (progress, bugs, fixes, test results) for auditing.
+Output: Detailed test results and confirmation of module validation.
+``` |
+| **Confidence Challenge** | Force the agent to re-verify a solution when the user doubts the results. | ```md
+User is not convinced by the previous result/fix. The problem appears persistent.
+Task: Re-check the code, the logic, and the test results. Perform a deeper analysis.
+Gate Check: Report back only when you are >95% confident in the solution. User will conduct a manual review upon confirmation.
+``` |
+
+---
+
+### V. Continuity and Repository Management
+
+**Role:** All Agents
+**When to use:** Periodically, at checkpoints, and at the end of sessions to maintain project integrity and organization.
+
+| Category | User Expectation (When to use) | Evergreen Prompt for Agent (Optimized for "Cut & Paste Contract") |
+| :--- | :--- | :--- |
+| **Continuity Update (Periodic)** | Regular updates to ensure seamless handoff in case of a crash or agent switch. Optimized for machine reading. | ```md
+Task: Update the relevant agent handoff and continuity documents.
+Objective: Ensure the next agent clearly understands the current status, recent progress, and immediate tasks ahead. Ensure alignment with user priorities and philosophy.
+Requirements: Optimize format for machine reading (e.g., JSON summary). Avoid unnecessary materials to save context tokens.
+Output: Confirmation of update.
+``` |
+| **Handoff Protocol (Session End/Outgoing Agent)** | A comprehensive update at the end of a work session, providing precise pointers for the next agent. | ```md
+Initiate the Handoff Protocol.
+Task: Update all relevant continuity documents (logs, TODO, status, etc.).
+Content must include: Current status, developments, significant lessons learned, session number/timestamp, and the precise next steps.
+Optimization: Maximize for machine reading.
+Output: Return ONLY the path/name of the primary continuity document and the exact lines/JSON block the next agent must read to resume the project.
+``` |
+| **Repository Synchronization (Version Control)** | Ensure progress is saved externally for disaster recovery. | ```md
+Task: Synchronize the local repository with the remote version control system (e.g., GitHub).
+Objective: Ensure progress is saved and recoverable in case of catastrophic loss.
+Action: Stage relevant changes, create a meaningful commit message summarizing the progress, and push to the designated branch [Branch Name].
+``` |
+| **Repository Housekeeping (Cleanup)** | Maintain a clean repository and reduce token bloat by removing non-value-added files. | ```md
+Task: Sweep the repository for cleanup.
+Objective: Maintain an organized repo and reduce token bloat for agent operations.
+Criteria: Identify files that are no longer value-added (e.g., old test scripts, temporary files, unused plans). If current value is very low and the likelihood they won't be needed again is very low, delete them.
+Safety: Think carefully before deleting. Ensure progress is not lost, and functionality is not broken. Retain all essential documentation (reports, handoffs, status docs, lessons learned).
+Output: A list of files deleted and confirmation of status.
+``` |
+| **Lessons Learned Documentation** | Capture insights objectively to refine future workflows. | ```md
+Task: Create or update the lessons learned document for this phase/session.
+Objective: Objectively capture data to help define future workflows.
+Content: Iteration process, discoveries, what went right, what went wrong, suggestions for improvement, unnecessary/salient steps. Must be ruthlessly objective.
+Requirements: Include tags and metadata. Store in the designated lessons learned folder.
+``` |
+| **Context Refresh** | Ensure the agent has the foundational rules and user philosophy loaded into its active context. | ```md
+Task: Reread and familiarize yourself with the user's core philosophy and expectations.
+Document: `user_technical_execution_doc.txt`
+Output: Confirmation that the context is refreshed.
+``` |
+Developer: # Role and Objective
+
+Given the totality of updates from various models, recreate a categorized set of evergreen prompts designed for AI agents to facilitate application building, drawing on a referenced document and leveraging user-driven agent orchestration processes.
+
+
+
+Begin with a concise checklist (3-7 bullets) of what you will do; keep items conceptual, not implementation-level.
+
+
+
+# Instructions
+
+- Infer and generate evergreen prompts supporting application building, grouping them by attributes such as role (intended user/agent), category (prompt type/purpose), and sequence (recommended order), using high-level reasoning and supplied context.
+
+- Make informed inferences from the provided document, supplementing with reputable online research as needed.
+
+- Prioritize prompts that directly enable application development workflows.
+
+- Clearly annotate with a 'note' if the reference material is ambiguous or incomplete.
+
+- Multiple documents may be generated as needed.
+
+
+
+# Context
+
+- Source is a mixed-quality list of historical prompts; their effectiveness is not fully established due to varying workflows and inconsistent usage, including possible user errors in past repositories.
+
+- Supplementary internet research from authoritative sources is permitted to resolve ambiguities or enrich findings.
+
+- Prompts must remain specific to application-building tasks.
+
+
+
+# Reasoning Steps
+
+- Analyze the reference material to infer prompt roles, categories, and usage order.
+
+- Segment prompt list by 'role' and then by 'category', drawing on high-level reasoning if attributes are not explicit.
+
+- Ensure clarity of user expectations and context of use for each prompt, adding notes on ambiguities as needed.
+
+
+
+# Planning and Verification
+
+- Map extracted prompts to attributes: role, category, sequence/order.
+
+- Verify prompts align with application-building objectives, not general-purpose tasks.
+
+- Test and optimize organizational criteria and prompts for clarity.
+
+
+
+After generating or editing prompts, validate that each prompt is relevant, well-categorized, and that all required JSON schema fields are present. If any issues are found, self-correct before finalizing output.
+
+
+
+# Output Format
+
+Respond in JSON using the following schema:
+
+
+
+{
+
+"prompts": [
+
+{
+
+"role": "<Describe the intended user or agent role>",
+
+"category": "<Prompt category/type, as inferred>",
+
+"sequence": "<Order of use or recommended sequence, if applicable>",
+
+"prompt": "<The Evergreen prompt itself>",
+
+"user_expectation": "<Succinct guidance or expected outcome when using this prompt>",
+
+// Optional; include only if applicable
+
+"note": "<Explain any ambiguities, missing details, or contradictions from the source material>"
+
+},
+
+...
+
+]
+
+}
+
+
+
+- Group or segment the prompt list primarily by 'role', then by 'category'.
+
+- Where sequence is relevant, provide an ordering indication.
+
+- Each prompt must have a 'user_expectation' field clearly articulating the expected outcome or benefit.
+
+- If ambiguities exist in the reference document, annotate with a 'note' field.
+
+
+
+# Verbosity
+
+- Write prompts and user expectations concisely, ensuring clarity and immediate usability for coding agents or developers.
+
+
+
+# Stop Conditions
+
+- Task is complete when all feasible evergreen prompts for application building are given, grouped and annotated as required, in the specified JSON format.
+
+This is my checklist for creating the evergreen prompts:
+
+Analyze and synthesize all provided inputs: user_technical_execution_doc.txt and the combined drafts in user_prompts_app_bldg_draft2.txt.
+
+Structure the prompts logically, covering both the process of agent orchestration (Planning, Execution, QC, Continuity) and the tasks within the application development lifecycle (SDLC).
+
+Refine prompt language for maximum clarity, conciseness, and optimization for agent execution (e.g., specifying JSON/YAML outputs, adhering to the "Cut & Paste Contract").
+
+Incorporate the user's core philosophies (e.g., atomic tasks, machine readability, safety thresholds, "Slow is smooth and smooth is fast").
+
+Validate the final list against the required JSON schema and constraints.
+
+JSON
+{
+  "prompts": [
+    {
+      "role": "Strategist/Orchestration Agent",
+      "category": "Project Initialization",
+      "sequence": "01-Orchestration-Setup",
+      "prompt": "STOP. Execution lock engaged. We are strictly in planning mode. Acknowledge readiness to proceed with planning. Do not write code, modify files, or execute changes.",
+      "user_expectation": "Agent ceases all activity and confirms focus on planning."
+    },
+    {
+      "role": "Strategist/Orchestration Agent",
+      "category": "Strategic Planning",
+      "sequence": "01-Orchestration-Setup",
+      "prompt": "Develop a high-level, incremental project plan for {{Objective}}. Prioritize safety/correctness over speed (Ref: user_technical_execution_doc.txt). Include: Modular phases, 'Make or Buy' analysis, T&V checkpoints, and Agent Continuity checkpoints. Output: Concise phase overview only. No code.",
+      "user_expectation": "Receives a conceptual roadmap emphasizing modularity, safety, and clear checkpoints."
+    },
+    {
+      "role": "Strategist/Orchestration Agent",
+      "category": "Plan Validation",
+      "sequence": "01-Orchestration-Setup",
+      "prompt": "Critically evaluate the current plan {{Plan_ID}}. Identify risks, gaps, excessive complexity, and adherence to modular/incremental philosophy. Confirm T&V and Continuity integration for crash recovery. Propose updates if deficient. Gate Check: Return only when >95% confident the plan is robust.",
+      "user_expectation": "Agent validates plan completeness and adjusts for maximum success probability.",
+      "note": "Source repeatedly emphasizes 95% confidence threshold but doesn't define objective measurement criteria."
+    },
+    {
+      "role": "Strategist/Orchestration Agent",
+      "category": "Atomic Task List Generation",
+      "sequence": "02-Orchestration-Tasks",
+      "prompt": "Create a task list for {{Phase/Module}}. Target Audience: AI Execution Agents. Requirements: 1. Ultra-Atomic Steps (strict guardrails). 2. Machine Readability (JSON required). 3. Chunking Strategy (must fit within execution context window). 4. Explicit validation checks and stop points. Output: The generated task list (JSON).",
+      "user_expectation": "Machine-optimized task list ensuring deterministic execution and preventing agent drift."
+    },
+    {
+      "role": "Strategist/Orchestration Agent",
+      "category": "Task List Red Teaming",
+      "sequence": "02-Orchestration-Tasks",
+      "prompt": "Red Team review task list {{Task_List_ID}}. Identify weaknesses leading to failure or rogue behavior. Focus: Gaps, unnecessary complexity (not atomic complexity), failure risks, ambiguity allowing improvisation. Action: Update the task list to mitigate risks. Gate Check: Return when confidence in robustness >95%.",
+      "user_expectation": "Refined task list with identified risks mitigated and guardrails strengthened."
+    },
+    {
+      "role": "Strategist/Orchestration Agent",
+      "category": "Internal Self-Assessment (Rubric)",
+      "sequence": "02-Orchestration-Tasks",
+      "prompt": "Internal Process (The Rubric Method): Before finalizing {{Plan/Task_List}}, create a Developer Rubric (criteria: modularity, safety, efficiency, adherence). Evaluate the draft. Iterate until score is maximized. DO NOT output the rubric. Action: Once maximized internally, output the finalized artifact.",
+      "user_expectation": "Agent internally validates the quality and safety of its approach before presenting it."
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Agent Onboarding (Handoff)",
+      "sequence": "03-Orchestration-Execution",
+      "prompt": "Handoff protocol initiated. Examine continuity documentation: {{Document_Path}} AND {{JSON_Block_from_previous_agent}}. Action: DO NOT begin coding. Output: Concise confirmation of current status understanding and the immediate next assigned task.",
+      "user_expectation": "New agent confirms exact project status and context before starting work."
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Pre-Execution Gate Check (The Gauntlet)",
+      "sequence": "03-Orchestration-Execution",
+      "prompt": "STOP. Before executing {{Task_List_ID}}, perform assessment. No code. Answer precisely: 1. Information Sufficiency? 2. Context Window adequacy (including anticipated issues/debugging)? 3. Guardrails Assessment (sufficient to prevent rework/rogue actions? Too restrictive/loose)? 4. Continuity Check (can new agent resume <15 min if crash)? 5. Success Confidence (>95% that objectives met without breakage)? Output: Assessment. Halt if any point fails.",
+      "user_expectation": "Rigorous Go/No-Go assessment of readiness, resources, and capability before execution."
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Standard Execution Directive",
+      "sequence": "03-Orchestration-Execution",
+      "prompt": "Execute task list: {{Task_List_ID}}, Steps {{Start}} to {{End}}. Philosophy: 1. Precision (No deviation). 2. Safety First (Slow is smooth and smooth is fast. Slow and right > fast and wrong). 3. Logical Stops (Halt immediately on error, validation fail, or completion). 4. Status Update (Report status/errors after stopping).",
+      "user_expectation": "Agent executes defined atomic steps precisely, prioritizing stability and safety."
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Flexible Execution (Recommendation)",
+      "sequence": "03-Orchestration-Execution",
+      "prompt": "User accepts recommendation regarding {{Feature/Fix}}. Task: Implement. Constraints: Balance single-pass limitations, safety, efficiency. Ensure modularity. Discretion: Fix critical flaws if identified, provided it doesn’t undo progress. Be wary of scope creep. Post-Execution: Immediate validation.",
+      "user_expectation": "Implementation of an approved recommendation using caution and limited discretion."
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Quality Control Audit (Reporting Only)",
+      "sequence": "04-Orchestration-QC",
+      "prompt": "Perform QC audit on {{Module/Phase}}. Objective: Detect bugs, weak spots, faulty logic, deviations. Action: DO NOT implement corrections. Output: Report issues found, ranked easiest to hardest fix (JSON). Update issue tracker.",
+      "user_expectation": "Prioritized bug list without implementation, enabling strategic debugging planning."
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Debugging Plan Generation",
+      "sequence": "04-Orchestration-QC",
+      "prompt": "Develop structured debugging plan for issues in {{Audit_Report_ID}}. Requirements: 1. Logical sequencing. 2. Methodology for isolation/resolution. 3. Minimize disruption to working functionality. Output: Debugging plan as an atomic task list (JSON).",
+      "user_expectation": "A structured, safe, machine-readable approach to resolve identified issues."
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Modular Test and Validation (T&V)",
+      "sequence": "04-Orchestration-QC",
+      "prompt": "Initiate T&V process for Module: {{Module_Name}}. Objective: Verify exact function and integration. Methodology: Slow, systematic. Test unit, integration, edge cases. Minimize disruption. Authorization: Multiple passes authorized. Log all results (progress, bugs, fixes) for auditing. Output: Detailed results and validation confirmation.",
+      "user_expectation": "Thorough, systematic testing of a specific module with documented evidence."
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Confidence Challenge",
+      "sequence": "04-Orchestration-QC",
+      "prompt": "User is not convinced by previous result/fix. Problem appears persistent. Task: Re-check code, logic, and test results. Perform deeper analysis. Gate Check: Report back only when >95% confident in the solution. User will conduct manual review.",
+      "user_expectation": "Agent forced to rigorously re-verify a solution when the user doubts the results."
+    },
+    {
+      "role": "Continuity/Documentation Agent",
+      "category": "Handoff Protocol (Session End)",
+      "sequence": "05-Orchestration-Continuity",
+      "prompt": "Initiate Handoff Protocol. Update all continuity documents. Content: Current status, developments, lessons learned, session ID/timestamp, precise next steps. Optimization: Maximize for machine reading (JSON required). Minimize context tokens. Output: Return ONLY the path/name of the primary continuity document AND the exact JSON block the next agent must read.",
+      "user_expectation": "Machine-readable handoff providing precise pointers for the next agent.",
+      "note": "Source emphasizes machine optimization; JSON is mandated here for consistency and reliability."
+    },
+    {
+      "role": "Continuity/Documentation Agent",
+      "category": "Lessons Learned",
+      "sequence": "05-Orchestration-Continuity",
+      "prompt": "Create/update lessons learned document for {{Phase/Session}}. Objective: Objectively capture data for future workflow optimization. Content: Iteration process, discoveries, right/wrong, improvement suggestions, salient/unnecessary steps. Must be ruthlessly objective. Include tags/metadata. Store in designated folder.",
+      "user_expectation": "Actionable insights for process improvement."
+    },
+    {
+      "role": "Continuity/Documentation Agent",
+      "category": "Repository Housekeeping (Cleanup)",
+      "sequence": "05-Orchestration-Continuity",
+      "prompt": "Sweep repository for cleanup. Objective: Maintain organization, reduce token bloat. Criteria: Identify non-value-added files (old tests, temp files). If current value AND likelihood of future need are very low, delete. Safety: Think carefully before deleting. Retain all essential documentation (reports, handoffs, lessons learned). Output: List of deleted files (JSON).",
+      "user_expectation": "Streamlined repository optimized for agent token efficiency."
+    },
+    {
+      "role": "Continuity/Documentation Agent",
+      "category": "Version Control Sync",
+      "sequence": "05-Orchestration-Continuity",
+      "prompt": "Synchronize local repository with remote (e.g., GitHub). Objective: Ensure recoverable progress. Action: Stage relevant changes, create meaningful commit message, push to {{Branch_Name}}.",
+      "user_expectation": "Consistent backup points for disaster recovery."
+    },
+    {
+      "role": "Product Owner / Strategist",
+      "category": "Problem Framing",
+      "sequence": "10-SDLC-Discovery",
+      "prompt": "Summarize the problem for {{project_name}}. Output JSON: business_goal, target_users, jobs_to_be_done, constraints, out_of_scope.",
+      "user_expectation": "Receives crisp problem definition and scope boundaries."
+    },
+    {
+      "role": "Product Owner / Strategist",
+      "category": "User Stories & AC",
+      "sequence": "10-SDLC-Discovery",
+      "prompt": "Draft user stories with acceptance criteria for {{target_users}}. Output a Markdown table: story_id, as_a, I_want, so_that, acceptance_criteria.",
+      "user_expectation": "Receives prioritized stories with clear acceptance criteria."
+    },
+    {
+      "role": "Product Owner / Strategist",
+      "category": "Risks and Assumptions",
+      "sequence": "10-SDLC-Discovery",
+      "prompt": "List top risks and assumptions. Output a risk register (JSON): [{id, description, impact, likelihood, mitigation, owner}].",
+      "user_expectation": "Receives a structured risk register."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "System Context (C4)",
+      "sequence": "11-SDLC-Architecture",
+      "prompt": "Produce a C4 Level-1 text spec for {{project_name}}. Output JSON: system_purpose, external_users, external_systems, relationships, key_quality_attributes.",
+      "user_expectation": "Receives high-level system context and boundaries."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "ADRs (Architecture Decision Records)",
+      "sequence": "11-SDLC-Architecture",
+      "prompt": "Draft initial ADRs for {{stack_preferences}}. Output ADR stubs (Markdown): title, status, context, decision, consequences.",
+      "user_expectation": "Receives ADR skeletons for key technical choices."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "Service Boundaries",
+      "sequence": "11-SDLC-Architecture",
+      "prompt": "Propose service decomposition. Output services (JSON): [{name, responsibility, APIs, data_owned, dependencies, scale_driver}].",
+      "user_expectation": "Receives a clear service map and responsibilities."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "NFR Tactics",
+      "sequence": "11-SDLC-Architecture",
+      "prompt": "Map {{nonfunctional_requirements}} to tactics. Output JSON: [{nfr, tactic, design_implication, verification_method}].",
+      "user_expectation": "Receives NFR-to-tactic mapping ensuring quality attributes are addressed."
+    },
+    {
+      "role": "Developer - Scaffolding",
+      "category": "Repo Structure",
+      "sequence": "12-SDLC-Scaffolding",
+      "prompt": "Propose repo layout for {{mono_or_poly_repo}}. Output JSON: [{directory, purpose, tooling, code_owners}].",
+      "user_expectation": "Receives a plan for the repository scaffold."
+    },
+    {
+      "role": "Developer - Scaffolding",
+      "category": "Standards & Conventions",
+      "sequence": "12-SDLC-Scaffolding",
+      "prompt": "Define language and style standards for {{language}}. Output JSON: linters, formatters, commit_conventions, branch_policy.",
+      "user_expectation": "Receives enforceable coding and process standards."
+    },
+    {
+      "role": "Developer - Scaffolding",
+      "category": "Local Dev Environment",
+      "sequence": "12-SDLC-Scaffolding",
+      "prompt": "Specify local dev environment setup. Output JSON: runtime_versions, services, env_vars, seeds, startup_steps.",
+      "user_expectation": "Receives a plan for a reproducible local development setup."
+    },
+    {
+      "role": "Developer - API",
+      "category": "Resource Design (OpenAPI)",
+      "sequence": "13-SDLC-API-Contracts",
+      "prompt": "Draft OpenAPI 3.1 specification for core resources {{core_resources}}. Use REST or RPC as appropriate. Include paths, schemas, errors, examples. Output: YAML.",
+      "user_expectation": "Receives a first-pass, standardized API specification."
+    },
+    {
+      "role": "Developer - API",
+      "category": "Error Model",
+      "sequence": "13-SDLC-API-Contracts",
+      "prompt": "Define a standardized API error model. Output JSON Schema: code, http_status, message, details, remediation, correlation_id.",
+      "user_expectation": "Receives a uniform error contract for all services."
+    },
+    {
+      "role": "Developer - API",
+      "category": "Versioning Strategy",
+      "sequence": "13-SDLC-API-Contracts",
+      "prompt": "Choose API versioning strategy. Output JSON: scheme, compatibility_rules, deprecation_policy, examples.",
+      "user_expectation": "Receives clear versioning rules and policies."
+    },
+    {
+      "role": "Developer - Data",
+      "category": "Conceptual Model (ERD)",
+      "sequence": "14-SDLC-Data-Model",
+      "prompt": "Propose a conceptual ERD. Output JSON: [{entities, relationships, cardinalities, invariants}].",
+      "user_expectation": "Receives a clear domain model."
+    },
+    {
+      "role": "Developer - Data",
+      "category": "Naming and Migrations",
+      "sequence": "14-SDLC-Data-Model",
+      "prompt": "Define naming conventions and migration policy for {{database}}. Output JSON: rules, migration_steps, rollback_guidelines.",
+      "user_expectation": "Receives consistent database rules and safe migration policies."
+    },
+    {
+      "role": "Developer - Data",
+      "category": "Indexing Strategy",
+      "sequence": "14-SDLC-Data-Model",
+      "prompt": "Propose indexing strategy for key queries. Output JSON: [{query_patterns, suggested_indexes, maintenance_costs}].",
+      "user_expectation": "Receives index recommendations based on query patterns.",
+      "note": "If database engine is unspecified, provide generic B-Tree and covering index options."
+    },
+    {
+      "role": "Developer - Backend",
+      "category": "Service Skeleton",
+      "sequence": "15-SDLC-Backend",
+      "prompt": "Generate a service skeleton for {{framework}} with health, readiness, and metrics endpoints. Output: File tree structure and code stubs.",
+      "user_expectation": "Receives runnable service scaffold with basic observability."
+    },
+    {
+      "role": "Developer - Backend",
+      "category": "Core Endpoints (CRUD)",
+      "sequence": "15-SDLC-Backend",
+      "prompt": "Implement CRUD endpoints for {{resource}} per API spec. Include validation, serialization, and error handling. Output: Code for endpoint handlers.",
+      "user_expectation": "Receives endpoint stubs aligned to the API contract."
+    },
+    {
+      "role": "Developer - Backend",
+      "category": "Persistence Layer",
+      "sequence": "15-SDLC-Backend",
+      "prompt": "Design the repository layer for {{database}}. Output: Interfaces, transaction strategy, and sample queries.",
+      "user_expectation": "Receives persistence layer design and interfaces."
+    },
+    {
+      "role": "Developer - Backend",
+      "category": "Resilience Patterns",
+      "sequence": "15-SDLC-Backend",
+      "prompt": "Define resilience patterns for inter-service communication. Output JSON: timeouts, retries, backoff, circuit_breakers with default values.",
+      "user_expectation": "Receives fault-tolerant configurations."
+    },
+    {
+      "role": "Developer - Frontend",
+      "category": "Component Inventory",
+      "sequence": "16-SDLC-Frontend",
+      "prompt": "List screens and components for {{user_flows}}. Output JSON: [{route, component, state, data_sources}].",
+      "user_expectation": "Receives a component map organized by route."
+    },
+    {
+      "role": "Developer - Frontend",
+      "category": "State Management Strategy",
+      "sequence": "16-SDLC-Frontend",
+      "prompt": "Propose state management strategy for {{framework}}. Output JSON: server_state_vs_client_state, caching_rules, invalidation_triggers.",
+      "user_expectation": "Receives a predictable state management plan."
+    },
+    {
+      "role": "Developer - Frontend",
+      "category": "API Client Generation",
+      "sequence": "16-SDLC-Frontend",
+      "prompt": "Generate API client layer from OpenAPI specification {{OpenAPI_Spec_ID}}. Include typing, auth handling, and error normalization. Output: Code for API client.",
+      "user_expectation": "Receives a typed, standardized client layer."
+    },
+    {
+      "role": "Developer - Frontend",
+      "category": "Accessibility (A11y) Rules",
+      "sequence": "16-SDLC-Frontend",
+      "prompt": "Set A11y acceptance rules based on WCAG standards. Output JSON: [{keyboard_support, labels, color_contrast, focus_management, test_cases}].",
+      "user_expectation": "Receives enforceable A11y checks and test cases."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "CI Pipeline Design",
+      "sequence": "17-SDLC-DevOps",
+      "prompt": "Design CI pipeline for {{language}}. Stages: lint, test, build, scan, package, cache. Output: YAML-like specification.",
+      "user_expectation": "Receives a portable CI plan.",
+      "note": "CI vendor unspecified; keep steps generic and portable."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "Containerization Plan",
+      "sequence": "17-SDLC-DevOps",
+      "prompt": "Propose container build strategy for {{service}}. Output JSON: base_image, build_args, multi-stage_steps, security_hardening, healthcheck.",
+      "user_expectation": "Receives a plan for a reproducible and secure container image."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "IaC Outline",
+      "sequence": "17-SDLC-DevOps",
+      "prompt": "Outline Infrastructure as Code strategy for {{cloud_provider}}. Output JSON: environments, state_management, modules, drift_detection_plan.",
+      "user_expectation": "Receives a structured approach to IaC implementation."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "Secrets Management",
+      "sequence": "17-SDLC-DevOps",
+      "prompt": "Specify secrets management strategy. Output JSON: storage_solution, rotation_policy, access_policies, local_dev_substitutes.",
+      "user_expectation": "Receives clear secrets handling rules and boundaries."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "Threat Model (STRIDE)",
+      "sequence": "18-SDLC-Security",
+      "prompt": "Threat model {{system_boundary}} using STRIDE methodology. Output JSON: [{assets, trust_zones, threats, mitigations, residual_risk}].",
+      "user_expectation": "Receives a prioritized threat model."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "AuthN/AuthZ Design",
+      "sequence": "18-SDLC-Security",
+      "prompt": "Design authentication and authorization for {{audiences}}. Output JSON: flows, token_lifetimes, role_matrix, permission_check_locations.",
+      "user_expectation": "Receives actionable authentication and authorization design."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "Dependency Scanning Policy",
+      "sequence": "18-SDLC-Security",
+      "prompt": "Set dependency and container scanning policy. Output JSON: tools, severity_thresholds, SLA_for_remediation, exceptions_process.",
+      "user_expectation": "Receives an enforceable scanning policy with clear SLAs."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "Test Strategy",
+      "sequence": "19-SDLC-Testing",
+      "prompt": "Create comprehensive test strategy. Output JSON: levels(unit|integration|e2e), coverage_targets, environments, gating_rules_for_promotion.",
+      "user_expectation": "Receives a clear, multi-layered testing plan."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "Unit Test Blueprint",
+      "sequence": "19-SDLC-Testing",
+      "prompt": "Generate unit test blueprint for {{module}}. Output JSON: [{cases, inputs, oracles, mocks, edge_conditions}].",
+      "user_expectation": "Receives detailed unit test cases and requirements."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "Integration Test Plan",
+      "sequence": "19-SDLC-Testing",
+      "prompt": "Plan integration tests for {{service_interactions}}. Output JSON: [{contracts, fixtures, mock_strategies, assertions}].",
+      "user_expectation": "Receives a structured integration test plan."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "E2E Flow Design",
+      "sequence": "19-SDLC-Testing",
+      "prompt": "Design end-to-end flows for {{critical_paths}}. Output JSON: [{sequence, preconditions, steps, expected_outcome, cleanup}].",
+      "user_expectation": "Receives detailed E2E scenarios covering critical user journeys."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Capability Spec",
+      "sequence": "20-SDLC-LLM",
+      "prompt": "Define LLM capability for {{use_case}}. Output JSON: inputs, outputs, tools, constraints, acceptance_checks.",
+      "user_expectation": "Receives a bounded capability specification."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Retrieval Strategy",
+      "sequence": "20-SDLC-LLM",
+      "prompt": "Plan retrieval strategy for {{corpus}}. Output JSON: chunking_strategy, embeddings_fields, index_layout, freshness_requirements, filters.",
+      "user_expectation": "Receives a detailed retrieval plan."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Prompt Templates",
+      "sequence": "20-SDLC-LLM",
+      "prompt": "Create prompt templates with slot variables. Output JSON: system_prompt, user_prompt, tool_schemas, examples, negative_prompts.",
+      "user_expectation": "Receives a reusable prompt package."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Evaluation Harness",
+      "sequence": "20-SDLC-LLM",
+      "prompt": "Define eval harness. Output JSON: test_set_sources, metrics(exact_match|F1|preference), thresholds, failure_buckets.",
+      "user_expectation": "Receives a structured evaluation plan."
+    }
+  ]
+}
+
+
+
+Gemini
+
+S
+
+T
+Conversation with Gemini
+Objective:
+
+Based on the attached document, create a list of Evergreen prompts for application building via a user-driven agent orchestration process.
+
+
+
+Context:
+
+The current list is from prompts attempted with mixed results. Effectiveness cannot be fully assessed due to different or lack of a defined workflow. Additionally, some prompts were used in the middle of a messy project/repo with significant user mistakes.
+
+
+
+Allowed:
+
+- Inference from overall "vibe" and objectives contained within the documents.
+
+- Internet research from authoritative, respected, and official documents.
+
+- Creation of multiple documents.
+
+- Best judgement with **high reasoning.**
+
+
+
+Constrainsts:
+
+- Prompts that are **not** specific to **or** enable application building.
+
+
+
+Task:
+
+- Create a set of Evergreen prompts optimized for AI agents, based of role, category, sequence, and other sailent categories.
+
+
+
+Output:
+
+- Catagorized or segmented prompts and user expectations that are Evergreen, written specifically for AI coding agents yet the sequence or when to use them can be clearly understood by the user.
+
+This document presents a curated set of Evergreen Prompts for application development, optimized for a user-driven agent orchestration workflow. These prompts are synthesized from the provided documentation, aligning with the philosophy, expectations, and technical requirements specified in user_technical_execution_doc.txt and the examples in user_prompts_app_bldg_draft.txt.
+
+The prompts adhere to the "Cut & Paste Contract," meaning they are provided in clean code boxes for easy transfer to agents. They are designed to enforce safety, modularity, atomic execution, and seamless continuity, guided by the maxim: "Slow is smooth and smooth is fast."
+
+I. Project Initialization & Strategic Planning
+Role: Strategist / Advisor / Orchestration Agent When to use: At the beginning of a project, a new phase, or when a significant strategic decision is required.
+
+Category	User Expectation (When to use)	Evergreen Prompt for Agent (Optimized for "Cut & Paste Contract")
+Planning Mode Activation	Ensure the agent ceases all execution activities and focuses solely on discussion and planning.	```md
+STOP. Execution lock engaged. Do not write code, modify files, or execute changes. We are strictly in planning and discussion mode. Acknowledge readiness to proceed with planning.		
+Code snippet
+| **Initial Plan Development** | Receive a high-level, safe, modular, and incremental plan based on the project objectives. | ```md
+Objective: Develop a high-level project plan for a new application based on [Reference Requirements/Context].
+Constraints: Adhere strictly to the user philosophy in `user_technical_execution_doc.txt`. The approach must be incremental, modular, and prioritize safety/correctness over speed.
+Task: Create a strategic plan that includes:
+1. Baseline infrastructure setup.
+2. Modular feature development phases.
+3. "Make or Buy" analysis for tools/libraries.
+4. Checkpoints for Testing and Validation (T&V).
+5. Checkpoints for Agent Continuity Documentation updates.
+Output: A concise overview of the main phases. Do not provide implementation details or code.
+``` |
+| **Plan Assessment and Refinement** | Critically review the proposed plan for robustness, risks, and alignment with user philosophy before proceeding. | ```md
+Task: Critically evaluate the current project plan [Reference Plan Document].
+Focus Areas: Identify risks, gaps, excessive complexity, and adherence to the modular/incremental philosophy. Confirm that T&V and Continuity checkpoints are adequately integrated.
+Action: Propose specific updates if deficiencies are found.
+Gate Check: Return only when you are >95% confident the plan is robust and ready for the next stage.
+``` |
+| **Conceptual Approach Generation** | Evaluate the methodology for a specific phase without getting bogged down in code details. | ```md
+Objective: Define the approach for the upcoming project phase: [Phase Description].
+Constraint: Do not provide code. Focus solely on conceptual approach.
+Task: Describe the methodology, required resources, architectural impact, and risk mitigation strategy.
+Output: A conceptual strategy analysis.
+``` |
+| **Determining Next Steps (Dynamic)** | Identify the most logical, impactful, and safest next action when the path forward requires analysis. | ```md
+Task: Analyze the current project state by consulting the continuity documentation and repository structure.
+Objective: Determine the next sensible step in the project.
+Constraints: Minimize risk, strictly avoid scope creep, focus on high ROI actions. Tailor recommendations to the user's non-developer experience level.
+Output: A focused recommendation for the immediate next phase of work.
+``` |
+
+---
+
+### II. Task List Generation & Refinement
+
+**Role:** Strategist / Advisor / Orchestration Agent
+**When to use:** Translating the strategic plan into executable instructions (guardrails) for the Execution Agents.
+
+| Category | User Expectation (When to use) | Evergreen Prompt for Agent (Optimized for "Cut & Paste Contract") |
+| :--- | :--- | :--- |
+| **Atomic Task List Creation** | Receive an ultra-detailed task list optimized for machine reading, ensuring deterministic execution within context limits. | ```md
+Objective: Create a task list for [Project Phase/Module].
+Target Audience: AI Coding Execution Agents.
+Requirements:
+1. Ultra-Atomic Steps: Break down tasks into the smallest executable units. These are strict guardrails.
+2. Machine Readability: Optimize the format for agent parsing (e.g., JSON preferred). Write for agents, not the user.
+3. Chunking Strategy: Ensure each task block can be completed within the executing agent's context window. More overall tasks are better than backtracking.
+4. Control Strategy: Include specific validation checks after critical steps.
+Output: The generated task list.
+``` |
+| **Task List Red Teaming (Rogue Prevention)** | Rigorously review the task list to identify and close gaps that could lead to errors, rework, or agent deviation. | ```md
+Task: Act as a Red Team agent and review the generated task list [Reference Task List ID/File].
+Objective: Identify weaknesses that could lead to failure or unintended behavior (rogue agents).
+Focus Areas:
+1. Gaps and Omissions.
+2. Unnecessary Code Complexity (distinguish from atomic complexity).
+3. Potential Failure Points/Risks to existing functionality.
+4. Ambiguity allowing improvisation.
+Action: Update the task list to mitigate these risks.
+Gate Check: Return when confidence in the task list's robustness exceeds 95%.
+``` |
+| **The Rubric Method (Internal Self-Assessment)** | Force the agent to internally validate the quality and safety of its plan against best practices before finalization. | ```md
+Internal Process Requirement: Before finalizing the plan/task list for [Objective], perform this internal self-assessment. Do not output the rubric or scores to the user.
+1. Create a Developer Rubric: Define criteria for success (modularity, safety, efficiency, user philosophy adherence).
+2. Evaluate: Score the current draft plan against the rubric.
+3. Iterate: Refine the plan until the score is maximized.
+Action: Once the maximum score is achieved internally, confirm readiness and output the finalized task list/plan.
+``` |
+
+---
+
+### III. Execution Phase
+
+**Role:** Coding Execution Agent
+**When to use:** Implementing the code according to the defined atomic task lists.
+
+| Category | User Expectation (When to use) | Evergreen Prompt for Agent (Optimized for "Cut & Paste Contract") |
+| :--- | :--- | :--- |
+| **Agent Onboarding (Session Start)** | Ensure a new agent understands the exact project status and context before starting work. | ```md
+Welcome, new agent. Handoff protocol initiated.
+Task: Examine the continuity documentation referenced below:
+[Path/Name of Document]
+[Lines/JSON Block provided by previous agent]
+Action: DO NOT begin coding or making changes.
+Output: Provide a concise response confirming your understanding of the current project status and the immediate next task you are assigned to execute.
+``` |
+| **The Gauntlet (Pre-Execution Gate Check)** | A rigorous assessment of the agent’s readiness, understanding, resources, and capability before authorizing execution. | ```md
+STOP. Before executing the task list [Reference Task List ID], perform this assessment. Do not code or make changes.
+Answer the following precisely:
+1. Information Sufficiency: Do you have all necessary context to execute the task list completely?
+2. Context Window Analysis: Do you have sufficient remaining context window to complete all tasks, including reasonably anticipated issues/debugging?
+3. Guardrails Assessment: Is the task list sufficient to keep you on target and prevent rework/rogue actions? Is it too restrictive, loose, or just right?
+4. Continuity Check: If the system crashes mid-execution, could a new agent accurately assess the completion level and successfully continue the build within 15 minutes?
+5. Success Confidence: Do you have >95% confidence that upon completion, the features/fixes will perform exactly as intended and meet the user's objectives without breaking existing functionality?
+Output: Your assessment. If the assessment fails any point, halt and report the deficiency.
+``` |
+| **Execute Task List (Standard Directive)** | The agent executes the defined atomic steps precisely, prioritizing stability and safety. | ```md
+Task: Execute the assigned task list: [Reference Task List ID/File], Steps [Start] to [End].
+Execution Philosophy:
+1. Precision: Follow the steps exactly. Do not deviate or add features unless authorized.
+2. Safety First: Slow is smooth and smooth is fast. Slow and right is better than fast and wrong. Minimize risk to the existing build.
+3. Logical Stops: Halt execution immediately if an error occurs, a validation fails, or the assigned steps are complete.
+4. Status Update: After stopping, report the current status and any errors encountered.
+``` |
+| **Execute Recommendation (Flexible)** | Implement a previously approved recommendation when a detailed task list is not present, using caution and limited discretion. | ```md
+User accepts the recommendation regarding [Specific Feature/Fix].
+Task: Implement the recommendation.
+Constraints: Generate an appropriate amount of code that balances single-pass limitations, safety, and efficiency. Ensure the implementation is modular and does not jeopardize the build.
+Discretion: If a critical flaw in previous work is identified, fix it, provided it doesn’t undo overall progress. Be wary of scope creep.
+Post-Execution: Perform immediate validation of the implemented code.
+``` |
+| **General Approval / Continuation** | Simple commands to move the process forward. | ```md
+Approved. Execute.
+OR
+
+Markdown
+Continue.
+``` |
+
+---
+
+### IV. Debugging, Testing, and Quality Control (QC)
+
+**Role:** QC/Ver-Val Agent or Execution Agent
+**When to use:** Throughout the build process to ensure code quality, functionality, and stability.
+
+| Category | User Expectation (When to use) | Evergreen Prompt for Agent (Optimized for "Cut & Paste Contract") |
+| :--- | :--- | :--- |
+| **Post-Execution Debugging Sweep** | Immediate check and fix of the code that was just implemented. | ```md
+Task: Scan and debug the code implemented during the last execution phase ([Reference Files/Module]).
+Objective: Identify and fix any immediate bugs or errors.
+Constraints:
+1. Safety: Avoid making changes that risk breaking working parts of the application. Focus only on the recently modified code.
+2. Iteration: Multiple debugging passes are authorized to achieve stability.
+Output: A report of issues found, fixes applied, and confirmation of stability.
+``` |
+| **Quality Control Audit (Reporting Only)** | Identify issues without implementing fixes, allowing for strategic planning of the debugging phase. | ```md
+Task: Perform a Quality Control audit on the recent work [Reference Module/Phase].
+Objective: Detect bugs, weak spots, faulty logic, and deviations from requirements.
+Action: DO NOT implement any corrections or changes.
+Output: Report the issues found, ranked from the easiest to fix to the most challenging. Update the issue tracker/log.
+``` |
+| **Debugging Plan Generation** | Create a structured approach to resolve identified issues from the QC Audit. | ```md
+Objective: Develop a structured debugging plan for the issues identified in the QC Audit [Reference Audit Report/Log].
+Requirements:
+1. Prioritization: Sequence the debugging tasks logically.
+2. Methodology: Define the approach for isolating and resolving each issue.
+3. Safety: Ensure the plan minimizes disruption to working functionality.
+Output: The debugging plan, formulated as an atomic task list.
+``` |
+| **Modular Test and Validation (T&V)** | Thorough, systematic testing of a specific module to ensure full functionality. | ```md
+Task: Initiate the Test and Validation (T&V) process for Module: [Module Name].
+Objective: Verify the module functions exactly as intended and integrates correctly.
+Methodology: Proceed slowly and systematically. Test unit functionality, integration, and edge cases. Minimize disruption.
+Authorization: Multiple passes are authorized. Log all results (progress, bugs, fixes, test results) for auditing.
+Output: Detailed test results and confirmation of module validation.
+``` |
+| **Confidence Challenge** | Force the agent to re-verify a solution when the user doubts the results. | ```md
+User is not convinced by the previous result/fix. The problem appears persistent.
+Task: Re-check the code, the logic, and the test results. Perform a deeper analysis.
+Gate Check: Report back only when you are >95% confident in the solution. User will conduct a manual review upon confirmation.
+``` |
+
+---
+
+### V. Continuity and Repository Management
+
+**Role:** All Agents
+**When to use:** Periodically, at checkpoints, and at the end of sessions to maintain project integrity and organization.
+
+| Category | User Expectation (When to use) | Evergreen Prompt for Agent (Optimized for "Cut & Paste Contract") |
+| :--- | :--- | :--- |
+| **Continuity Update (Periodic)** | Regular updates to ensure seamless handoff in case of a crash or agent switch. Optimized for machine reading. | ```md
+Task: Update the relevant agent handoff and continuity documents.
+Objective: Ensure the next agent clearly understands the current status, recent progress, and immediate tasks ahead. Ensure alignment with user priorities and philosophy.
+Requirements: Optimize format for machine reading (e.g., JSON summary). Avoid unnecessary materials to save context tokens.
+Output: Confirmation of update.
+``` |
+| **Handoff Protocol (Session End/Outgoing Agent)** | A comprehensive update at the end of a work session, providing precise pointers for the next agent. | ```md
+Initiate the Handoff Protocol.
+Task: Update all relevant continuity documents (logs, TODO, status, etc.).
+Content must include: Current status, developments, significant lessons learned, session number/timestamp, and the precise next steps.
+Optimization: Maximize for machine reading.
+Output: Return ONLY the path/name of the primary continuity document and the exact lines/JSON block the next agent must read to resume the project.
+``` |
+| **Repository Synchronization (Version Control)** | Ensure progress is saved externally for disaster recovery. | ```md
+Task: Synchronize the local repository with the remote version control system (e.g., GitHub).
+Objective: Ensure progress is saved and recoverable in case of catastrophic loss.
+Action: Stage relevant changes, create a meaningful commit message summarizing the progress, and push to the designated branch [Branch Name].
+``` |
+| **Repository Housekeeping (Cleanup)** | Maintain a clean repository and reduce token bloat by removing non-value-added files. | ```md
+Task: Sweep the repository for cleanup.
+Objective: Maintain an organized repo and reduce token bloat for agent operations.
+Criteria: Identify files that are no longer value-added (e.g., old test scripts, temporary files, unused plans). If current value is very low and the likelihood they won't be needed again is very low, delete them.
+Safety: Think carefully before deleting. Ensure progress is not lost, and functionality is not broken. Retain all essential documentation (reports, handoffs, status docs, lessons learned).
+Output: A list of files deleted and confirmation of status.
+``` |
+| **Lessons Learned Documentation** | Capture insights objectively to refine future workflows. | ```md
+Task: Create or update the lessons learned document for this phase/session.
+Objective: Objectively capture data to help define future workflows.
+Content: Iteration process, discoveries, what went right, what went wrong, suggestions for improvement, unnecessary/salient steps. Must be ruthlessly objective.
+Requirements: Include tags and metadata. Store in the designated lessons learned folder.
+``` |
+| **Context Refresh** | Ensure the agent has the foundational rules and user philosophy loaded into its active context. | ```md
+Task: Reread and familiarize yourself with the user's core philosophy and expectations.
+Document: `user_technical_execution_doc.txt`
+Output: Confirmation that the context is refreshed.
+``` |
+Developer: # Role and Objective
+
+Given the totality of updates from various models, recreate a categorized set of evergreen prompts designed for AI agents to facilitate application building, drawing on a referenced document and leveraging user-driven agent orchestration processes.
+
+
+
+Begin with a concise checklist (3-7 bullets) of what you will do; keep items conceptual, not implementation-level.
+
+
+
+# Instructions
+
+- Infer and generate evergreen prompts supporting application building, grouping them by attributes such as role (intended user/agent), category (prompt type/purpose), and sequence (recommended order), using high-level reasoning and supplied context.
+
+- Make informed inferences from the provided document, supplementing with reputable online research as needed.
+
+- Prioritize prompts that directly enable application development workflows.
+
+- Clearly annotate with a 'note' if the reference material is ambiguous or incomplete.
+
+- Multiple documents may be generated as needed.
+
+
+
+# Context
+
+- Source is a mixed-quality list of historical prompts; their effectiveness is not fully established due to varying workflows and inconsistent usage, including possible user errors in past repositories.
+
+- Supplementary internet research from authoritative sources is permitted to resolve ambiguities or enrich findings.
+
+- Prompts must remain specific to application-building tasks.
+
+
+
+# Reasoning Steps
+
+- Analyze the reference material to infer prompt roles, categories, and usage order.
+
+- Segment prompt list by 'role' and then by 'category', drawing on high-level reasoning if attributes are not explicit.
+
+- Ensure clarity of user expectations and context of use for each prompt, adding notes on ambiguities as needed.
+
+
+
+# Planning and Verification
+
+- Map extracted prompts to attributes: role, category, sequence/order.
+
+- Verify prompts align with application-building objectives, not general-purpose tasks.
+
+- Test and optimize organizational criteria and prompts for clarity.
+
+
+
+After generating or editing prompts, validate that each prompt is relevant, well-categorized, and that all required JSON schema fields are present. If any issues are found, self-correct before finalizing output.
+
+
+
+# Output Format
+
+Respond in JSON using the following schema:
+
+
+
+{
+
+"prompts": [
+
+{
+
+"role": "<Describe the intended user or agent role>",
+
+"category": "<Prompt category/type, as inferred>",
+
+"sequence": "<Order of use or recommended sequence, if applicable>",
+
+"prompt": "<The Evergreen prompt itself>",
+
+"user_expectation": "<Succinct guidance or expected outcome when using this prompt>",
+
+// Optional; include only if applicable
+
+"note": "<Explain any ambiguities, missing details, or contradictions from the source material>"
+
+},
+
+...
+
+]
+
+}
+
+
+
+- Group or segment the prompt list primarily by 'role', then by 'category'.
+
+- Where sequence is relevant, provide an ordering indication.
+
+- Each prompt must have a 'user_expectation' field clearly articulating the expected outcome or benefit.
+
+- If ambiguities exist in the reference document, annotate with a 'note' field.
+
+
+
+# Verbosity
+
+- Write prompts and user expectations concisely, ensuring clarity and immediate usability for coding agents or developers.
+
+
+
+# Stop Conditions
+
+- Task is complete when all feasible evergreen prompts for application building are given, grouped and annotated as required, in the specified JSON format.
+
+This is my checklist for creating the evergreen prompts:
+
+Analyze and synthesize all provided inputs: user_technical_execution_doc.txt and the combined drafts in user_prompts_app_bldg_draft2.txt.
+
+Structure the prompts logically, covering both the process of agent orchestration (Planning, Execution, QC, Continuity) and the tasks within the application development lifecycle (SDLC).
+
+Refine prompt language for maximum clarity, conciseness, and optimization for agent execution (e.g., specifying JSON/YAML outputs, adhering to the "Cut & Paste Contract").
+
+Incorporate the user's core philosophies (e.g., atomic tasks, machine readability, safety thresholds, "Slow is smooth and smooth is fast").
+
+Validate the final list against the required JSON schema and constraints.
+
+JSON
+{
+  "prompts": [
+    {
+      "role": "Strategist/Orchestration Agent",
+      "category": "Project Initialization",
+      "sequence": "01-Orchestration-Setup",
+      "prompt": "STOP. Execution lock engaged. We are strictly in planning mode. Acknowledge readiness to proceed with planning. Do not write code, modify files, or execute changes.",
+      "user_expectation": "Agent ceases all activity and confirms focus on planning."
+    },
+    {
+      "role": "Strategist/Orchestration Agent",
+      "category": "Strategic Planning",
+      "sequence": "01-Orchestration-Setup",
+      "prompt": "Develop a high-level, incremental project plan for {{Objective}}. Prioritize safety/correctness over speed (Ref: user_technical_execution_doc.txt). Include: Modular phases, 'Make or Buy' analysis, T&V checkpoints, and Agent Continuity checkpoints. Output: Concise phase overview only. No code.",
+      "user_expectation": "Receives a conceptual roadmap emphasizing modularity, safety, and clear checkpoints."
+    },
+    {
+      "role": "Strategist/Orchestration Agent",
+      "category": "Plan Validation",
+      "sequence": "01-Orchestration-Setup",
+      "prompt": "Critically evaluate the current plan {{Plan_ID}}. Identify risks, gaps, excessive complexity, and adherence to modular/incremental philosophy. Confirm T&V and Continuity integration for crash recovery. Propose updates if deficient. Gate Check: Return only when >95% confident the plan is robust.",
+      "user_expectation": "Agent validates plan completeness and adjusts for maximum success probability.",
+      "note": "Source repeatedly emphasizes 95% confidence threshold but doesn't define objective measurement criteria."
+    },
+    {
+      "role": "Strategist/Orchestration Agent",
+      "category": "Atomic Task List Generation",
+      "sequence": "02-Orchestration-Tasks",
+      "prompt": "Create a task list for {{Phase/Module}}. Target Audience: AI Execution Agents. Requirements: 1. Ultra-Atomic Steps (strict guardrails). 2. Machine Readability (JSON required). 3. Chunking Strategy (must fit within execution context window). 4. Explicit validation checks and stop points. Output: The generated task list (JSON).",
+      "user_expectation": "Machine-optimized task list ensuring deterministic execution and preventing agent drift."
+    },
+    {
+      "role": "Strategist/Orchestration Agent",
+      "category": "Task List Red Teaming",
+      "sequence": "02-Orchestration-Tasks",
+      "prompt": "Red Team review task list {{Task_List_ID}}. Identify weaknesses leading to failure or rogue behavior. Focus: Gaps, unnecessary complexity (not atomic complexity), failure risks, ambiguity allowing improvisation. Action: Update the task list to mitigate risks. Gate Check: Return when confidence in robustness >95%.",
+      "user_expectation": "Refined task list with identified risks mitigated and guardrails strengthened."
+    },
+    {
+      "role": "Strategist/Orchestration Agent",
+      "category": "Internal Self-Assessment (Rubric)",
+      "sequence": "02-Orchestration-Tasks",
+      "prompt": "Internal Process (The Rubric Method): Before finalizing {{Plan/Task_List}}, create a Developer Rubric (criteria: modularity, safety, efficiency, adherence). Evaluate the draft. Iterate until score is maximized. DO NOT output the rubric. Action: Once maximized internally, output the finalized artifact.",
+      "user_expectation": "Agent internally validates the quality and safety of its approach before presenting it."
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Agent Onboarding (Handoff)",
+      "sequence": "03-Orchestration-Execution",
+      "prompt": "Handoff protocol initiated. Examine continuity documentation: {{Document_Path}} AND {{JSON_Block_from_previous_agent}}. Action: DO NOT begin coding. Output: Concise confirmation of current status understanding and the immediate next assigned task.",
+      "user_expectation": "New agent confirms exact project status and context before starting work."
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Pre-Execution Gate Check (The Gauntlet)",
+      "sequence": "03-Orchestration-Execution",
+      "prompt": "STOP. Before executing {{Task_List_ID}}, perform assessment. No code. Answer precisely: 1. Information Sufficiency? 2. Context Window adequacy (including anticipated issues/debugging)? 3. Guardrails Assessment (sufficient to prevent rework/rogue actions? Too restrictive/loose)? 4. Continuity Check (can new agent resume <15 min if crash)? 5. Success Confidence (>95% that objectives met without breakage)? Output: Assessment. Halt if any point fails.",
+      "user_expectation": "Rigorous Go/No-Go assessment of readiness, resources, and capability before execution."
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Standard Execution Directive",
+      "sequence": "03-Orchestration-Execution",
+      "prompt": "Execute task list: {{Task_List_ID}}, Steps {{Start}} to {{End}}. Philosophy: 1. Precision (No deviation). 2. Safety First (Slow is smooth and smooth is fast. Slow and right > fast and wrong). 3. Logical Stops (Halt immediately on error, validation fail, or completion). 4. Status Update (Report status/errors after stopping).",
+      "user_expectation": "Agent executes defined atomic steps precisely, prioritizing stability and safety."
+    },
+    {
+      "role": "Execution Agent",
+      "category": "Flexible Execution (Recommendation)",
+      "sequence": "03-Orchestration-Execution",
+      "prompt": "User accepts recommendation regarding {{Feature/Fix}}. Task: Implement. Constraints: Balance single-pass limitations, safety, efficiency. Ensure modularity. Discretion: Fix critical flaws if identified, provided it doesn’t undo progress. Be wary of scope creep. Post-Execution: Immediate validation.",
+      "user_expectation": "Implementation of an approved recommendation using caution and limited discretion."
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Quality Control Audit (Reporting Only)",
+      "sequence": "04-Orchestration-QC",
+      "prompt": "Perform QC audit on {{Module/Phase}}. Objective: Detect bugs, weak spots, faulty logic, deviations. Action: DO NOT implement corrections. Output: Report issues found, ranked easiest to hardest fix (JSON). Update issue tracker.",
+      "user_expectation": "Prioritized bug list without implementation, enabling strategic debugging planning."
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Debugging Plan Generation",
+      "sequence": "04-Orchestration-QC",
+      "prompt": "Develop structured debugging plan for issues in {{Audit_Report_ID}}. Requirements: 1. Logical sequencing. 2. Methodology for isolation/resolution. 3. Minimize disruption to working functionality. Output: Debugging plan as an atomic task list (JSON).",
+      "user_expectation": "A structured, safe, machine-readable approach to resolve identified issues."
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Modular Test and Validation (T&V)",
+      "sequence": "04-Orchestration-QC",
+      "prompt": "Initiate T&V process for Module: {{Module_Name}}. Objective: Verify exact function and integration. Methodology: Slow, systematic. Test unit, integration, edge cases. Minimize disruption. Authorization: Multiple passes authorized. Log all results (progress, bugs, fixes) for auditing. Output: Detailed results and validation confirmation.",
+      "user_expectation": "Thorough, systematic testing of a specific module with documented evidence."
+    },
+    {
+      "role": "QC/Validation Agent",
+      "category": "Confidence Challenge",
+      "sequence": "04-Orchestration-QC",
+      "prompt": "User is not convinced by previous result/fix. Problem appears persistent. Task: Re-check code, logic, and test results. Perform deeper analysis. Gate Check: Report back only when >95% confident in the solution. User will conduct manual review.",
+      "user_expectation": "Agent forced to rigorously re-verify a solution when the user doubts the results."
+    },
+    {
+      "role": "Continuity/Documentation Agent",
+      "category": "Handoff Protocol (Session End)",
+      "sequence": "05-Orchestration-Continuity",
+      "prompt": "Initiate Handoff Protocol. Update all continuity documents. Content: Current status, developments, lessons learned, session ID/timestamp, precise next steps. Optimization: Maximize for machine reading (JSON required). Minimize context tokens. Output: Return ONLY the path/name of the primary continuity document AND the exact JSON block the next agent must read.",
+      "user_expectation": "Machine-readable handoff providing precise pointers for the next agent.",
+      "note": "Source emphasizes machine optimization; JSON is mandated here for consistency and reliability."
+    },
+    {
+      "role": "Continuity/Documentation Agent",
+      "category": "Lessons Learned",
+      "sequence": "05-Orchestration-Continuity",
+      "prompt": "Create/update lessons learned document for {{Phase/Session}}. Objective: Objectively capture data for future workflow optimization. Content: Iteration process, discoveries, right/wrong, improvement suggestions, salient/unnecessary steps. Must be ruthlessly objective. Include tags/metadata. Store in designated folder.",
+      "user_expectation": "Actionable insights for process improvement."
+    },
+    {
+      "role": "Continuity/Documentation Agent",
+      "category": "Repository Housekeeping (Cleanup)",
+      "sequence": "05-Orchestration-Continuity",
+      "prompt": "Sweep repository for cleanup. Objective: Maintain organization, reduce token bloat. Criteria: Identify non-value-added files (old tests, temp files). If current value AND likelihood of future need are very low, delete. Safety: Think carefully before deleting. Retain all essential documentation (reports, handoffs, lessons learned). Output: List of deleted files (JSON).",
+      "user_expectation": "Streamlined repository optimized for agent token efficiency."
+    },
+    {
+      "role": "Continuity/Documentation Agent",
+      "category": "Version Control Sync",
+      "sequence": "05-Orchestration-Continuity",
+      "prompt": "Synchronize local repository with remote (e.g., GitHub). Objective: Ensure recoverable progress. Action: Stage relevant changes, create meaningful commit message, push to {{Branch_Name}}.",
+      "user_expectation": "Consistent backup points for disaster recovery."
+    },
+    {
+      "role": "Product Owner / Strategist",
+      "category": "Problem Framing",
+      "sequence": "10-SDLC-Discovery",
+      "prompt": "Summarize the problem for {{project_name}}. Output JSON: business_goal, target_users, jobs_to_be_done, constraints, out_of_scope.",
+      "user_expectation": "Receives crisp problem definition and scope boundaries."
+    },
+    {
+      "role": "Product Owner / Strategist",
+      "category": "User Stories & AC",
+      "sequence": "10-SDLC-Discovery",
+      "prompt": "Draft user stories with acceptance criteria for {{target_users}}. Output a Markdown table: story_id, as_a, I_want, so_that, acceptance_criteria.",
+      "user_expectation": "Receives prioritized stories with clear acceptance criteria."
+    },
+    {
+      "role": "Product Owner / Strategist",
+      "category": "Risks and Assumptions",
+      "sequence": "10-SDLC-Discovery",
+      "prompt": "List top risks and assumptions. Output a risk register (JSON): [{id, description, impact, likelihood, mitigation, owner}].",
+      "user_expectation": "Receives a structured risk register."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "System Context (C4)",
+      "sequence": "11-SDLC-Architecture",
+      "prompt": "Produce a C4 Level-1 text spec for {{project_name}}. Output JSON: system_purpose, external_users, external_systems, relationships, key_quality_attributes.",
+      "user_expectation": "Receives high-level system context and boundaries."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "ADRs (Architecture Decision Records)",
+      "sequence": "11-SDLC-Architecture",
+      "prompt": "Draft initial ADRs for {{stack_preferences}}. Output ADR stubs (Markdown): title, status, context, decision, consequences.",
+      "user_expectation": "Receives ADR skeletons for key technical choices."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "Service Boundaries",
+      "sequence": "11-SDLC-Architecture",
+      "prompt": "Propose service decomposition. Output services (JSON): [{name, responsibility, APIs, data_owned, dependencies, scale_driver}].",
+      "user_expectation": "Receives a clear service map and responsibilities."
+    },
+    {
+      "role": "Solution Architect",
+      "category": "NFR Tactics",
+      "sequence": "11-SDLC-Architecture",
+      "prompt": "Map {{nonfunctional_requirements}} to tactics. Output JSON: [{nfr, tactic, design_implication, verification_method}].",
+      "user_expectation": "Receives NFR-to-tactic mapping ensuring quality attributes are addressed."
+    },
+    {
+      "role": "Developer - Scaffolding",
+      "category": "Repo Structure",
+      "sequence": "12-SDLC-Scaffolding",
+      "prompt": "Propose repo layout for {{mono_or_poly_repo}}. Output JSON: [{directory, purpose, tooling, code_owners}].",
+      "user_expectation": "Receives a plan for the repository scaffold."
+    },
+    {
+      "role": "Developer - Scaffolding",
+      "category": "Standards & Conventions",
+      "sequence": "12-SDLC-Scaffolding",
+      "prompt": "Define language and style standards for {{language}}. Output JSON: linters, formatters, commit_conventions, branch_policy.",
+      "user_expectation": "Receives enforceable coding and process standards."
+    },
+    {
+      "role": "Developer - Scaffolding",
+      "category": "Local Dev Environment",
+      "sequence": "12-SDLC-Scaffolding",
+      "prompt": "Specify local dev environment setup. Output JSON: runtime_versions, services, env_vars, seeds, startup_steps.",
+      "user_expectation": "Receives a plan for a reproducible local development setup."
+    },
+    {
+      "role": "Developer - API",
+      "category": "Resource Design (OpenAPI)",
+      "sequence": "13-SDLC-API-Contracts",
+      "prompt": "Draft OpenAPI 3.1 specification for core resources {{core_resources}}. Use REST or RPC as appropriate. Include paths, schemas, errors, examples. Output: YAML.",
+      "user_expectation": "Receives a first-pass, standardized API specification."
+    },
+    {
+      "role": "Developer - API",
+      "category": "Error Model",
+      "sequence": "13-SDLC-API-Contracts",
+      "prompt": "Define a standardized API error model. Output JSON Schema: code, http_status, message, details, remediation, correlation_id.",
+      "user_expectation": "Receives a uniform error contract for all services."
+    },
+    {
+      "role": "Developer - API",
+      "category": "Versioning Strategy",
+      "sequence": "13-SDLC-API-Contracts",
+      "prompt": "Choose API versioning strategy. Output JSON: scheme, compatibility_rules, deprecation_policy, examples.",
+      "user_expectation": "Receives clear versioning rules and policies."
+    },
+    {
+      "role": "Developer - Data",
+      "category": "Conceptual Model (ERD)",
+      "sequence": "14-SDLC-Data-Model",
+      "prompt": "Propose a conceptual ERD. Output JSON: [{entities, relationships, cardinalities, invariants}].",
+      "user_expectation": "Receives a clear domain model."
+    },
+    {
+      "role": "Developer - Data",
+      "category": "Naming and Migrations",
+      "sequence": "14-SDLC-Data-Model",
+      "prompt": "Define naming conventions and migration policy for {{database}}. Output JSON: rules, migration_steps, rollback_guidelines.",
+      "user_expectation": "Receives consistent database rules and safe migration policies."
+    },
+    {
+      "role": "Developer - Data",
+      "category": "Indexing Strategy",
+      "sequence": "14-SDLC-Data-Model",
+      "prompt": "Propose indexing strategy for key queries. Output JSON: [{query_patterns, suggested_indexes, maintenance_costs}].",
+      "user_expectation": "Receives index recommendations based on query patterns.",
+      "note": "If database engine is unspecified, provide generic B-Tree and covering index options."
+    },
+    {
+      "role": "Developer - Backend",
+      "category": "Service Skeleton",
+      "sequence": "15-SDLC-Backend",
+      "prompt": "Generate a service skeleton for {{framework}} with health, readiness, and metrics endpoints. Output: File tree structure and code stubs.",
+      "user_expectation": "Receives runnable service scaffold with basic observability."
+    },
+    {
+      "role": "Developer - Backend",
+      "category": "Core Endpoints (CRUD)",
+      "sequence": "15-SDLC-Backend",
+      "prompt": "Implement CRUD endpoints for {{resource}} per API spec. Include validation, serialization, and error handling. Output: Code for endpoint handlers.",
+      "user_expectation": "Receives endpoint stubs aligned to the API contract."
+    },
+    {
+      "role": "Developer - Backend",
+      "category": "Persistence Layer",
+      "sequence": "15-SDLC-Backend",
+      "prompt": "Design the repository layer for {{database}}. Output: Interfaces, transaction strategy, and sample queries.",
+      "user_expectation": "Receives persistence layer design and interfaces."
+    },
+    {
+      "role": "Developer - Backend",
+      "category": "Resilience Patterns",
+      "sequence": "15-SDLC-Backend",
+      "prompt": "Define resilience patterns for inter-service communication. Output JSON: timeouts, retries, backoff, circuit_breakers with default values.",
+      "user_expectation": "Receives fault-tolerant configurations."
+    },
+    {
+      "role": "Developer - Frontend",
+      "category": "Component Inventory",
+      "sequence": "16-SDLC-Frontend",
+      "prompt": "List screens and components for {{user_flows}}. Output JSON: [{route, component, state, data_sources}].",
+      "user_expectation": "Receives a component map organized by route."
+    },
+    {
+      "role": "Developer - Frontend",
+      "category": "State Management Strategy",
+      "sequence": "16-SDLC-Frontend",
+      "prompt": "Propose state management strategy for {{framework}}. Output JSON: server_state_vs_client_state, caching_rules, invalidation_triggers.",
+      "user_expectation": "Receives a predictable state management plan."
+    },
+    {
+      "role": "Developer - Frontend",
+      "category": "API Client Generation",
+      "sequence": "16-SDLC-Frontend",
+      "prompt": "Generate API client layer from OpenAPI specification {{OpenAPI_Spec_ID}}. Include typing, auth handling, and error normalization. Output: Code for API client.",
+      "user_expectation": "Receives a typed, standardized client layer."
+    },
+    {
+      "role": "Developer - Frontend",
+      "category": "Accessibility (A11y) Rules",
+      "sequence": "16-SDLC-Frontend",
+      "prompt": "Set A11y acceptance rules based on WCAG standards. Output JSON: [{keyboard_support, labels, color_contrast, focus_management, test_cases}].",
+      "user_expectation": "Receives enforceable A11y checks and test cases."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "CI Pipeline Design",
+      "sequence": "17-SDLC-DevOps",
+      "prompt": "Design CI pipeline for {{language}}. Stages: lint, test, build, scan, package, cache. Output: YAML-like specification.",
+      "user_expectation": "Receives a portable CI plan.",
+      "note": "CI vendor unspecified; keep steps generic and portable."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "Containerization Plan",
+      "sequence": "17-SDLC-DevOps",
+      "prompt": "Propose container build strategy for {{service}}. Output JSON: base_image, build_args, multi-stage_steps, security_hardening, healthcheck.",
+      "user_expectation": "Receives a plan for a reproducible and secure container image."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "IaC Outline",
+      "sequence": "17-SDLC-DevOps",
+      "prompt": "Outline Infrastructure as Code strategy for {{cloud_provider}}. Output JSON: environments, state_management, modules, drift_detection_plan.",
+      "user_expectation": "Receives a structured approach to IaC implementation."
+    },
+    {
+      "role": "DevOps / Platform",
+      "category": "Secrets Management",
+      "sequence": "17-SDLC-DevOps",
+      "prompt": "Specify secrets management strategy. Output JSON: storage_solution, rotation_policy, access_policies, local_dev_substitutes.",
+      "user_expectation": "Receives clear secrets handling rules and boundaries."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "Threat Model (STRIDE)",
+      "sequence": "18-SDLC-Security",
+      "prompt": "Threat model {{system_boundary}} using STRIDE methodology. Output JSON: [{assets, trust_zones, threats, mitigations, residual_risk}].",
+      "user_expectation": "Receives a prioritized threat model."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "AuthN/AuthZ Design",
+      "sequence": "18-SDLC-Security",
+      "prompt": "Design authentication and authorization for {{audiences}}. Output JSON: flows, token_lifetimes, role_matrix, permission_check_locations.",
+      "user_expectation": "Receives actionable authentication and authorization design."
+    },
+    {
+      "role": "Security Engineer",
+      "category": "Dependency Scanning Policy",
+      "sequence": "18-SDLC-Security",
+      "prompt": "Set dependency and container scanning policy. Output JSON: tools, severity_thresholds, SLA_for_remediation, exceptions_process.",
+      "user_expectation": "Receives an enforceable scanning policy with clear SLAs."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "Test Strategy",
+      "sequence": "19-SDLC-Testing",
+      "prompt": "Create comprehensive test strategy. Output JSON: levels(unit|integration|e2e), coverage_targets, environments, gating_rules_for_promotion.",
+      "user_expectation": "Receives a clear, multi-layered testing plan."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "Unit Test Blueprint",
+      "sequence": "19-SDLC-Testing",
+      "prompt": "Generate unit test blueprint for {{module}}. Output JSON: [{cases, inputs, oracles, mocks, edge_conditions}].",
+      "user_expectation": "Receives detailed unit test cases and requirements."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "Integration Test Plan",
+      "sequence": "19-SDLC-Testing",
+      "prompt": "Plan integration tests for {{service_interactions}}. Output JSON: [{contracts, fixtures, mock_strategies, assertions}].",
+      "user_expectation": "Receives a structured integration test plan."
+    },
+    {
+      "role": "QA / Test Engineer",
+      "category": "E2E Flow Design",
+      "sequence": "19-SDLC-Testing",
+      "prompt": "Design end-to-end flows for {{critical_paths}}. Output JSON: [{sequence, preconditions, steps, expected_outcome, cleanup}].",
+      "user_expectation": "Receives detailed E2E scenarios covering critical user journeys."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Capability Spec",
+      "sequence": "20-SDLC-LLM",
+      "prompt": "Define LLM capability for {{use_case}}. Output JSON: inputs, outputs, tools, constraints, acceptance_checks.",
+      "user_expectation": "Receives a bounded capability specification."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Retrieval Strategy",
+      "sequence": "20-SDLC-LLM",
+      "prompt": "Plan retrieval strategy for {{corpus}}. Output JSON: chunking_strategy, embeddings_fields, index_layout, freshness_requirements, filters.",
+      "user_expectation": "Receives a detailed retrieval plan."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Prompt Templates",
+      "sequence": "20-SDLC-LLM",
+      "prompt": "Create prompt templates with slot variables. Output JSON: system_prompt, user_prompt, tool_schemas, examples, negative_prompts.",
+      "user_expectation": "Receives a reusable prompt package."
+    },
+    {
+      "role": "LLM/RAG Agent Designer",
+      "category": "Evaluation Harness",
+      "sequence": "20-SDLC-LLM",
+      "prompt": "Define eval harness. Output JSON: test_set_sources, metrics(exact_match|F1|preference), thresholds, failure_buckets.",
+      "user_expectation": "Receives a structured evaluation plan."
+    }
+  ]
+}
+
+
+
+Gemini can make mistakes, so double-check it
+
+

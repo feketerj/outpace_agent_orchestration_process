@@ -1,0 +1,83 @@
+
+
+**Checklist of Actions**  
+1. **Analyze reference material** to identify app-building tasks and infer roles/categories.  
+2. **Define agent roles** (e.g., Code Generator, Test Engineer) based on development lifecycle stages.  
+3. **Categorize prompts** by purpose (e.g., Feature Implementation, Debugging) within each role.  
+4. **Sequence prompts** to align with standard app-building workflows (planning → deployment).  
+5. **Ensure specificity** to application-building tasks, avoiding general-purpose prompts.  
+6. **Flag ambiguities** in source material with notes and supplement with authoritative research.  
+
+---
+
+### **Categorized Evergreen Prompts for Application Building**  
+
+#### **Role 1: Project Planner Agent**  
+**Category: Requirements & Scoping**  
+- **Prompt**: "Define user stories and acceptance criteria for a [specific feature, e.g., payment gateway integration]."  
+- **Sequence**: 1 (Pre-development)  
+- **Note**: Source material lacked clarity on prioritization methods; assumes Agile-like workflows.  
+
+**Category: Architecture Design**  
+- **Prompt**: "Propose a system architecture for a [type, e.g., microservices-based] app with scalability in mind."  
+- **Sequence**: 2  
+
+---
+
+#### **Role 2: Code Generator Agent**  
+**Category: Feature Implementation**  
+- **Prompt**: "Generate boilerplate code for a [framework, e.g., React] component handling user authentication."  
+- **Sequence**: 3  
+
+**Category: API Development**  
+- **Prompt**: "Create a RESTful API endpoint for [action, e.g., fetching product data] with error handling."  
+- **Sequence**: 4  
+
+---
+
+#### **Role 3: Test Engineer Agent**  
+**Category: Unit Testing**  
+- **Prompt**: "Write unit tests for a [function, e.g., password validation] to cover edge cases."  
+- **Sequence**: 5  
+
+**Category: Integration Testing**  
+- **Prompt**: "Design test cases to validate interactions between [modules, e.g., frontend UI and backend API]."  
+- **Sequence**: 6  
+
+---
+
+#### **Role 4: DevOps Agent**  
+**Category: Deployment**  
+- **Prompt**: "Configure a CI/CD pipeline to deploy a [cloud platform, e.g., AWS] containerized app."  
+- **Sequence**: 7  
+
+**Category: Monitoring**  
+- **Prompt**: "Set up logging and alerting for [service, e.g., database] performance metrics."  
+- **Sequence**: 8  
+
+---
+
+#### **Role 5: UX Designer Agent**  
+**Category: Prototyping**  
+- **Prompt**: "Generate a low-fidelity wireframe for a [screen, e.g., user dashboard] emphasizing accessibility."  
+- **Sequence**: 2 (Parallel to architecture design)  
+
+**Category: Feedback Integration**  
+- **Prompt**: "Iterate on a UI design based on [user feedback, e.g., usability testing results]."  
+- **Sequence**: 6 (Post-testing)  
+
+---
+
+### **Notes on Ambiguities**  
+- The original prompt list did not specify tools/frameworks (e.g., React, AWS), so examples are illustrative.  
+- User roles (e.g., Product Owner vs. Developer) were conflated in source material; roles here reflect agent functions.  
+- Testing prompts assume knowledge of frameworks (e.g., Jest, Selenium), which may require user input for specificity.  
+
+### **Verification**  
+- Prompts align with core app-building stages (plan → code → test → deploy).  
+- Roles and categories avoid overlap (e.g., Code Generator vs. Test Engineer).  
+- Sequencing reflects dependencies (e.g., design before development).  
+
+--- 
+
+This structure enables users to orchestrate agents across the development lifecycle while maintaining flexibility for toolchain preferences.
