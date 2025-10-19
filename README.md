@@ -42,6 +42,9 @@ agent_orchestration_baseline/
 │   ├── perplexity-research-notes.txt
 │   └── dr-prompt-agent-frameworks.txt
 │
+├── PLANS/                                       # Execution-ready task lists & playbooks
+│   └── nblm_atomic_task_list.md
+│
 └── ARCHIVE/                                     # Superseded document variants
     └── [deprecated versions of reference docs]
 ```
@@ -68,6 +71,7 @@ agent_orchestration_baseline/
 - **Comprehensive Framework Analysis:** `RESEARCH/frameworks/you_ai_agent_orchestration.md`
 - **Application Building Strategy:** `RESEARCH/strategies/agentic-application-build-strategies.md`
 - **NBLM Integration PRD:** `RESEARCH/strategies/agentic-nblm-integration-prd.md`
+- **Atomic Task Lists:** `PLANS/nblm_atomic_task_list.md`
 
 ---
 
